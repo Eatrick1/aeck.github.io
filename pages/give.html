@@ -2,37 +2,709 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Give | A.E.M.I - Ambassadors of Encouragement International Ministries</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .fade-in.visible { opacity: 1; transform: none; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      color: #1a1a2e;
+      background: #f4f1ec;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ===== ROOT VARIABLES ===== */
+    :root {
+      --deep-blue: #0d1b3e;
+      --navy: #112255;
+      --light-gold: #c9a84c;
+      --gold: #d4a017;
+      --white: #ffffff;
+      --off-white: #f4f1ec;
+      --text-dark: #1a1a2e;
+      --text-light: #666;
+      --accent-red: #c0392b;
+      --accent-green: #1a6b3c;
+      --shadow: 0 8px 32px rgba(0,0,0,0.12);
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    /* ===== TOPBAR (simplified, no icons) ===== */
+    .topbar {
+      background: var(--deep-blue);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.75rem;
+      padding: 10px 20px;
+    }
+    .topbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .topbar-inner a {
+      color: rgba(255,255,255,0.75);
+      transition: color 0.2s;
+      font-weight: 600;
+    }
+    .topbar-inner a:hover {
+      color: var(--light-gold);
+    }
+
+    /* ===== NAVBAR (identical to events/contact style) ===== */
+    .navbar {
+      background: var(--white);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .navbar-logo img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+    }
+    .navbar-brand-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--deep-blue);
+    }
+    .navbar-brand-text span {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--light-gold);
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 6px;
+      align-items: center;
+    }
+    .nav-links li {
+      position: relative;
+    }
+    .nav-links li a {
+      padding: 8px 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--deep-blue);
+      border-radius: 6px;
+      transition: all 0.2s;
+      display: block;
+    }
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color: var(--light-gold);
+    }
+    .nav-links li .nav-give {
+      background: var(--accent-red);
+      color: var(--white);
+      border-radius: 6px;
+    }
+    .nav-links li .nav-give:hover {
+      background: #a93226;
+      color: var(--white);
+    }
+    .nav-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+      min-width: 180px;
+      padding: 8px 0;
+      z-index: 100;
+    }
+    .nav-links li:hover .nav-dropdown {
+      display: block;
+    }
+    .nav-dropdown a {
+      padding: 10px 20px;
+      font-size: 0.85rem;
+      color: var(--deep-blue);
+      display: block;
+    }
+    .nav-dropdown a:hover {
+      background: var(--off-white);
+      color: var(--light-gold);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1200;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: var(--deep-blue);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 1050;
+    }
+    .nav-overlay.open {
+      display: block;
+    }
+    .mobile-sidebar {
+      position: fixed;
+      top: 0;
+      left: -320px;
+      width: 300px;
+      height: 100vh;
+      background: var(--deep-blue);
+      z-index: 1100;
+      transition: left 0.35s cubic-bezier(.4,0,.2,1);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      padding: 0 0 40px 0;
+    }
+    .mobile-sidebar.open {
+      left: 0;
+    }
+    .mobile-sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 20px 20px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .mobile-sidebar-header .brand strong {
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+    }
+    .mobile-sidebar-header .brand span {
+      color: var(--light-gold);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: block;
+    }
+    .mobile-sidebar-close {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+    .mobile-nav-links {
+      list-style: none;
+      padding: 20px 0;
+      flex: 1;
+    }
+    .mobile-nav-links li a {
+      display: block;
+      padding: 14px 24px;
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.2s, color 0.2s;
+    }
+    .mobile-nav-links li a:hover,
+    .mobile-nav-links li a.active {
+      background: rgba(255,255,255,0.07);
+      color: var(--light-gold);
+    }
+    .mobile-nav-links li a.mobile-give {
+      margin: 20px 24px 0;
+      background: var(--accent-red);
+      color: var(--white);
+      border-radius: 8px;
+      text-align: center;
+      border: none;
+    }
+
+    /* ===== PAGE HEADER with background image ===== */
+    .page-header {
+      position: relative;
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: var(--deep-blue);
+    }
+    .page-header-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1600&q=80');
+      background-size: cover;
+      background-position: center 30%;
+      filter: brightness(0.32);
+    }
+    .page-header-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(13,27,62,0.85) 0%, rgba(17,34,85,0.7) 100%);
+    }
+    .page-header-content {
+      position: relative;
+      z-index: 2;
+      padding: 60px 20px;
+    }
+    .page-header-tag {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--light-gold);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===== SCRIPTURE QUOTE SECTION ===== */
+    .scripture-section {
+      background: var(--deep-blue);
+      padding: 48px 0;
+      text-align: center;
+    }
+    .scripture-text {
+      color: var(--light-gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .scripture-ref {
+      color: rgba(255,255,255,0.55);
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.85rem;
+      margin-top: 12px;
+      letter-spacing: 2px;
+    }
+
+    /* ===== GIVE PAGE LAYOUT - TWO COLUMN CARD VIEW ===== */
+    .give-page {
+      padding: 80px 0;
+      background: var(--off-white);
+    }
+    .give-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* LEFT CARD - FORM */
+    .give-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 40px 36px;
+      box-shadow: var(--shadow);
+    }
+    .section-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      display: block;
+      margin-bottom: 12px;
+    }
+    .give-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--deep-blue);
+      margin-bottom: 8px;
+    }
+    .give-sub {
+      color: var(--text-light);
+      margin-bottom: 28px;
+      font-size: 0.9rem;
+    }
+    .give-amounts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .amount-btn {
+      background: var(--off-white);
+      border: 1px solid #ddd;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      font-family: 'Raleway', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--deep-blue);
+    }
+    .amount-btn.active {
+      background: var(--light-gold);
+      border-color: var(--light-gold);
+      color: var(--deep-blue);
+    }
+    .amount-btn:hover {
+      background: var(--light-gold);
+      border-color: var(--light-gold);
+    }
+    .give-form label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 8px;
+      margin-top: 18px;
+    }
+    .give-form input,
+    .give-form select,
+    .give-form textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.9rem;
+      background: var(--white);
+      transition: border 0.2s;
+    }
+    .give-form input:focus,
+    .give-form select:focus,
+    .give-form textarea:focus {
+      outline: none;
+      border-color: var(--light-gold);
+    }
+    .give-form textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .btn-primary {
+      background: var(--deep-blue);
+      color: var(--white);
+      border: none;
+      border-radius: 40px;
+      padding: 16px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-family: 'Raleway', sans-serif;
+      margin-top: 24px;
+      width: 100%;
+    }
+    .btn-primary:hover {
+      background: var(--light-gold);
+      color: var(--deep-blue);
+      transform: translateY(-2px);
+    }
+    .secure-note {
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--text-light);
+      margin-top: 16px;
+    }
+
+    /* RIGHT COLUMN - CARDS (no icons) */
+    .give-info-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .info-heading {
+      margin-bottom: 8px;
+    }
+    .info-heading h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--deep-blue);
+    }
+    .info-heading p {
+      color: var(--text-light);
+      margin-top: 8px;
+    }
+    .reason-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 28px 28px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .reason-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .reason-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--deep-blue);
+      margin-bottom: 12px;
+    }
+    .reason-card p {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      line-height: 1.65;
+    }
+    /* Direct payment methods card (no icons) */
+    .payment-methods-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      margin-top: 8px;
+    }
+    .payment-methods-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--deep-blue);
+      margin-bottom: 20px;
+    }
+    .payment-row {
+      background: var(--off-white);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+    }
+    .payment-row strong {
+      display: block;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--deep-blue);
+      margin-bottom: 6px;
+    }
+    .payment-row span {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #070f22;
+      color: rgba(255,255,255,0.7);
+      padding: 60px 0 0;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+    .footer-brand img {
+      width: 54px;
+      margin-bottom: 14px;
+    }
+    .footer-brand strong {
+      display: block;
+      color: var(--white);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+    .footer-brand p {
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col ul li {
+      margin-bottom: 8px;
+    }
+    .footer-col ul li a {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover {
+      color: var(--light-gold);
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+
+    /* Fade animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .give-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .give-card {
+        padding: 32px 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .topbar-inner {
+        justify-content: center;
+        font-size: 0.7rem;
+        gap: 16px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+      .page-header {
+        min-height: 260px;
+      }
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+      .scripture-text {
+        font-size: 1.1rem;
+        padding: 0 20px;
+      }
+      .give-amounts {
+        justify-content: center;
+      }
+      .info-heading h3 {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .give-amounts {
+        gap: 8px;
+      }
+      .amount-btn {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+      }
+      .reason-card {
+        padding: 22px;
+      }
+    }
   </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
+<!-- TOPBAR (no icons, only text) -->
 <div class="topbar">
-  <div class="container">
-    <div class="topbar-left">
-      <span>📍 Kampala, Uganda</span>
-      <a href="mailto:info@aemi.org">✉ info@aemi.org</a>
-      <a href="tel:+256700000000">📞 +256 700 000 000</a>
-    </div>
-    <div class="topbar-right">
-      <a href="https://facebook.com" target="_blank">Facebook</a>
-      <a href="https://youtube.com" target="_blank">YouTube</a>
-      <a href="https://instagram.com" target="_blank">Instagram</a>
-    </div>
+  <div class="topbar-inner">
+    <a href="https://facebook.com" target="_blank">Facebook</a>
+    <a href="https://youtube.com" target="_blank">YouTube</a>
+    <a href="https://instagram.com" target="_blank">Instagram</a>
   </div>
 </div>
 
-<!-- NAVBAR -->
+<!-- NAVBAR (identical to events/contact) -->
 <nav class="navbar">
-  <div class="container">
+  <div class="navbar-inner">
     <a href="../index.html" class="navbar-logo">
-      <img src="../images/logo.png" alt="AEMI Logo">
+      <img src="../images/logo.png" alt="AEMI Logo" onerror="this.style.display='none'">
       <div class="navbar-brand-text">
         <strong>Ambassadors of Encouragement</strong>
         <span>International Ministries — A.E.M.I</span>
@@ -74,29 +746,59 @@
   </div>
 </nav>
 
-<!-- PAGE HEADER -->
+<!-- Mobile Overlay & Sidebar -->
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-sidebar" id="mobileSidebar">
+  <div class="mobile-sidebar-header">
+    <div class="brand">
+      <div>
+        <strong>Ambassadors of Encouragement</strong>
+        <span>International Ministries — A.E.M.I</span>
+      </div>
+    </div>
+    <button class="mobile-sidebar-close" id="sidebarClose">✕</button>
+  </div>
+  <ul class="mobile-nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="about.html">Who We Are</a></li>
+    <li><a href="about.html#mission">Mission & Vision</a></li>
+    <li><a href="about.html#leadership">Leadership</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="contact.html">Cell Groups</a></li>
+    <li><a href="contact.html">Membership</a></li>
+    <li><a href="contact.html">Volunteer</a></li>
+    <li><a href="sermons.html">Sermons</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="give.html" class="mobile-give">Give</a></li>
+  </ul>
+</div>
+
+<!-- PAGE HEADER with background image -->
 <div class="page-header">
-  <div class="container">
-    <span class="section-tag" style="color:var(--light-gold);display:block;margin-bottom:10px;">Support the Ministry</span>
+  <div class="page-header-bg"></div>
+  <div class="page-header-overlay"></div>
+  <div class="page-header-content">
+    <span class="page-header-tag">Support the Ministry</span>
     <h1>Give to A.E.M.I</h1>
-    <p class="breadcrumb"><a href="../index.html">Home</a> / Give</p>
   </div>
 </div>
 
-<!-- SCRIPTURE QUOTE -->
-<div style="background:var(--deep-blue);padding:40px 0;text-align:center;">
+<!-- SCRIPTURE QUOTE (no icons) -->
+<div class="scripture-section">
   <div class="container">
-    <p style="color:var(--light-gold);font-family:'Playfair Display',serif;font-size:1.4rem;font-style:italic;max-width:700px;margin:0 auto;">"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."</p>
-    <p style="color:rgba(255,255,255,0.55);font-family:'Raleway',sans-serif;font-size:0.85rem;margin-top:12px;letter-spacing:2px;">— 2 CORINTHIANS 9:7</p>
+    <div class="scripture-text">
+      "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."
+    </div>
+    <div class="scripture-ref">— 2 CORINTHIANS 9:7</div>
   </div>
 </div>
 
-<!-- GIVE SECTION -->
-<section class="give-page section-pad">
+<!-- GIVE SECTION - TWO COLUMN CARD LAYOUT (NO ICONS) -->
+<section class="give-page">
   <div class="container">
     <div class="give-grid">
 
-      <!-- GIVE FORM -->
+      <!-- LEFT COLUMN: GIVING FORM CARD -->
       <div class="fade-in">
         <div class="give-card">
           <span class="section-tag">Online Giving</span>
@@ -124,7 +826,7 @@
               <option>Special Offering</option>
             </select>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
               <div>
                 <label>First Name</label>
                 <input type="text" placeholder="Your first name">
@@ -152,78 +854,54 @@
             <label>Note (Optional)</label>
             <textarea placeholder="Any specific note about your giving..."></textarea>
 
-            <button type="submit" class="btn btn-primary" style="width:100%;padding:16px;font-size:1rem;">
-              💝 Give Now
-            </button>
-            <p style="text-align:center;font-size:0.78rem;color:var(--text-light);margin-top:12px;">
-              🔒 Your giving information is secure and confidential
-            </p>
+            <button type="submit" class="btn-primary">Give Now</button>
+            <p class="secure-note">🔒 Your giving information is secure and confidential</p>
           </form>
         </div>
       </div>
 
-      <!-- GIVE INFO -->
+      <!-- RIGHT COLUMN: CARD VIEWS (NO ICONS) -->
       <div class="give-info-cards fade-in">
-        <h3 style="margin-bottom:8px;">Why We Give</h3>
-        <p style="margin-bottom:32px;">Your generosity enables A.E.M.I to fulfil its God-given mandate of spreading the Gospel, equipping believers, and serving the community.</p>
-
-        <div class="give-info-card">
-          <div class="give-info-icon">🌍</div>
-          <div>
-            <h4>Missions & Outreach</h4>
-            <p>Your giving sends missionaries across Uganda and beyond, planting churches and sharing the Good News in unreached communities.</p>
-          </div>
+        <div class="info-heading">
+          <h3>Why We Give</h3>
+          <p>Your generosity enables A.E.M.I to fulfil its God-given mandate of spreading the Gospel, equipping believers, and serving the community.</p>
         </div>
 
-        <div class="give-info-card">
-          <div class="give-info-icon">📖</div>
-          <div>
-            <h4>Discipleship Programs</h4>
-            <p>We run Bible schools, cell groups, and discipleship programmes that equip believers to grow in their faith and serve effectively.</p>
-          </div>
+        <!-- Reason Cards - two columns visually but stacked vertically as cards -->
+        <div class="reason-card">
+          <h4>Missions & Outreach</h4>
+          <p>Your giving sends missionaries across Uganda and beyond, planting churches and sharing the Good News in unreached communities.</p>
         </div>
 
-        <div class="give-info-card">
-          <div class="give-info-icon">🏗️</div>
-          <div>
-            <h4>Building & Infrastructure</h4>
-            <p>We are building a modern worship and ministry centre that will serve the congregation and community for generations to come.</p>
-          </div>
+        <div class="reason-card">
+          <h4>Discipleship Programs</h4>
+          <p>We run Bible schools, cell groups, and discipleship programmes that equip believers to grow in their faith and serve effectively.</p>
         </div>
 
-        <div class="give-info-card">
-          <div class="give-info-icon">❤️</div>
-          <div>
-            <h4>Community Welfare</h4>
-            <p>Our welfare fund supports vulnerable families, widows, orphans, and those in need within our congregation and the broader community.</p>
-          </div>
+        <div class="reason-card">
+          <h4>Building & Infrastructure</h4>
+          <p>We are building a modern worship and ministry centre that will serve the congregation and community for generations to come.</p>
         </div>
 
-        <!-- Mobile Money Details -->
-        <div style="background:var(--off-white);border-radius:10px;padding:28px;margin-top:8px;">
-          <h4 style="margin-bottom:16px;font-family:'Raleway',sans-serif;font-weight:700;letter-spacing:0.5px;">Direct Mobile Money</h4>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <div style="display:flex;align-items:center;gap:12px;padding:12px;background:white;border-radius:8px;">
-              <span style="font-size:1.3rem;">📱</span>
-              <div>
-                <strong style="display:block;font-family:'Raleway',sans-serif;font-size:0.88rem;">MTN Mobile Money</strong>
-                <span style="font-size:0.85rem;color:var(--text-light);">+256 700 000 000 — A.E.M.I</span>
-              </div>
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;padding:12px;background:white;border-radius:8px;">
-              <span style="font-size:1.3rem;">📱</span>
-              <div>
-                <strong style="display:block;font-family:'Raleway',sans-serif;font-size:0.88rem;">Airtel Money</strong>
-                <span style="font-size:0.85rem;color:var(--text-light);">+256 751 000 000 — A.E.M.I</span>
-              </div>
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;padding:12px;background:white;border-radius:8px;">
-              <span style="font-size:1.3rem;">🏦</span>
-              <div>
-                <strong style="display:block;font-family:'Raleway',sans-serif;font-size:0.88rem;">Bank Account</strong>
-                <span style="font-size:0.85rem;color:var(--text-light);">Stanbic Bank — A/C: 9030012345678</span>
-              </div>
-            </div>
+        <div class="reason-card">
+          <h4>Community Welfare</h4>
+          <p>Our welfare fund supports vulnerable families, widows, orphans, and those in need within our congregation and the broader community.</p>
+        </div>
+
+        <!-- Direct Payment Methods (no icons) -->
+        <div class="payment-methods-card">
+          <h4>Direct Mobile Money & Bank</h4>
+          <div class="payment-row">
+            <strong>MTN Mobile Money</strong>
+            <span>+256 700 000 000 — A.E.M.I</span>
+          </div>
+          <div class="payment-row">
+            <strong>Airtel Money</strong>
+            <span>+256 751 000 000 — A.E.M.I</span>
+          </div>
+          <div class="payment-row">
+            <strong>Bank Account</strong>
+            <span>Stanbic Bank — A/C: 9030012345678</span>
           </div>
         </div>
       </div>
@@ -232,20 +910,14 @@
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER (no icons, clean) -->
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="../images/logo.png" alt="AEMI Logo">
+        <img src="../images/logo.png" alt="AEMI Logo" onerror="this.style.display='none'">
         <strong>Ambassadors of Encouragement International Ministries</strong>
         <p>Touching lives with the love of Jesus Christ through proclamation, discipleship, and compassionate service in Uganda and beyond.</p>
-        <div class="footer-social">
-          <a href="https://facebook.com" class="social-btn" target="_blank">f</a>
-          <a href="https://youtube.com" class="social-btn" target="_blank">▶</a>
-          <a href="https://instagram.com" class="social-btn" target="_blank">📷</a>
-          <a href="https://twitter.com" class="social-btn" target="_blank">𝕏</a>
-        </div>
       </div>
       <div class="footer-col">
         <h4>Ministry</h4>
@@ -277,19 +949,73 @@
           <li><a href="#">Prayer: Fri 6 PM</a></li>
         </ul>
         <div style="margin-top:20px;font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:1.8;">
-          📍 Kampala, Uganda<br>
-          📞 +256 700 000 000<br>
-          ✉ info@aemi.org
+          Kampala, Uganda<br>
+          +256 700 000 000<br>
+          info@aemi.org
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <p>&copy; 2025 Ambassadors of Encouragement International Ministries. All rights reserved.</p>
-      <p>Built with ❤️ for the Kingdom of God</p>
+      <p>Built with love for the Kingdom of God</p>
     </div>
   </div>
 </footer>
 
-<script src="../js/main.js"></script>
+<script>
+  // Mobile sidebar functionality
+  const hamburger = document.getElementById('hamburger');
+  const mobileSidebar = document.getElementById('mobileSidebar');
+  const navOverlay = document.getElementById('navOverlay');
+  const sidebarClose = document.getElementById('sidebarClose');
+
+  function openSidebar() {
+    hamburger.classList.add('open');
+    mobileSidebar.classList.add('open');
+    navOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSidebar() {
+    hamburger.classList.remove('open');
+    mobileSidebar.classList.remove('open');
+    navOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  if (hamburger) hamburger.addEventListener('click', openSidebar);
+  if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
+  if (navOverlay) navOverlay.addEventListener('click', closeSidebar);
+
+  // Fade in on scroll
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // Amount buttons interaction
+  const amountBtns = document.querySelectorAll('.amount-btn');
+  const customAmountInput = document.getElementById('customAmount');
+  amountBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      amountBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const amount = this.getAttribute('data-amount');
+      if (customAmountInput) customAmountInput.value = amount;
+    });
+  });
+  if (customAmountInput) {
+    customAmountInput.addEventListener('input', function() {
+      amountBtns.forEach(b => b.classList.remove('active'));
+    });
+  }
+
+  // Prevent form submission for demo
+  const giveForm = document.getElementById('giveForm');
+  if (giveForm) giveForm.addEventListener('submit', (e) => e.preventDefault());
+</script>
 </body>
 </html>

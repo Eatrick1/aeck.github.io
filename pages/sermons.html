@@ -4,40 +4,776 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sermons | A.E.M.I - Ambassadors of Encouragement International Ministries</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    :root {
+      --deep-blue: #0d1b3e;
+      --navy: #112255;
+      --light-gold: #c9a84c;
+      --gold: #d4a017;
+      --white: #ffffff;
+      --off-white: #f4f1ec;
+      --text-dark: #1a1a2e;
+      --text-light: #666;
+      --text-mid: #555;
+      --accent-red: #c0392b;
+      --accent-green: #1a6b3c;
+      --light-gray: #ddd;
+      --shadow: 0 8px 32px rgba(0,0,0,0.12);
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      color: var(--text-dark);
+      background: var(--off-white);
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ===== TOPBAR ===== */
+    .topbar {
+      background: var(--deep-blue);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.8rem;
+      padding: 8px 20px;
+    }
+    .topbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .topbar-inner a { color: rgba(255,255,255,0.75); transition: color 0.2s; }
+    .topbar-inner a:hover { color: var(--light-gold); }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background: var(--white);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .navbar-logo img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+    }
+    .navbar-brand-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--deep-blue);
+    }
+    .navbar-brand-text span {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--light-gold);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 6px;
+      align-items: center;
+    }
+    .nav-links li { position: relative; }
+    .nav-links li a {
+      padding: 8px 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--deep-blue);
+      border-radius: 6px;
+      transition: all 0.2s;
+      display: block;
+    }
+    .nav-links li a:hover, .nav-links li a.active { color: var(--light-gold); }
+    .nav-links li .nav-give {
+      background: var(--accent-red);
+      color: var(--white);
+      border-radius: 6px;
+    }
+    .nav-links li .nav-give:hover { background: #a93226; color: var(--white); }
+
+    .nav-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+      min-width: 180px;
+      padding: 8px 0;
+      z-index: 100;
+    }
+    .nav-links li:hover .nav-dropdown { display: block; }
+    .nav-dropdown a {
+      padding: 10px 20px;
+      font-size: 0.85rem;
+      color: var(--deep-blue);
+      display: block;
+    }
+    .nav-dropdown a:hover { background: var(--off-white); color: var(--light-gold); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1200;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: var(--deep-blue);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 1050;
+    }
+    .nav-overlay.open { display: block; }
+
+    .mobile-sidebar {
+      position: fixed;
+      top: 0;
+      left: -320px;
+      width: 300px;
+      height: 100vh;
+      background: var(--deep-blue);
+      z-index: 1100;
+      transition: left 0.35s cubic-bezier(.4,0,.2,1);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      padding: 0 0 40px 0;
+    }
+    .mobile-sidebar.open { left: 0; }
+    .mobile-sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .mobile-sidebar-header .brand strong {
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      display: block;
+    }
+    .mobile-sidebar-header .brand span {
+      color: var(--light-gold);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .mobile-sidebar-close {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+    .mobile-nav-links {
+      list-style: none;
+      padding: 20px 0;
+      flex: 1;
+    }
+    .mobile-nav-links li a {
+      display: block;
+      padding: 14px 24px;
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.2s, color 0.2s;
+    }
+    .mobile-nav-links li a:hover,
+    .mobile-nav-links li a.active {
+      background: rgba(255,255,255,0.07);
+      color: var(--light-gold);
+    }
+    .mobile-nav-links li a.mobile-give {
+      margin: 20px 24px 0;
+      background: var(--accent-red);
+      color: var(--white);
+      border-radius: 8px;
+      text-align: center;
+      border: none;
+    }
+
+    /* ===== PAGE HEADER WITH VIDEO BG ===== */
+    .page-header {
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .page-header-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .page-header-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(13,27,62,0.88) 0%, rgba(17,34,85,0.78) 100%);
+      z-index: 1;
+    }
+
+    /* Animated cross/pattern overlay */
+    .page-header-pattern {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .page-header-pattern::before {
+      content: '';
+      position: absolute;
+      inset: -50%;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(201,168,76,0.05) 60px, rgba(201,168,76,0.05) 62px),
+        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(201,168,76,0.05) 60px, rgba(201,168,76,0.05) 62px);
+      animation: patternScroll 20s linear infinite;
+    }
+    @keyframes patternScroll {
+      0% { transform: translateY(0) translateX(0); }
+      100% { transform: translateY(62px) translateX(62px); }
+    }
+
+    .page-header-content {
+      position: relative;
+      z-index: 3;
+      padding: 80px 20px 60px;
+    }
+    .page-header-tag {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--light-gold);
+      margin-bottom: 16px;
+      display: block;
+      animation: fadeUp 0.8s ease both;
+    }
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===== FEATURED SERMON with VIDEO BG ===== */
+    .featured-section {
+      position: relative;
+      padding: 80px 0;
+      overflow: hidden;
+    }
+    .featured-section-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--deep-blue);
+    }
+    .featured-section-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.12;
+    }
+
+    .featured-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    /* YouTube embed wrapper */
+    .video-embed-wrapper {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+      aspect-ratio: 16/9;
+      background: #000;
+    }
+    .video-embed-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: none;
+    }
+
+    .featured-content {
+      color: var(--white);
+    }
+    .section-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--light-gold);
+      display: block;
+      margin-bottom: 12px;
+    }
+    .featured-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .divider-left {
+      width: 50px;
+      height: 3px;
+      background: var(--light-gold);
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    .sermon-meta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 600;
+    }
+    .featured-content p {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+    .btn-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent-red);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: #a93226; transform: translateY(-2px); }
+    .btn-outline-white {
+      border: 2px solid rgba(255,255,255,0.5);
+      color: var(--white);
+    }
+    .btn-outline-white:hover { border-color: var(--light-gold); color: var(--light-gold); }
+
+    /* ===== FILTERS ===== */
+    .sermon-filters {
+      background: var(--white);
+      border-bottom: 1px solid #e8e8e8;
+      padding: 20px 0;
+      position: sticky;
+      top: 72px;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .filters-inner {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .filter-search {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 16px;
+      border: 2px solid var(--light-gray);
+      border-radius: 8px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      transition: border-color 0.2s;
+      background: var(--off-white);
+    }
+    .filter-search:focus { outline: none; border-color: var(--light-gold); }
+    .filter-select {
+      padding: 10px 14px;
+      border: 2px solid var(--light-gray);
+      border-radius: 8px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--deep-blue);
+      background: var(--off-white);
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .filter-select:focus { outline: none; border-color: var(--light-gold); }
+
+    /* ===== SERMONS GRID ===== */
+    .sermons-section {
+      padding: 70px 0;
+      background: var(--off-white);
+    }
+    .sermons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .sermon-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.35s;
+      display: flex;
+      flex-direction: column;
+    }
+    .sermon-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-6px);
+    }
+
+    /* YouTube embed in card */
+    .sermon-card-video {
+      position: relative;
+      aspect-ratio: 16/9;
+      background: #000;
+      overflow: hidden;
+    }
+    .sermon-card-video iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: none;
+    }
+    .card-new-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 5;
+      background: var(--accent-red);
+      color: white;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 50px;
+      pointer-events: none;
+    }
+
+    .sermon-card-body {
+      padding: 20px 22px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .series-tag {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .sermon-card-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--deep-blue);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+    .sermon-card-body .sermon-meta {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      margin-bottom: 16px;
+      gap: 8px;
+    }
+    .sermon-card-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+    }
+    .btn-sm {
+      padding: 9px 18px;
+      font-size: 0.75rem;
+      border-radius: 7px;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      display: inline-block;
+    }
+    .btn-sm.btn-primary { background: var(--accent-red); color: var(--white); }
+    .btn-sm.btn-primary:hover { background: #a93226; }
+    .btn-sm.btn-notes {
+      border: 1.5px solid var(--light-gray);
+      color: var(--text-mid);
+      background: transparent;
+    }
+    .btn-sm.btn-notes:hover { border-color: var(--deep-blue); color: var(--deep-blue); }
+
+    /* Load more */
+    .text-center { text-align: center; }
+
+    /* ===== SUBSCRIBE CTA with video bg ===== */
+    .subscribe-section {
+      position: relative;
+      padding: 80px 0;
+      text-align: center;
+      overflow: hidden;
+    }
+    .subscribe-section-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--deep-blue);
+    }
+    .subscribe-section-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.1;
+    }
+    .subscribe-section-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(13,27,62,0.95), rgba(17,34,85,0.9));
+    }
+    .subscribe-content {
+      position: relative;
+      z-index: 2;
+    }
+    .subscribe-content .section-tag { display: block; margin-bottom: 10px; }
+    .subscribe-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .subscribe-content p {
+      color: rgba(255,255,255,0.7);
+      max-width: 500px;
+      margin: 0 auto 36px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .subscribe-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-yt {
+      background: #ff0000;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-yt:hover { background: #cc0000; transform: translateY(-2px); }
+    .btn-tiktok {
+      background: #000;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-tiktok:hover { background: #111; transform: translateY(-2px); }
+    .btn-podcast {
+      border: 2px solid rgba(255,255,255,0.4);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-podcast:hover { border-color: var(--light-gold); color: var(--light-gold); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #070f22;
+      color: rgba(255,255,255,0.7);
+      padding: 60px 0 0;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+    .footer-brand img { width: 54px; margin-bottom: 14px; }
+    .footer-brand strong { display: block; color: var(--white); font-size: 0.95rem; margin-bottom: 10px; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.7; }
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.8rem;
+      font-weight: 800;
+      transition: all 0.2s;
+    }
+    .social-btn:hover { background: var(--light-gold); color: var(--deep-blue); }
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul li a { font-size: 0.85rem; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--light-gold); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+
+    /* ===== FADE IN ===== */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1000px) {
+      .sermons-grid { grid-template-columns: repeat(2, 1fr); }
+      .featured-grid { grid-template-columns: 1fr; gap: 36px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .topbar-inner { justify-content: center; font-size: 0.72rem; gap: 12px; }
+      .sermons-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .page-header { min-height: 300px; }
+      .filters-inner { flex-direction: column; align-items: stretch; }
+    }
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .subscribe-btns { flex-direction: column; align-items: center; }
+    }
   </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
+<!-- TOPBAR — social links only, no contact info -->
 <div class="topbar">
-  <div class="container">
-    <div class="topbar-left">
-      <span>📍 Kampala, Uganda</span>
-      <a href="mailto:info@aemi.org">✉ info@aemi.org</a>
-      <a href="tel:+256700000000">📞 +256 700 000 000</a>
-    </div>
-    <div class="topbar-right">
-      <a href="https://facebook.com" target="_blank">Facebook</a>
-      <a href="https://youtube.com" target="_blank">YouTube</a>
-      <a href="https://instagram.com" target="_blank">Instagram</a>
-    </div>
+  <div class="topbar-inner">
+    <a href="https://facebook.com" target="_blank">Facebook</a>
+    <a href="https://youtube.com" target="_blank">YouTube</a>
+    <a href="https://instagram.com" target="_blank">Instagram</a>
+    <a href="https://tiktok.com" target="_blank">TikTok</a>
   </div>
 </div>
 
-<!-- NAVBAR -->
+<!-- NAVBAR — matching events page -->
 <nav class="navbar">
-  <div class="container">
+  <div class="navbar-inner">
     <a href="../index.html" class="navbar-logo">
-      <img src="../images/logo.png" alt="AEMI Logo">
+      <img src="../images/logo.png" alt="AEMI Logo" onerror="this.style.display='none'">
       <div class="navbar-brand-text">
         <strong>Ambassadors of Encouragement</strong>
         <span>International Ministries — A.E.M.I</span>
       </div>
     </a>
+
     <ul class="nav-links" id="navLinks">
       <li><a href="../index.html">Home</a></li>
       <li>
@@ -45,7 +781,7 @@
         <div class="nav-dropdown">
           <a href="about.html">Who We Are</a>
           <a href="about.html#history">Our History</a>
-          <a href="about.html#mission">Mission & Vision</a>
+          <a href="about.html#mission">Mission &amp; Vision</a>
           <a href="about.html#leadership">Leadership</a>
         </div>
       </li>
@@ -68,52 +804,98 @@
       <li><a href="contact.html">Contact</a></li>
       <li><a href="give.html" class="nav-give">Give</a></li>
     </ul>
+
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
   </div>
 </nav>
 
-<!-- PAGE HEADER -->
+<!-- Mobile Overlay -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- Mobile Sidebar -->
+<div class="mobile-sidebar" id="mobileSidebar">
+  <div class="mobile-sidebar-header">
+    <div class="brand">
+      <div>
+        <strong>Ambassadors of Encouragement</strong>
+        <span>International Ministries — A.E.M.I</span>
+      </div>
+    </div>
+    <button class="mobile-sidebar-close" id="sidebarClose">✕</button>
+  </div>
+  <ul class="mobile-nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="about.html">Who We Are</a></li>
+    <li><a href="about.html#mission">Mission &amp; Vision</a></li>
+    <li><a href="about.html#leadership">Leadership</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="contact.html">Cell Groups</a></li>
+    <li><a href="contact.html">Membership</a></li>
+    <li><a href="contact.html">Volunteer</a></li>
+    <li><a href="sermons.html" class="active">Sermons</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="give.html" class="mobile-give">Give</a></li>
+  </ul>
+</div>
+
+<!-- PAGE HEADER WITH VIDEO BACKGROUND -->
 <div class="page-header">
-  <div class="container">
-    <span class="section-tag" style="color:var(--light-gold);display:block;margin-bottom:10px;">Resources</span>
-    <h1>Sermons & Messages</h1>
-    <p class="breadcrumb"><a href="../index.html">Home</a> / Sermons</p>
+  <!-- Animated background video -->
+  <video class="page-header-video" autoplay muted loop playsinline>
+    <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+    <!-- Fallback gradient if video fails -->
+  </video>
+  <style>
+    /* Fallback animated gradient if video doesn't load */
+    .page-header-video { background: linear-gradient(135deg, #0d1b3e, #112255, #0d1b3e); }
+  </style>
+  <div class="page-header-overlay"></div>
+  <div class="page-header-pattern"></div>
+  <div class="page-header-content">
+    <span class="page-header-tag">Resources</span>
+    <h1>Sermons &amp; Messages</h1>
+    <!-- breadcrumb removed as requested -->
   </div>
 </div>
 
-<!-- FEATURED SERMON -->
-<section class="section-pad" style="background:var(--off-white);">
+<!-- FEATURED SERMON WITH YOUTUBE EMBED -->
+<section class="featured-section">
+  <div class="featured-section-bg">
+    <!-- Subtle animated video background for section -->
+    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;opacity:0.08;">
+      <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+    </video>
+  </div>
+
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center;">
-      <div class="fade-in">
-        <div class="sermon-thumb" style="min-height:320px;">
-          <div class="sermon-thumb-bg">
-            <div class="sermon-thumb-icon">✝</div>
-          </div>
-          <div class="sermon-play-btn">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75));padding:28px 24px;">
-            <p style="color:rgba(255,255,255,0.7);font-size:0.75rem;font-family:'Raleway',sans-serif;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">This Week's Message</p>
-            <h3 style="color:white;font-size:1.3rem;">"Standing Firm in the Full Armour of God"</h3>
-          </div>
-        </div>
+    <div class="featured-grid fade-in">
+      <!-- YouTube Embed — plays inline, fullscreen button available -->
+      <div class="video-embed-wrapper">
+        <iframe
+          src="https://www.youtube.com/embed/_POEGc_JAVs?si=CgJv16NMUtw1Sppj"
+          title="Standing Firm in the Full Armour of God"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin">
+        </iframe>
       </div>
-      <div class="fade-in">
+
+      <!-- Sermon Info -->
+      <div class="featured-content fade-in">
         <span class="section-tag">Featured Message</span>
         <h2>Standing Firm in the Full Armour of God</h2>
-        <div class="divider divider-left"></div>
+        <div class="divider-left"></div>
         <div class="sermon-meta">
           <span>📅 March 30, 2025</span>
           <span>🎙️ Senior Overseer</span>
-          <span>📖 Ephesians 6:10-18</span>
+          <span>📖 Ephesians 6:10–18</span>
         </div>
         <p>In times of uncertainty and spiritual warfare, God equips every believer with His full armour. This powerful message explores each piece of armour and how to apply it in our daily walk with Christ.</p>
-        <div style="margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;">
-          <a href="https://youtube.com" target="_blank" class="btn btn-primary">Watch Now</a>
-          <a href="#" class="btn" style="border:2px solid var(--deep-blue);color:var(--deep-blue);">Download Notes</a>
+        <div class="btn-row">
+          <a href="https://www.youtube.com/watch?v=_POEGc_JAVs" target="_blank" class="btn btn-primary">Watch on YouTube</a>
+          <a href="#" class="btn btn-outline-white">📥 Download Notes</a>
         </div>
       </div>
     </div>
@@ -123,145 +905,192 @@
 <!-- FILTERS -->
 <div class="sermon-filters">
   <div class="container">
-    <input type="text" class="filter-search" placeholder="🔍 Search sermons...">
-    <select class="filter-select">
-      <option>All Series</option>
-      <option>Walking in Purpose</option>
-      <option>The Armour of God</option>
-      <option>Ambassadors Series</option>
-      <option>Faith & Family</option>
-      <option>Prayer & Worship</option>
-    </select>
-    <select class="filter-select">
-      <option>All Speakers</option>
-      <option>Senior Overseer</option>
-      <option>Associate Pastor</option>
-      <option>Guest Speaker</option>
-    </select>
-    <select class="filter-select">
-      <option>All Years</option>
-      <option>2025</option>
-      <option>2024</option>
-      <option>2023</option>
-      <option>2022</option>
-    </select>
+    <div class="filters-inner">
+      <input type="text" class="filter-search" placeholder="🔍 Search sermons..." id="searchInput">
+      <select class="filter-select" id="seriesFilter">
+        <option>All Series</option>
+        <option>Walking in Purpose</option>
+        <option>The Armour of God</option>
+        <option>Ambassadors Series</option>
+        <option>Faith &amp; Family</option>
+        <option>Prayer &amp; Worship</option>
+      </select>
+      <select class="filter-select" id="speakerFilter">
+        <option>All Speakers</option>
+        <option>Senior Overseer</option>
+        <option>Associate Pastor</option>
+        <option>Guest Speaker</option>
+      </select>
+      <select class="filter-select" id="yearFilter">
+        <option>All Years</option>
+        <option>2025</option>
+        <option>2024</option>
+        <option>2023</option>
+        <option>2022</option>
+      </select>
+    </div>
   </div>
 </div>
 
 <!-- SERMONS GRID -->
-<section class="section-pad">
+<section class="sermons-section">
   <div class="container">
-    <div class="sermons-grid">
+    <div class="sermons-grid" id="sermonsGrid">
 
-      <!-- Sermon 1 -->
-      <div class="sermon-card fade-in">
-        <div class="sermon-card-thumb">
-          <div class="sermon-card-play">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-          <div style="position:absolute;top:12px;left:12px;">
-            <span style="background:var(--accent-red);color:white;font-family:'Raleway',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:50px;">NEW</span>
-          </div>
+      <!-- Sermon 1 — with YouTube embed -->
+      <div class="sermon-card fade-in" data-series="The Armour of God" data-speaker="Senior Overseer" data-year="2025">
+        <div class="sermon-card-video">
+          <span class="card-new-badge">NEW</span>
+          <iframe
+            src="https://www.youtube.com/embed/_POEGc_JAVs?si=CgJv16NMUtw1Sppj"
+            title="Standing Firm in the Full Armour of God"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin"
+            loading="lazy">
+          </iframe>
         </div>
         <div class="sermon-card-body">
           <span class="series-tag">The Armour of God</span>
           <h3>Standing Firm in the Full Armour of God</h3>
           <div class="sermon-meta">
-            <span>Mar 30, 2025</span><span>Senior Overseer</span><span>Eph 6:10-18</span>
+            <span>Mar 30, 2025</span>
+            <span>· Senior Overseer</span>
+            <span>· Eph 6:10-18</span>
           </div>
           <div class="sermon-card-actions">
-            <a href="https://youtube.com" target="_blank" class="btn btn-primary btn-sm">▶ Watch</a>
-            <a href="#" class="btn btn-sm" style="border:1px solid var(--light-gray);color:var(--text-mid);">📥 Notes</a>
+            <a href="https://www.youtube.com/watch?v=_POEGc_JAVs" target="_blank" class="btn-sm btn-primary">▶ Full Watch</a>
+            <a href="#" class="btn-sm btn-notes">📥 Notes</a>
           </div>
         </div>
       </div>
 
       <!-- Sermon 2 -->
-      <div class="sermon-card fade-in">
-        <div class="sermon-card-thumb" style="background:linear-gradient(135deg,#1a3a8f,#0d2461);">
-          <div class="sermon-card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="sermon-card fade-in" data-series="Walking in Purpose" data-speaker="Senior Overseer" data-year="2025">
+        <div class="sermon-card-video">
+          <iframe
+            src="https://www.youtube.com/embed/videoseries?list=PLbpi6ZahtOH6Ar_3GPy3workXkFRKGl9G"
+            title="Walking in Divine Purpose"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
         </div>
         <div class="sermon-card-body">
           <span class="series-tag">Walking in Purpose</span>
           <h3>Walking in Divine Purpose</h3>
           <div class="sermon-meta">
-            <span>Mar 23, 2025</span><span>Senior Overseer</span><span>Jer 29:11</span>
+            <span>Mar 23, 2025</span>
+            <span>· Senior Overseer</span>
+            <span>· Jer 29:11</span>
           </div>
           <div class="sermon-card-actions">
-            <a href="https://youtube.com" target="_blank" class="btn btn-primary btn-sm">▶ Watch</a>
-            <a href="#" class="btn btn-sm" style="border:1px solid var(--light-gray);color:var(--text-mid);">📥 Notes</a>
+            <a href="https://youtube.com" target="_blank" class="btn-sm btn-primary">▶ Watch</a>
+            <a href="#" class="btn-sm btn-notes">📥 Notes</a>
           </div>
         </div>
       </div>
 
       <!-- Sermon 3 -->
-      <div class="sermon-card fade-in">
-        <div class="sermon-card-thumb" style="background:linear-gradient(135deg,#1a7a3c,#0a4020);">
-          <div class="sermon-card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="sermon-card fade-in" data-series="Ambassadors Series" data-speaker="Associate Pastor" data-year="2025">
+        <div class="sermon-card-video">
+          <iframe
+            src="https://www.youtube.com/embed/_POEGc_JAVs"
+            title="The Power of Encouragement"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
         </div>
         <div class="sermon-card-body">
           <span class="series-tag">Ambassadors Series</span>
           <h3>The Power of Encouragement</h3>
           <div class="sermon-meta">
-            <span>Mar 16, 2025</span><span>Associate Pastor</span><span>Heb 10:24-25</span>
+            <span>Mar 16, 2025</span>
+            <span>· Associate Pastor</span>
+            <span>· Heb 10:24-25</span>
           </div>
           <div class="sermon-card-actions">
-            <a href="https://youtube.com" target="_blank" class="btn btn-primary btn-sm">▶ Watch</a>
-            <a href="#" class="btn btn-sm" style="border:1px solid var(--light-gray);color:var(--text-mid);">📥 Notes</a>
+            <a href="https://youtube.com" target="_blank" class="btn-sm btn-primary">▶ Watch</a>
+            <a href="#" class="btn-sm btn-notes">📥 Notes</a>
           </div>
         </div>
       </div>
 
       <!-- Sermon 4 -->
-      <div class="sermon-card fade-in">
-        <div class="sermon-card-thumb" style="background:linear-gradient(135deg,#6d2b2b,#3d0a0a);">
-          <div class="sermon-card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="sermon-card fade-in" data-series="Ambassadors Series" data-speaker="Senior Overseer" data-year="2025">
+        <div class="sermon-card-video">
+          <iframe
+            src="https://www.youtube.com/embed/_POEGc_JAVs"
+            title="Ambassadors for Christ"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
         </div>
         <div class="sermon-card-body">
           <span class="series-tag">Ambassadors Series</span>
           <h3>Ambassadors for Christ</h3>
           <div class="sermon-meta">
-            <span>Mar 9, 2025</span><span>Senior Overseer</span><span>2 Cor 5:20</span>
+            <span>Mar 9, 2025</span>
+            <span>· Senior Overseer</span>
+            <span>· 2 Cor 5:20</span>
           </div>
           <div class="sermon-card-actions">
-            <a href="https://youtube.com" target="_blank" class="btn btn-primary btn-sm">▶ Watch</a>
-            <a href="#" class="btn btn-sm" style="border:1px solid var(--light-gray);color:var(--text-mid);">📥 Notes</a>
+            <a href="https://youtube.com" target="_blank" class="btn-sm btn-primary">▶ Watch</a>
+            <a href="#" class="btn-sm btn-notes">📥 Notes</a>
           </div>
         </div>
       </div>
 
       <!-- Sermon 5 -->
-      <div class="sermon-card fade-in">
-        <div class="sermon-card-thumb" style="background:linear-gradient(135deg,#0a3d62,#0c2a4a);">
-          <div class="sermon-card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="sermon-card fade-in" data-series="Faith & Family" data-speaker="Senior Overseer" data-year="2025">
+        <div class="sermon-card-video">
+          <iframe
+            src="https://www.youtube.com/embed/_POEGc_JAVs"
+            title="Building a Godly Home"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
         </div>
         <div class="sermon-card-body">
-          <span class="series-tag">Faith & Family</span>
+          <span class="series-tag">Faith &amp; Family</span>
           <h3>Building a Godly Home</h3>
           <div class="sermon-meta">
-            <span>Mar 2, 2025</span><span>Senior Overseer</span><span>Joshua 24:15</span>
+            <span>Mar 2, 2025</span>
+            <span>· Senior Overseer</span>
+            <span>· Joshua 24:15</span>
           </div>
           <div class="sermon-card-actions">
-            <a href="https://youtube.com" target="_blank" class="btn btn-primary btn-sm">▶ Watch</a>
-            <a href="#" class="btn btn-sm" style="border:1px solid var(--light-gray);color:var(--text-mid);">📥 Notes</a>
+            <a href="https://youtube.com" target="_blank" class="btn-sm btn-primary">▶ Watch</a>
+            <a href="#" class="btn-sm btn-notes">📥 Notes</a>
           </div>
         </div>
       </div>
 
       <!-- Sermon 6 -->
-      <div class="sermon-card fade-in">
-        <div class="sermon-card-thumb" style="background:linear-gradient(135deg,#2d4a2d,#1a2e1a);">
-          <div class="sermon-card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="sermon-card fade-in" data-series="Prayer & Worship" data-speaker="Associate Pastor" data-year="2025">
+        <div class="sermon-card-video">
+          <iframe
+            src="https://www.youtube.com/embed/_POEGc_JAVs"
+            title="The Discipline of Prayer"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
         </div>
         <div class="sermon-card-body">
-          <span class="series-tag">Prayer & Worship</span>
+          <span class="series-tag">Prayer &amp; Worship</span>
           <h3>The Discipline of Prayer</h3>
           <div class="sermon-meta">
-            <span>Feb 23, 2025</span><span>Associate Pastor</span><span>Matt 6:5-15</span>
+            <span>Feb 23, 2025</span>
+            <span>· Associate Pastor</span>
+            <span>· Matt 6:5-15</span>
           </div>
           <div class="sermon-card-actions">
-            <a href="https://youtube.com" target="_blank" class="btn btn-primary btn-sm">▶ Watch</a>
-            <a href="#" class="btn btn-sm" style="border:1px solid var(--light-gray);color:var(--text-mid);">📥 Notes</a>
+            <a href="https://youtube.com" target="_blank" class="btn-sm btn-primary">▶ Watch</a>
+            <a href="#" class="btn-sm btn-notes">📥 Notes</a>
           </div>
         </div>
       </div>
@@ -269,20 +1098,37 @@
     </div>
 
     <div class="text-center" style="margin-top:50px;">
-      <a href="#" class="btn btn-primary">Load More Sermons</a>
+      <a href="https://youtube.com" target="_blank" class="btn btn-primary" style="display:inline-block;padding:14px 36px;font-size:0.88rem;">Load More Sermons</a>
     </div>
   </div>
 </section>
 
-<!-- PODCAST / YOUTUBE CTA -->
-<section style="background:var(--deep-blue);padding:70px 0;text-align:center;">
+<!-- SUBSCRIBE CTA with video background -->
+<section class="subscribe-section">
+  <div class="subscribe-section-bg">
+    <video autoplay muted loop playsinline>
+      <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="subscribe-section-overlay"></div>
   <div class="container">
-    <span class="section-tag" style="color:var(--light-gold);display:block;margin-bottom:10px;">Never Miss a Message</span>
-    <h2 style="color:white;margin-bottom:16px;">Subscribe to Our Channels</h2>
-    <p style="color:rgba(255,255,255,0.7);max-width:500px;margin:0 auto 36px;">Get the latest sermons delivered to you every week. Subscribe on YouTube or follow our podcast.</p>
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="https://youtube.com" target="_blank" class="btn btn-primary">Subscribe on YouTube</a>
-      <a href="#" class="btn btn-outline">Listen on Podcast</a>
+    <div class="subscribe-content">
+      <span class="section-tag" style="color:var(--light-gold);">Never Miss a Message</span>
+      <h2>Subscribe to Our Channels</h2>
+      <p>Get the latest sermons delivered to you every week. Subscribe on YouTube, follow us on TikTok, or listen on our podcast.</p>
+      <div class="subscribe-btns">
+        <a href="https://youtube.com" target="_blank" class="btn btn-yt">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.5 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+          Subscribe on YouTube
+        </a>
+        <a href="https://tiktok.com" target="_blank" class="btn btn-tiktok">
+          <svg width="16" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.78a4.85 4.85 0 0 1-1.01-.09z"/></svg>
+          Follow on TikTok
+        </a>
+        <a href="#" class="btn btn-podcast">
+          🎙️ Listen on Podcast
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -292,7 +1138,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="../images/logo.png" alt="AEMI Logo">
+        <img src="../images/logo.png" alt="AEMI Logo" onerror="this.style.display='none'">
         <strong>Ambassadors of Encouragement International Ministries</strong>
         <p>Touching lives with the love of Jesus Christ through proclamation, discipleship, and compassionate service in Uganda and beyond.</p>
         <div class="footer-social">
@@ -300,6 +1146,7 @@
           <a href="https://youtube.com" class="social-btn" target="_blank">▶</a>
           <a href="https://instagram.com" class="social-btn" target="_blank">📷</a>
           <a href="https://twitter.com" class="social-btn" target="_blank">𝕏</a>
+          <a href="https://tiktok.com" class="social-btn" target="_blank" style="font-size:0.65rem;font-weight:900;">TT</a>
         </div>
       </div>
       <div class="footer-col">
@@ -307,7 +1154,7 @@
         <ul>
           <li><a href="about.html">Who We Are</a></li>
           <li><a href="about.html#history">Our History</a></li>
-          <li><a href="about.html#mission">Mission & Vision</a></li>
+          <li><a href="about.html#mission">Mission &amp; Vision</a></li>
           <li><a href="about.html#leadership">Leadership</a></li>
           <li><a href="contact.html">Contact Us</a></li>
         </ul>
@@ -325,16 +1172,15 @@
       <div class="footer-col">
         <h4>Service Times</h4>
         <ul>
-          <li><a href="#">Sunday: 7 AM</a></li>
-          <li><a href="#">Sunday: 9 AM</a></li>
-          <li><a href="#">Sunday: 11:30 AM</a></li>
+          <li><a href="#">Sunday: 9–11 AM (English)</a></li>
+          <li><a href="#">Sunday: 11 AM–1 PM (Luganda &amp; English)</a></li>
           <li><a href="#">Wednesday: 6 PM</a></li>
-          <li><a href="#">Prayer: Fri 6 PM</a></li>
+          <li><a href="#">Friday: 6 PM</a></li>
         </ul>
-        <div style="margin-top:20px;font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:1.8;">
-          📍 Kampala, Uganda<br>
-          📞 +256 700 000 000<br>
-          ✉ info@aemi.org
+        <div style="margin-top:20px;font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:2;">
+          Kampala, Uganda<br>
+          +256 700 000 000<br>
+          info@aemi.org
         </div>
       </div>
     </div>
@@ -345,6 +1191,73 @@
   </div>
 </footer>
 
-<script src="../js/main.js"></script>
+<script>
+  // ===== MOBILE SIDEBAR =====
+  const hamburger = document.getElementById('hamburger');
+  const mobileSidebar = document.getElementById('mobileSidebar');
+  const navOverlay = document.getElementById('navOverlay');
+  const sidebarClose = document.getElementById('sidebarClose');
+
+  function openSidebar() {
+    hamburger.classList.add('open');
+    mobileSidebar.classList.add('open');
+    navOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSidebar() {
+    hamburger.classList.remove('open');
+    mobileSidebar.classList.remove('open');
+    navOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', openSidebar);
+  sidebarClose.addEventListener('click', closeSidebar);
+  navOverlay.addEventListener('click', closeSidebar);
+
+  // ===== FADE IN ON SCROLL =====
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // ===== SERMON FILTER =====
+  const searchInput = document.getElementById('searchInput');
+  const seriesFilter = document.getElementById('seriesFilter');
+  const speakerFilter = document.getElementById('speakerFilter');
+  const yearFilter = document.getElementById('yearFilter');
+  const cards = document.querySelectorAll('#sermonsGrid .sermon-card');
+
+  function filterSermons() {
+    const search = searchInput.value.toLowerCase();
+    const series = seriesFilter.value;
+    const speaker = speakerFilter.value;
+    const year = yearFilter.value;
+
+    cards.forEach(card => {
+      const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+      const cardSeries = card.dataset.series || '';
+      const cardSpeaker = card.dataset.speaker || '';
+      const cardYear = card.dataset.year || '';
+
+      const matchSearch = !search || title.includes(search);
+      const matchSeries = series === 'All Series' || cardSeries.includes(series);
+      const matchSpeaker = speaker === 'All Speakers' || cardSpeaker === speaker;
+      const matchYear = year === 'All Years' || cardYear === year;
+
+      card.style.display = (matchSearch && matchSeries && matchSpeaker && matchYear) ? '' : 'none';
+    });
+  }
+
+  searchInput.addEventListener('input', filterSermons);
+  seriesFilter.addEventListener('change', filterSermons);
+  speakerFilter.addEventListener('change', filterSermons);
+  yearFilter.addEventListener('change', filterSermons);
+</script>
 </body>
 </html>

@@ -6,8 +6,16 @@
   <title>About Us | A.E.M.I - Ambassadors of Encouragement International Ministries</title>
   <link rel="stylesheet" href="../css/style.css">
   <style>
+
+    /* =============================================
+       ABOUT PAGE — EXTRA STYLES
+       ============================================= */
+
+    /* ---- Fade-in scroll animation ---- */
     .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ---- Timeline ---- */
     .timeline { position:relative; padding-left:36px; }
     .timeline::before { content:''; position:absolute; left:10px; top:0; bottom:0; width:2px; background:var(--light-gray); }
     .timeline-item { position:relative; margin-bottom:36px; }
@@ -15,28 +23,309 @@
     .timeline-year { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--accent-red); margin-bottom:4px; }
     .timeline-item h4 { font-family:'Raleway',sans-serif; font-weight:700; margin-bottom:6px; color:var(--text-dark); }
     .timeline-item p { font-size:0.9rem; }
+
+    /* =============================================
+       PAGE HEADER — MEDIA SLIDESHOW
+       ============================================= */
+    .about-header {
+      position: relative;
+      height: 480px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (max-width: 768px) { .about-header { height: 340px; } }
+    @media (max-width: 480px) { .about-header { height: 260px; } }
+
+    /* Media slideshow background */
+    .header-media-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .header-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    .header-slide.active { opacity: 1; }
+    .header-slide img,
+    .header-slide video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    /* Dark overlay */
+    .header-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,22,40,0.75) 0%, rgba(13,36,97,0.68) 100%);
+      z-index: 1;
+    }
+    /* Cross pattern */
+    .header-overlay::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    /* Header content */
+    .about-header-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 24px;
+    }
+    .about-header-content .section-tag {
+      color: var(--light-gold);
+      display: block;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+    }
+    .about-header-content h1 {
+      color: var(--white);
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      text-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    }
+
+    /* Header slide dots */
+    .header-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      gap: 8px;
+    }
+    .header-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      padding: 0;
+    }
+    .header-dot.active { background: var(--white); transform: scale(1.3); }
+
+    /* =============================================
+       WHO WE ARE — REAL IMAGE SIDE
+       ============================================= */
+    .who-we-are-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .who-we-are-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    /* Real image box (replaces the logo box) */
+    .identity-image-wrap {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 16px 64px rgba(10,22,40,0.22);
+      aspect-ratio: 4/5;
+    }
+    @media (max-width: 900px) {
+      .identity-image-wrap { aspect-ratio: 16/9; max-height: 320px; }
+    }
+    .identity-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Gold badge overlay */
+    .identity-badge {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(10,22,40,0.90) 0%, transparent 100%);
+      padding: 40px 28px 24px;
+      text-align: center;
+    }
+    .identity-badge p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--light-gold);
+      margin: 0;
+    }
+
+    /* =============================================
+       STATS — ANIMATED COUNTER
+       ============================================= */
+    .stats-row {
+      display: flex;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-top: 36px;
+    }
+    .stat-item {}
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--deep-blue);
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-top: 4px;
+    }
+
+    /* =============================================
+       MISSION & VISION — NO ICONS
+       ============================================= */
+    .mv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    @media (max-width: 768px) {
+      .mv-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+
+    .mv-card {
+      border-radius: 12px;
+      padding: 48px 40px;
+    }
+    @media (max-width: 480px) {
+      .mv-card { padding: 32px 24px; }
+    }
+
+    /* =============================================
+       LEADERSHIP — SQUARE REAL PHOTOS
+       ============================================= */
+    .leadership-grid-new {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 56px;
+    }
+    @media (max-width: 900px) {
+      .leadership-grid-new { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    }
+    @media (max-width: 560px) {
+      .leadership-grid-new { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    .leader-card-new {
+      background: var(--white);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(10,22,40,0.10);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .leader-card-new:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(10,22,40,0.18);
+    }
+
+    /* Square photo */
+    .leader-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, var(--deep-blue), var(--navy));
+    }
+    .leader-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .leader-card-new:hover .leader-photo img {
+      transform: scale(1.06);
+    }
+    /* Placeholder when no real photo yet */
+    .leader-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--deep-blue) 0%, #0a1a4e 100%);
+      color: rgba(255,255,255,0.18);
+      font-size: 5rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      user-select: none;
+    }
+
+    /* Top coloured accent bar */
+    .leader-card-new::before {
+      content: '';
+      display: block;
+      height: 4px;
+      background: linear-gradient(90deg, var(--deep-blue), var(--gold));
+    }
+
+    .leader-info {
+      padding: 20px 22px 24px;
+    }
+    .leader-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+    .leader-info .role {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      display: block;
+      margin-bottom: 12px;
+    }
+    .leader-info p {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    /* =============================================
+       RESPONSIVE — GENERAL
+       ============================================= */
+    @media (max-width: 768px) {
+      .section-pad { padding: 60px 0; }
+      h2 { font-size: 1.8rem; }
+    }
+    @media (max-width: 480px) {
+      .section-pad { padding: 44px 0; }
+    }
+
   </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="container">
-    <div class="topbar-left">
-      <span>📍 Kampala, Uganda</span>
-      <a href="mailto:info@aemi.org">✉ info@aemi.org</a>
-      <a href="tel:+256700000000">📞 +256 700 000 000</a>
-    </div>
-    <div class="topbar-right">
-      <a href="https://facebook.com" target="_blank">Facebook</a>
-      <a href="https://youtube.com" target="_blank">YouTube</a>
-      <a href="https://instagram.com" target="_blank">Instagram</a>
-    </div>
-  </div>
-</div>
-
-<!-- NAVBAR -->
-<nav class="navbar">
+<!-- =============================================
+     NAVBAR (no topbar — removed as requested)
+     ============================================= -->
+<nav class="navbar" id="mainNav">
   <div class="container">
     <a href="../index.html" class="navbar-logo">
       <img src="../images/logo.png" alt="AEMI Logo">
@@ -52,7 +341,7 @@
         <div class="nav-dropdown">
           <a href="about.html" class="active">Who We Are</a>
           <a href="about.html#history">Our History</a>
-          <a href="about.html#mission">Mission & Vision</a>
+          <a href="about.html#mission">Mission &amp; Vision</a>
           <a href="about.html#leadership">Leadership</a>
         </div>
       </li>
@@ -81,19 +370,80 @@
   </div>
 </nav>
 
-<!-- PAGE HEADER -->
-<div class="page-header">
-  <div class="container">
-    <span class="section-tag" style="color:var(--light-gold);display:block;margin-bottom:10px;">Get to Know Us</span>
+<!-- =============================================
+     PAGE HEADER — MEDIA SLIDESHOW
+     (Replace ../images/about-bg1.jpg etc. with your real photos/videos)
+     ============================================= -->
+<div class="about-header" id="aboutHeader">
+
+  <!-- ---- Background media slides ---- -->
+  <div class="header-media-bg" id="headerMediaBg">
+
+    <!-- SLIDE 1 — Photo (replace src with your real image) -->
+    <div class="header-slide active" id="hSlide0">
+      <img src="../images/about-bg1.jpg"
+           alt="AEMI Congregation worship"
+           onerror="this.src='https://images.unsplash.com/photo-1507692049790-de58290a4334?w=1600&auto=format&fit=crop&q=80'">
+    </div>
+
+    <!-- SLIDE 2 — Video (replace with your real mp4; falls back to image if not found) -->
+    <div class="header-slide" id="hSlide1">
+      <video autoplay muted loop playsinline
+             poster="../images/about-bg2.jpg"
+             onerror="this.style.display='none'">
+        <source src="../videos/about-promo.mp4" type="video/mp4">
+        <!-- fallback image shown via poster -->
+      </video>
+      <!-- Show poster image if video not loaded -->
+      <img src="../images/about-bg2.jpg" alt="AEMI Ministry"
+           style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;"
+           onerror="this.src='https://images.unsplash.com/photo-1438232992991-995b671e5c18?w=1600&auto=format&fit=crop&q=80'">
+    </div>
+
+    <!-- SLIDE 3 — Photo -->
+    <div class="header-slide" id="hSlide2">
+      <img src="../images/about-bg3.jpg"
+           alt="AEMI Community"
+           onerror="this.src='https://images.unsplash.com/photo-1491841651911-c44484564501?w=1600&auto=format&fit=crop&q=80'">
+    </div>
+
+    <!-- SLIDE 4 — Photo -->
+    <div class="header-slide" id="hSlide3">
+      <img src="../images/about-bg4.jpg"
+           alt="AEMI Outreach"
+           onerror="this.src='https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=1600&auto=format&fit=crop&q=80'">
+    </div>
+
+  </div><!-- /header-media-bg -->
+
+  <!-- Dark overlay -->
+  <div class="header-overlay"></div>
+
+  <!-- Centered text content — NO breadcrumb -->
+  <div class="about-header-content">
+    <span class="section-tag">Get to Know Us</span>
     <h1>About A.E.M.I</h1>
-    <p class="breadcrumb"><a href="../index.html">Home</a> / About Us</p>
   </div>
+
+  <!-- Dots navigation -->
+  <div class="header-dots" id="headerDots">
+    <button class="header-dot active" data-index="0" aria-label="Slide 1"></button>
+    <button class="header-dot" data-index="1" aria-label="Slide 2"></button>
+    <button class="header-dot" data-index="2" aria-label="Slide 3"></button>
+    <button class="header-dot" data-index="3" aria-label="Slide 4"></button>
+  </div>
+
 </div>
 
-<!-- WHO WE ARE -->
+
+<!-- =============================================
+     WHO WE ARE
+     ============================================= -->
 <section class="section-pad">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:70px;align-items:center;">
+    <div class="who-we-are-grid">
+
+      <!-- LEFT: text + animated stats -->
       <div class="fade-in">
         <span class="section-tag">Our Identity</span>
         <h2>Who We Are</h2>
@@ -101,98 +451,102 @@
         <p>Ambassadors of Encouragement International Ministries (A.E.M.I) is a Spirit-filled, Bible-believing community of faith based in Kampala, Uganda. We are a family of believers united by a passionate relationship with Jesus Christ and a deep love for people.</p>
         <p style="margin-top:16px;">Our name reflects our calling — we are ambassadors sent by God to encourage, equip, and empower individuals, families, and communities through the transforming power of the Gospel.</p>
         <p style="margin-top:16px;">We believe that the Church is God's instrument for changing the world, and every member has a vital role to play in this great mission.</p>
-        <div style="margin-top:32px;display:flex;gap:40px;flex-wrap:wrap;">
-          <div>
-            <div style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:var(--deep-blue);line-height:1;">1000+</div>
-            <div style="font-family:'Raleway',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);">Members</div>
+
+        <!-- Animated counters -->
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-number" data-target="1000" data-suffix="+">0</div>
+            <div class="stat-label">Members</div>
           </div>
-          <div>
-            <div style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:var(--deep-blue);line-height:1;">20+</div>
-            <div style="font-family:'Raleway',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);">Cell Groups</div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="20" data-suffix="+">0</div>
+            <div class="stat-label">Cell Groups</div>
           </div>
-          <div>
-            <div style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:var(--deep-blue);line-height:1;">30+</div>
-            <div style="font-family:'Raleway',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);">Years of Ministry</div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="30" data-suffix="+">0</div>
+            <div class="stat-label">Years of Ministry</div>
           </div>
         </div>
       </div>
+
+      <!-- RIGHT: real church photo (replace ../images/church-community.jpg with your photo) -->
       <div class="fade-in">
-        <div style="background:linear-gradient(135deg,var(--deep-blue),var(--navy));border-radius:10px;padding:48px;text-align:center;">
-          <img src="../images/logo.png" alt="AEMI Logo" style="max-width:220px;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.3));">
-          <h3 style="color:var(--white);margin-top:28px;font-size:1.5rem;">A.E.M.I</h3>
-          <p style="color:rgba(255,255,255,0.65);font-size:0.9rem;margin-top:8px;">Ambassadors of Encouragement<br>International Ministries</p>
-          <div style="margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.12);">
-            <p style="color:var(--light-gold);font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;">"Encouraged by God, Sent to Encourage the World"</p>
+        <div class="identity-image-wrap">
+          <img src="../images/church-community.jpg"
+               alt="AEMI Church Community"
+               onerror="this.src='https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=800&auto=format&fit=crop&q=80'">
+          <div class="identity-badge">
+            <p>"Encouraged by God, Sent to Encourage the World"</p>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- MISSION & VISION -->
+
+<!-- =============================================
+     MISSION & VISION — NO EMOJI ICONS
+     ============================================= -->
 <section id="mission" class="section-pad" style="background:var(--off-white);">
   <div class="container">
     <div class="text-center fade-in" style="margin-bottom:56px;">
       <span class="section-tag">Our Foundation</span>
-      <h2>Mission & Vision</h2>
+      <h2>Mission &amp; Vision</h2>
       <div class="divider"></div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;">
-      <div class="fade-in" style="background:var(--deep-blue);border-radius:12px;padding:48px;">
-        <div style="font-size:2.5rem;margin-bottom:20px;">🎯</div>
+
+    <div class="mv-grid">
+
+      <!-- Mission -->
+      <div class="fade-in mv-card" style="background:var(--deep-blue);">
         <span style="font-family:'Raleway',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--light-gold);display:block;margin-bottom:12px;">Our Mission</span>
         <h3 style="color:var(--white);margin-bottom:16px;">What We Do</h3>
-        <p style="color:rgba(255,255,255,0.75);">To holistically touch the city of Kampala, Uganda and the nations beyond with the love of Jesus Christ — demonstrated in our proclamation, our homes, and our personal lives. We are committed to making disciples of all nations who love God with all their heart.</p>
+        <p style="color:rgba(255,255,255,0.78);">To holistically touch the city of Kampala, Uganda and the nations beyond with the love of Jesus Christ — demonstrated in our proclamation, our homes, and our personal lives. We are committed to making disciples of all nations who love God with all their heart.</p>
       </div>
-      <div class="fade-in" style="background:var(--accent-green);border-radius:12px;padding:48px;">
-        <div style="font-size:2.5rem;margin-bottom:20px;">👁️</div>
+
+      <!-- Vision -->
+      <div class="fade-in mv-card" style="background:var(--accent-green);">
         <span style="font-family:'Raleway',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--light-gold);display:block;margin-bottom:12px;">Our Vision</span>
         <h3 style="color:var(--white);margin-bottom:16px;">Where We're Going</h3>
-        <p style="color:rgba(255,255,255,0.75);">To be a global family of empowered ambassadors for Christ — proclaiming the Gospel, building God's Kingdom, raising up the next generation of believers, and transforming communities through the power of the Holy Spirit.</p>
+        <p style="color:rgba(255,255,255,0.78);">To be a global family of empowered ambassadors for Christ — proclaiming the Gospel, building God's Kingdom, raising up the next generation of believers, and transforming communities through the power of the Holy Spirit.</p>
+      </div>
+
+    </div>
+
+    <!-- Core values row -->
+    <div style="margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px;">
+      <div class="fade-in" style="text-align:center;padding:32px 24px;background:var(--white);border-radius:8px;box-shadow:0 2px 16px rgba(10,22,40,0.07);">
+        <div style="font-family:'Raleway',sans-serif;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:0.75rem;color:var(--accent-red);margin-bottom:8px;">Faith</div>
+        <p style="font-size:0.9rem;">We trust God completely in every season and step of ministry.</p>
+      </div>
+      <div class="fade-in" style="text-align:center;padding:32px 24px;background:var(--white);border-radius:8px;box-shadow:0 2px 16px rgba(10,22,40,0.07);">
+        <div style="font-family:'Raleway',sans-serif;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:0.75rem;color:var(--accent-red);margin-bottom:8px;">Discipleship</div>
+        <p style="font-size:0.9rem;">We grow believers into fully committed followers of Jesus Christ.</p>
+      </div>
+      <div class="fade-in" style="text-align:center;padding:32px 24px;background:var(--white);border-radius:8px;box-shadow:0 2px 16px rgba(10,22,40,0.07);">
+        <div style="font-family:'Raleway',sans-serif;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:0.75rem;color:var(--accent-red);margin-bottom:8px;">Community</div>
+        <p style="font-size:0.9rem;">We build genuine, life-giving relationships within the body of Christ.</p>
+      </div>
+      <div class="fade-in" style="text-align:center;padding:32px 24px;background:var(--white);border-radius:8px;box-shadow:0 2px 16px rgba(10,22,40,0.07);">
+        <div style="font-family:'Raleway',sans-serif;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:0.75rem;color:var(--accent-red);margin-bottom:8px;">Outreach</div>
+        <p style="font-size:0.9rem;">We carry the love of Christ beyond our walls into the world.</p>
       </div>
     </div>
-    <div class="about-values">
-      <div class="value-card fade-in">
-        <div class="value-num">01</div>
-        <h3>The Word of God</h3>
-        <p>We are a Bible-based community. The Scripture is our final authority for faith, conduct, and ministry practice.</p>
-      </div>
-      <div class="value-card fade-in">
-        <div class="value-num">02</div>
-        <h3>Spirit-Filled Living</h3>
-        <p>We believe in the fullness of the Holy Spirit and operate in His gifts, fruit, and power for effective ministry.</p>
-      </div>
-      <div class="value-card fade-in">
-        <div class="value-num">03</div>
-        <h3>Evangelism & Outreach</h3>
-        <p>Sharing the Gospel is at the heart of everything we do — in our city, across Uganda, and to the nations.</p>
-      </div>
-      <div class="value-card fade-in">
-        <div class="value-num">04</div>
-        <h3>Discipleship</h3>
-        <p>We invest in building believers who are rooted in Christ, equipped for ministry, and reproducing their faith.</p>
-      </div>
-      <div class="value-card fade-in">
-        <div class="value-num">05</div>
-        <h3>Community & Family</h3>
-        <p>We cherish authentic relationships. The Church is a family, and everyone belongs here regardless of background.</p>
-      </div>
-      <div class="value-card fade-in">
-        <div class="value-num">06</div>
-        <h3>Prayer & Worship</h3>
-        <p>We are a house of prayer and passionate worship. We seek God's face in every season and every situation.</p>
-      </div>
-    </div>
+
   </div>
 </section>
 
-<!-- HISTORY -->
+
+<!-- =============================================
+     HISTORY / TIMELINE
+     ============================================= -->
 <section id="history" class="section-pad">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:70px;align-items:start;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start;">
       <div class="fade-in">
-        <span class="section-tag">Our Journey</span>
+        <span class="section-tag">Our Story</span>
         <h2>Our History</h2>
         <div class="divider divider-left"></div>
         <p>From humble beginnings to a thriving international ministry, A.E.M.I's story is one of God's faithfulness, visionary leadership, and a community committed to the Great Commission.</p>
@@ -210,7 +564,7 @@
           </div>
           <div class="timeline-item">
             <div class="timeline-year">2000s</div>
-            <h4>Growth & Expansion</h4>
+            <h4>Growth &amp; Expansion</h4>
             <p>The ministry grew rapidly as more people encountered God's love. Cell groups were established across the city, creating a strong discipleship network.</p>
           </div>
           <div class="timeline-item">
@@ -220,7 +574,7 @@
           </div>
           <div class="timeline-item">
             <div class="timeline-year">2015</div>
-            <h4>Media & Technology</h4>
+            <h4>Media &amp; Technology</h4>
             <p>Launch of online broadcasts and digital media ministry, enabling the Gospel to reach believers and seekers around the world.</p>
           </div>
           <div class="timeline-item">
@@ -239,8 +593,12 @@
   </div>
 </section>
 
-<!-- LEADERSHIP -->
-<section id="leadership" class="leadership section-pad" style="background:var(--off-white);">
+
+<!-- =============================================
+     LEADERSHIP — SQUARE REAL PHOTOS, NO ICONS
+     Replace ../images/leader-1.jpg etc. with your actual pastor photos
+     ============================================= -->
+<section id="leadership" class="section-pad" style="background:var(--off-white);">
   <div class="container">
     <div class="text-center fade-in">
       <span class="section-tag">Our Shepherds</span>
@@ -248,48 +606,107 @@
       <div class="divider"></div>
       <p style="max-width:560px;margin:0 auto;">Our leaders are passionate servants of God, dedicated to guiding this congregation with wisdom, love, and the truth of Scripture.</p>
     </div>
-    <div class="leadership-grid">
-      <div class="leader-card fade-in">
-        <div class="leader-avatar">🙏</div>
-        <h3>Senior Overseer</h3>
-        <span class="role">Founding & Senior Pastor</span>
-        <p>With decades of ministry experience, our Senior Overseer founded A.E.M.I with a vision to raise ambassadors for Christ. Known for powerful preaching and pastoral care.</p>
+
+    <div class="leadership-grid-new">
+
+      <!-- Leader 1 — Senior Overseer -->
+      <div class="leader-card-new fade-in">
+        <div class="leader-photo">
+          <img src="../images/leader-senior-pastor.jpg"
+               alt="Senior Overseer"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="leader-photo-placeholder" style="display:none;">S</div>
+        </div>
+        <div class="leader-info">
+          <h3>Senior Overseer</h3>
+          <span class="role">Founding &amp; Senior Pastor</span>
+          <p>With decades of ministry experience, our Senior Overseer founded A.E.M.I with a vision to raise ambassadors for Christ. Known for powerful preaching and pastoral care.</p>
+        </div>
       </div>
-      <div class="leader-card fade-in">
-        <div class="leader-avatar">✝</div>
-        <h3>Associate Pastor</h3>
-        <span class="role">Associate Pastor — Discipleship</span>
-        <p>Overseeing discipleship, small groups, and leadership development, our Associate Pastor equips every member for the work of ministry.</p>
+
+      <!-- Leader 2 — Associate Pastor -->
+      <div class="leader-card-new fade-in">
+        <div class="leader-photo">
+          <img src="../images/leader-associate-pastor.jpg"
+               alt="Associate Pastor"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="leader-photo-placeholder" style="display:none;">A</div>
+        </div>
+        <div class="leader-info">
+          <h3>Associate Pastor</h3>
+          <span class="role">Associate Pastor — Discipleship</span>
+          <p>Overseeing discipleship, small groups, and leadership development, our Associate Pastor equips every member for the work of ministry.</p>
+        </div>
       </div>
-      <div class="leader-card fade-in">
-        <div class="leader-avatar">📖</div>
-        <h3>Youth & Young Adults Pastor</h3>
-        <span class="role">Youth Ministry</span>
-        <p>Passionately leading the next generation of believers with creative programmes, mentorship, and a culture of vibrant faith.</p>
+
+      <!-- Leader 3 — Youth Pastor -->
+      <div class="leader-card-new fade-in">
+        <div class="leader-photo">
+          <img src="../images/leader-youth-pastor.jpg"
+               alt="Youth & Young Adults Pastor"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="leader-photo-placeholder" style="display:none;">Y</div>
+        </div>
+        <div class="leader-info">
+          <h3>Youth &amp; Young Adults Pastor</h3>
+          <span class="role">Youth Ministry</span>
+          <p>Passionately leading the next generation of believers with creative programmes, mentorship, and a culture of vibrant faith.</p>
+        </div>
       </div>
-      <div class="leader-card fade-in">
-        <div class="leader-avatar">🌍</div>
-        <h3>Missions Coordinator</h3>
-        <span class="role">Missions & Outreach</span>
-        <p>Coordinating A.E.M.I's outreach efforts across Uganda and into neighbouring nations, mobilising believers for evangelism and service.</p>
+
+      <!-- Leader 4 — Missions Coordinator -->
+      <div class="leader-card-new fade-in">
+        <div class="leader-photo">
+          <img src="../images/leader-missions.jpg"
+               alt="Missions Coordinator"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="leader-photo-placeholder" style="display:none;">M</div>
+        </div>
+        <div class="leader-info">
+          <h3>Missions Coordinator</h3>
+          <span class="role">Missions &amp; Outreach</span>
+          <p>Coordinating A.E.M.I's outreach efforts across Uganda and into neighbouring nations, mobilising believers for evangelism and service.</p>
+        </div>
       </div>
-      <div class="leader-card fade-in">
-        <div class="leader-avatar">🎵</div>
-        <h3>Worship Director</h3>
-        <span class="role">Worship & Arts</span>
-        <p>Leading the congregation into the presence of God through anointed worship, the Worship Director oversees all music and arts ministry.</p>
+
+      <!-- Leader 5 — Worship Director -->
+      <div class="leader-card-new fade-in">
+        <div class="leader-photo">
+          <img src="../images/leader-worship.jpg"
+               alt="Worship Director"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="leader-photo-placeholder" style="display:none;">W</div>
+        </div>
+        <div class="leader-info">
+          <h3>Worship Director</h3>
+          <span class="role">Worship &amp; Arts</span>
+          <p>Leading the congregation into the presence of God through anointed worship, the Worship Director oversees all music and arts ministry.</p>
+        </div>
       </div>
-      <div class="leader-card fade-in">
-        <div class="leader-avatar">👨‍💼</div>
-        <h3>Church Administrator</h3>
-        <span class="role">Administration</span>
-        <p>Ensuring the smooth running of church operations, our Administrator serves behind the scenes with excellence and dedication.</p>
+
+      <!-- Leader 6 — Church Administrator -->
+      <div class="leader-card-new fade-in">
+        <div class="leader-photo">
+          <img src="../images/leader-admin.jpg"
+               alt="Church Administrator"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="leader-photo-placeholder" style="display:none;">C</div>
+        </div>
+        <div class="leader-info">
+          <h3>Church Administrator</h3>
+          <span class="role">Administration</span>
+          <p>Ensuring the smooth running of church operations, our Administrator serves behind the scenes with excellence and dedication.</p>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+
+<!-- =============================================
+     FOOTER
+     ============================================= -->
 <footer>
   <div class="container">
     <div class="footer-grid">
@@ -309,7 +726,7 @@
         <ul>
           <li><a href="about.html">Who We Are</a></li>
           <li><a href="about.html#history">Our History</a></li>
-          <li><a href="about.html#mission">Mission & Vision</a></li>
+          <li><a href="about.html#mission">Mission &amp; Vision</a></li>
           <li><a href="about.html#leadership">Leadership</a></li>
           <li><a href="contact.html">Contact Us</a></li>
         </ul>
@@ -341,12 +758,147 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2025 Ambassadors of Encouragement International Ministries. All rights reserved.</p>
+      <p>&copy; <span id="footerYear"></span> Ambassadors of Encouragement International Ministries. All rights reserved.</p>
       <p>Built with ❤️ for the Kingdom of God</p>
     </div>
   </div>
 </footer>
 
+
+<!-- =============================================
+     SCRIPTS
+     ============================================= -->
 <script src="../js/main.js"></script>
+<script>
+
+/* ---- Footer year ---- */
+document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+/* ---- Navbar: no topbar so always start at top:0 ---- */
+(function () {
+  const navbar = document.querySelector('.navbar');
+  if (!navbar) return;
+  // Force top:0 since topbar is removed
+  navbar.style.top = '0';
+  function updateNav() {
+    if (window.scrollY > 60) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+})();
+
+/* ---- Mobile hamburger ---- */
+(function () {
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      hamburger.classList.toggle('active');
+    });
+  }
+})();
+
+/* =============================================
+   HEADER MEDIA SLIDESHOW
+   ============================================= */
+(function () {
+  const slides = document.querySelectorAll('#headerMediaBg .header-slide');
+  const dots   = document.querySelectorAll('#headerDots .header-dot');
+  if (!slides.length) return;
+
+  let current = 0;
+  let timer;
+
+  function goTo(idx) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+
+    // If current slide has a video, play it
+    slides.forEach((s, i) => {
+      const vid = s.querySelector('video');
+      if (vid) {
+        if (i === current) { vid.currentTime = 0; vid.play().catch(() => {}); }
+        else vid.pause();
+      }
+    });
+  }
+
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 5000);
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      goTo(parseInt(dot.dataset.index));
+      startTimer();
+    });
+  });
+
+  startTimer();
+})();
+
+/* =============================================
+   ANIMATED COUNTER
+   ============================================= */
+(function () {
+  const counters = document.querySelectorAll('.stat-number[data-target]');
+  if (!counters.length) return;
+
+  function animateCounter(el) {
+    const target  = parseInt(el.dataset.target, 10);
+    const suffix  = el.dataset.suffix || '';
+    const duration = 1800; // ms
+    const steps   = 60;
+    const step    = target / steps;
+    let current   = 0;
+    let frame     = 0;
+
+    const interval = setInterval(() => {
+      frame++;
+      current = Math.min(Math.round(step * frame), target);
+      el.textContent = current.toLocaleString() + suffix;
+      if (current >= target) clearInterval(interval);
+    }, duration / steps);
+  }
+
+  // Trigger when stats come into view
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  counters.forEach(el => observer.observe(el));
+})();
+
+/* =============================================
+   SCROLL FADE-IN ANIMATIONS
+   ============================================= */
+(function () {
+  const els = document.querySelectorAll('.fade-in');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => obs.observe(el));
+})();
+
+</script>
 </body>
 </html>

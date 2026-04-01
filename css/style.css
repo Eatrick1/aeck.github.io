@@ -262,9 +262,138 @@ a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
 }
 .nav-give:hover { background: #a93226 !important; color: var(--white) !important; }
 
-/* Hamburger */
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-.hamburger span { display: block; width: 26px; height: 2px; background: var(--navy); border-radius: 2px; transition: all 0.3s; }
+/* =============================================
+   HAMBURGER + MOBILE SIDEBAR NAV
+   ============================================= */
+
+/* Hamburger icon */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 1200;
+  position: relative;
+}
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: all 0.32s ease;
+}
+/* X animation when open */
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+/* White bars when navbar is transparent over hero */
+.navbar:not(.scrolled) .hamburger span { background: var(--white); }
+
+/* Dark backdrop behind sidebar */
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.52);
+  z-index: 1050;
+  backdrop-filter: blur(2px);
+}
+.nav-overlay.open { display: block; }
+
+/* Sidebar panel */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  left: -320px;
+  width: 300px;
+  height: 100vh;
+  background: var(--deep-blue);
+  z-index: 1100;
+  transition: left 0.35s cubic-bezier(.4, 0, .2, 1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+}
+.mobile-sidebar.open { left: 0; }
+
+/* Sidebar header */
+.mobile-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  flex-shrink: 0;
+}
+.mobile-sidebar-header .brand { display: flex; align-items: center; gap: 10px; }
+.mobile-sidebar-header .brand strong {
+  display: block;
+  color: var(--white);
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+.mobile-sidebar-header .brand span {
+  display: block;
+  color: var(--light-gold);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.mobile-sidebar-close {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+.mobile-sidebar-close:hover { color: var(--white); }
+
+/* Sidebar nav links */
+.mobile-nav-links {
+  list-style: none;
+  padding: 12px 0;
+  flex: 1;
+}
+.mobile-nav-links li a {
+  display: block;
+  padding: 15px 26px;
+  color: rgba(255,255,255,0.82);
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.97rem;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.2s, color 0.2s, padding-left 0.2s;
+}
+.mobile-nav-links li a:hover,
+.mobile-nav-links li a.active {
+  background: rgba(255,255,255,0.08);
+  color: var(--light-gold);
+  padding-left: 32px;
+}
+/* Give button inside sidebar */
+.mobile-nav-links li a.mobile-give {
+  margin: 22px 24px 0;
+  background: var(--accent-red);
+  color: var(--white) !important;
+  border-radius: 8px;
+  text-align: center;
+  border: none;
+  padding: 14px 24px;
+}
+.mobile-nav-links li a.mobile-give:hover {
+  background: #a93226;
+  padding-left: 24px;
+}
 
 /* =============================================
    HERO SECTION — CINEMATIC SLIDESHOW
@@ -2028,18 +2157,6 @@ footer {
 }
 @media (max-width: 768px) {
   .nav-links { display: none; }
-  .nav-links.open {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%; left: 0; right: 0;
-    background: var(--white);
-    box-shadow: var(--shadow);
-    padding: 20px;
-    gap: 0;
-    z-index: 1000;
-  }
-  .nav-dropdown { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: none; background: var(--off-white); padding: 8px 0 8px 16px; }
   .hamburger { display: flex; }
   .navbar .container { position: relative; }
   .welcome .container { grid-template-columns: 1fr; }

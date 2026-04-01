@@ -2,38 +2,699 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Contact | A.E.M.I - Ambassadors of Encouragement International Ministries</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .fade-in.visible { opacity: 1; transform: none; }
-    .map-embed { width:100%; height:340px; border-radius:10px; border:none; margin-top:32px; background:var(--off-white); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      color: #1a1a2e;
+      background: #f4f1ec;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ===== ROOT VARIABLES ===== */
+    :root {
+      --deep-blue: #0d1b3e;
+      --navy: #112255;
+      --light-gold: #c9a84c;
+      --gold: #d4a017;
+      --white: #ffffff;
+      --off-white: #f4f1ec;
+      --text-dark: #1a1a2e;
+      --text-light: #666;
+      --accent-red: #c0392b;
+      --accent-green: #1a6b3c;
+      --shadow: 0 8px 32px rgba(0,0,0,0.12);
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    /* ===== TOPBAR (simplified) ===== */
+    .topbar {
+      background: var(--deep-blue);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.75rem;
+      padding: 10px 20px;
+    }
+    .topbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .topbar-inner a {
+      color: rgba(255,255,255,0.75);
+      transition: color 0.2s;
+      font-weight: 600;
+    }
+    .topbar-inner a:hover {
+      color: var(--light-gold);
+    }
+
+    /* ===== NAVBAR (identical to events.html style) ===== */
+    .navbar {
+      background: var(--white);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .navbar-logo img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+    }
+    .navbar-brand-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--deep-blue);
+    }
+    .navbar-brand-text span {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--light-gold);
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 6px;
+      align-items: center;
+    }
+    .nav-links li {
+      position: relative;
+    }
+    .nav-links li a {
+      padding: 8px 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--deep-blue);
+      border-radius: 6px;
+      transition: all 0.2s;
+      display: block;
+    }
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      color: var(--light-gold);
+    }
+    .nav-links li .nav-give {
+      background: var(--accent-red);
+      color: var(--white);
+      border-radius: 6px;
+    }
+    .nav-links li .nav-give:hover {
+      background: #a93226;
+      color: var(--white);
+    }
+    .nav-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+      min-width: 180px;
+      padding: 8px 0;
+      z-index: 100;
+    }
+    .nav-links li:hover .nav-dropdown {
+      display: block;
+    }
+    .nav-dropdown a {
+      padding: 10px 20px;
+      font-size: 0.85rem;
+      color: var(--deep-blue);
+      display: block;
+    }
+    .nav-dropdown a:hover {
+      background: var(--off-white);
+      color: var(--light-gold);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1200;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: var(--deep-blue);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 1050;
+    }
+    .nav-overlay.open {
+      display: block;
+    }
+    .mobile-sidebar {
+      position: fixed;
+      top: 0;
+      left: -320px;
+      width: 300px;
+      height: 100vh;
+      background: var(--deep-blue);
+      z-index: 1100;
+      transition: left 0.35s cubic-bezier(.4,0,.2,1);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      padding: 0 0 40px 0;
+    }
+    .mobile-sidebar.open {
+      left: 0;
+    }
+    .mobile-sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 20px 20px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .mobile-sidebar-header .brand strong {
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+    }
+    .mobile-sidebar-header .brand span {
+      color: var(--light-gold);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: block;
+    }
+    .mobile-sidebar-close {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+    .mobile-nav-links {
+      list-style: none;
+      padding: 20px 0;
+      flex: 1;
+    }
+    .mobile-nav-links li a {
+      display: block;
+      padding: 14px 24px;
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.2s, color 0.2s;
+    }
+    .mobile-nav-links li a:hover,
+    .mobile-nav-links li a.active {
+      background: rgba(255,255,255,0.07);
+      color: var(--light-gold);
+    }
+    .mobile-nav-links li a.mobile-give {
+      margin: 20px 24px 0;
+      background: var(--accent-red);
+      color: var(--white);
+      border-radius: 8px;
+      text-align: center;
+      border: none;
+    }
+
+    /* ===== PAGE HEADER WITH BACKGROUND IMAGE ===== */
+    .page-header {
+      position: relative;
+      min-height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: var(--deep-blue);
+    }
+    .page-header-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1600&q=80');
+      background-size: cover;
+      background-position: center 30%;
+      filter: brightness(0.32);
+    }
+    .page-header-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(13,27,62,0.85) 0%, rgba(17,34,85,0.7) 100%);
+    }
+    .page-header-content {
+      position: relative;
+      z-index: 2;
+      padding: 60px 20px;
+    }
+    .page-header-tag {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--light-gold);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===== CONTACT GRID ===== */
+    .section-pad {
+      padding: 80px 0;
+      background: var(--off-white);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .section-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      display: block;
+      margin-bottom: 12px;
+    }
+    .contact-info-items {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    /* No icons used: text replacement */
+    .contact-info-item h4 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--deep-blue);
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+    .contact-info-item p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+    .contact-form-card {
+      background: var(--white);
+      padding: 40px 36px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+    .contact-form-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--deep-blue);
+      margin-bottom: 8px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 6px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.9rem;
+      background: var(--white);
+      transition: border 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--light-gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+    .btn-primary {
+      background: var(--deep-blue);
+      color: var(--white);
+      border: none;
+      border-radius: 40px;
+      padding: 14px 24px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-family: 'Raleway', sans-serif;
+    }
+    .btn-primary:hover {
+      background: var(--light-gold);
+      color: var(--deep-blue);
+      transform: translateY(-2px);
+    }
+
+    /* ===== PRAYER SECTION WITH BACKGROUND IMAGE ===== */
+    .prayer-section {
+      position: relative;
+      background: linear-gradient(135deg, var(--deep-blue), var(--navy));
+      padding: 80px 0;
+      text-align: center;
+      overflow: hidden;
+    }
+    .prayer-bg-img {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1545062217-d75e5f572e9c?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+    .prayer-section .container {
+      position: relative;
+      z-index: 2;
+    }
+    .prayer-card {
+      max-width: 680px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(2px);
+      border-radius: 28px;
+      padding: 44px 40px;
+      border: 1px solid rgba(255,255,255,0.2);
+      text-align: left;
+    }
+    .prayer-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .prayer-card .desc {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 32px;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .prayer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+    .prayer-input {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 14px;
+      padding: 14px 18px;
+      width: 100%;
+      color: white;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.9rem;
+    }
+    .prayer-input::placeholder {
+      color: rgba(255,255,255,0.6);
+    }
+    .prayer-textarea {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 14px;
+      padding: 14px 18px;
+      width: 100%;
+      color: white;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.9rem;
+      resize: vertical;
+      min-height: 110px;
+      margin-bottom: 24px;
+    }
+    .btn-gold {
+      background: var(--light-gold);
+      color: var(--deep-blue);
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 40px;
+      padding: 14px 28px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      width: 100%;
+      font-family: 'Raleway', sans-serif;
+    }
+    .btn-gold:hover {
+      background: #d4a017;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(201,168,76,0.3);
+    }
+    .privacy-note {
+      text-align: center;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 20px;
+    }
+
+    /* ===== FOOTER (matching events) ===== */
+    footer {
+      background: #070f22;
+      color: rgba(255,255,255,0.7);
+      padding: 60px 0 0;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+    .footer-brand img {
+      width: 54px;
+      margin-bottom: 14px;
+    }
+    .footer-brand strong {
+      display: block;
+      color: var(--white);
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+    .footer-brand p {
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col ul li {
+      margin-bottom: 8px;
+    }
+    .footer-col ul li a {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover {
+      color: var(--light-gold);
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+
+    /* Fade animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .prayer-card {
+        padding: 32px 24px;
+      }
+      .prayer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .topbar-inner {
+        justify-content: center;
+        font-size: 0.7rem;
+        gap: 16px;
+      }
+      .section-pad {
+        padding: 60px 0;
+      }
+      .contact-form-card {
+        padding: 32px 24px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+      .page-header {
+        min-height: 280px;
+      }
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .contact-info-item {
+        gap: 12px;
+      }
+    }
   </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
+<!-- TOPBAR (only socials, no location/email visible as per request minimal) -->
 <div class="topbar">
-  <div class="container">
-    <div class="topbar-left">
-      <span>📍 Kampala, Uganda</span>
-      <a href="mailto:info@aemi.org">✉ info@aemi.org</a>
-      <a href="tel:+256700000000">📞 +256 700 000 000</a>
-    </div>
-    <div class="topbar-right">
-      <a href="https://facebook.com" target="_blank">Facebook</a>
-      <a href="https://youtube.com" target="_blank">YouTube</a>
-      <a href="https://instagram.com" target="_blank">Instagram</a>
-    </div>
+  <div class="topbar-inner">
+    <a href="https://facebook.com" target="_blank">Facebook</a>
+    <a href="https://youtube.com" target="_blank">YouTube</a>
+    <a href="https://instagram.com" target="_blank">Instagram</a>
   </div>
 </div>
 
-<!-- NAVBAR -->
+<!-- NAVBAR (identical structure to events.html) -->
 <nav class="navbar">
-  <div class="container">
+  <div class="navbar-inner">
     <a href="../index.html" class="navbar-logo">
-      <img src="../images/logo.png" alt="AEMI Logo">
+      <img src="../images/logo.png" alt="AEMI Logo" onerror="this.style.display='none'">
       <div class="navbar-brand-text">
         <strong>Ambassadors of Encouragement</strong>
         <span>International Ministries — A.E.M.I</span>
@@ -51,10 +712,10 @@
         </div>
       </li>
       <li>
-        <a href="#">Connect ▾</a>
+        <a href="#" class="active">Connect ▾</a>
         <div class="nav-dropdown">
           <a href="events.html">Events</a>
-          <a href="contact.html">Cell Groups</a>
+          <a href="contact.html" class="active">Cell Groups</a>
           <a href="contact.html">Membership</a>
           <a href="contact.html">Volunteer</a>
         </div>
@@ -75,81 +736,101 @@
   </div>
 </nav>
 
-<!-- PAGE HEADER -->
+<!-- Mobile Overlay & Sidebar (exactly as events.html) -->
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="mobile-sidebar" id="mobileSidebar">
+  <div class="mobile-sidebar-header">
+    <div class="brand">
+      <div>
+        <strong>Ambassadors of Encouragement</strong>
+        <span>International Ministries — A.E.M.I</span>
+      </div>
+    </div>
+    <button class="mobile-sidebar-close" id="sidebarClose">✕</button>
+  </div>
+  <ul class="mobile-nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="about.html">Who We Are</a></li>
+    <li><a href="about.html#mission">Mission & Vision</a></li>
+    <li><a href="about.html#leadership">Leadership</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="contact.html" class="active">Cell Groups</a></li>
+    <li><a href="contact.html">Membership</a></li>
+    <li><a href="contact.html">Volunteer</a></li>
+    <li><a href="sermons.html">Sermons</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="give.html" class="mobile-give">Give</a></li>
+  </ul>
+</div>
+
+<!-- PAGE HEADER with background image -->
 <div class="page-header">
-  <div class="container">
-    <span class="section-tag" style="color:var(--light-gold);display:block;margin-bottom:10px;">We'd Love to Hear From You</span>
+  <div class="page-header-bg"></div>
+  <div class="page-header-overlay"></div>
+  <div class="page-header-content">
+    <span class="page-header-tag">We'd Love to Hear From You</span>
     <h1>Contact Us</h1>
-    <p class="breadcrumb"><a href="../index.html">Home</a> / Contact</p>
   </div>
 </div>
 
-<!-- CONTACT SECTION -->
+<!-- CONTACT SECTION (icons removed, only text) -->
 <section class="section-pad">
   <div class="container">
     <div class="contact-grid">
-
-      <!-- INFO -->
+      <!-- Left column: info -->
       <div class="fade-in">
         <span class="section-tag">Reach Out</span>
-        <h2>Get in Touch</h2>
-        <div class="divider divider-left"></div>
-        <p>We would love to connect with you! Whether you are looking to visit for the first time, need prayer, want to serve, or have a general enquiry, our team is here to help.</p>
+        <h2 style="font-family:'Playfair Display',serif; font-size:2rem; color:var(--deep-blue);">Get in Touch</h2>
+        <div style="width: 50px; height: 3px; background: var(--light-gold); margin: 16px 0 20px 0; border-radius: 2px;"></div>
+        <p style="margin-bottom: 24px; line-height:1.6;">We would love to connect with you! Whether you are looking to visit for the first time, need prayer, want to serve, or have a general enquiry, our team is here to help.</p>
         <div class="contact-info-items">
           <div class="contact-info-item">
-            <div class="contact-info-icon">📍</div>
             <div>
               <h4>Our Location</h4>
               <p>Kampala, Uganda<br>P.O. Box XXXXX, Kampala</p>
             </div>
           </div>
           <div class="contact-info-item">
-            <div class="contact-info-icon">📞</div>
             <div>
               <h4>Phone Number</h4>
               <p>+256 700 000 000<br>+256 751 000 000</p>
             </div>
           </div>
           <div class="contact-info-item">
-            <div class="contact-info-icon">✉</div>
             <div>
               <h4>Email Address</h4>
               <p>info@aemi.org<br>pastor@aemi.org</p>
             </div>
           </div>
           <div class="contact-info-item">
-            <div class="contact-info-icon">⏰</div>
             <div>
               <h4>Office Hours</h4>
               <p>Monday – Friday: 8:00 AM – 5:00 PM<br>Saturday: 9:00 AM – 1:00 PM</p>
             </div>
           </div>
           <div class="contact-info-item">
-            <div class="contact-info-icon">🙏</div>
             <div>
               <h4>Sunday Services</h4>
               <p>7:00 AM • 9:00 AM • 11:30 AM<br>All are welcome!</p>
             </div>
           </div>
         </div>
-
-        <!-- Social links -->
-        <div style="margin-top:36px;">
-          <h4 style="font-family:'Raleway',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:16px;">Follow Us</h4>
-          <div style="display:flex;gap:12px;">
-            <a href="https://facebook.com" target="_blank" style="display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--off-white);border-radius:6px;font-family:'Raleway',sans-serif;font-size:0.85rem;font-weight:600;color:var(--text-mid);">f Facebook</a>
-            <a href="https://youtube.com" target="_blank" style="display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--off-white);border-radius:6px;font-family:'Raleway',sans-serif;font-size:0.85rem;font-weight:600;color:var(--text-mid);">▶ YouTube</a>
-            <a href="https://instagram.com" target="_blank" style="display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--off-white);border-radius:6px;font-family:'Raleway',sans-serif;font-size:0.85rem;font-weight:600;color:var(--text-mid);">📷 Instagram</a>
+        <!-- Social links without icons -->
+        <div style="margin-top: 40px;">
+          <h4 style="font-size:0.8rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--text-light); margin-bottom: 16px;">Follow Us</h4>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="https://facebook.com" target="_blank" style="background:var(--off-white); padding:10px 20px; border-radius:40px; font-weight:700; font-size:0.8rem; color:var(--deep-blue);">Facebook</a>
+            <a href="https://youtube.com" target="_blank" style="background:var(--off-white); padding:10px 20px; border-radius:40px; font-weight:700; font-size:0.8rem; color:var(--deep-blue);">YouTube</a>
+            <a href="https://instagram.com" target="_blank" style="background:var(--off-white); padding:10px 20px; border-radius:40px; font-weight:700; font-size:0.8rem; color:var(--deep-blue);">Instagram</a>
           </div>
         </div>
       </div>
 
-      <!-- FORM -->
+      <!-- Form -->
       <div class="contact-form-card fade-in">
         <span class="section-tag">Send a Message</span>
-        <h3 style="margin-bottom:8px;">How Can We Help?</h3>
-        <p style="margin-bottom:28px;font-size:0.9rem;">Fill in the form below and our team will get back to you within 2 business days.</p>
-
+        <h3>How Can We Help?</h3>
+        <p style="margin-bottom:28px; font-size:0.9rem;">Fill in the form below and our team will get back to you within 2 business days.</p>
         <form id="contactForm">
           <div class="form-row">
             <div class="form-group">
@@ -187,59 +868,46 @@
             <label>Message *</label>
             <textarea placeholder="Tell us how we can help you..." required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;padding:16px;font-size:1rem;">
-            ✉ Send Message
-          </button>
+          <button type="submit" class="btn-primary" style="width:100%;">Send Message</button>
         </form>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- PRAYER REQUEST SECTION -->
-<section id="prayer" style="background:linear-gradient(135deg,var(--deep-blue),var(--navy));padding:80px 0;text-align:center;">
+<!-- PRAYER REQUEST SECTION with background image (icons removed) -->
+<section class="prayer-section">
+  <div class="prayer-bg-img"></div>
   <div class="container">
-    <div class="fade-in">
-      <span class="section-tag" style="color:var(--light-gold);display:block;margin-bottom:10px;">We're Here For You</span>
-      <h2 style="color:var(--white);margin-bottom:16px;">Submit a Prayer Request</h2>
-      <p style="color:rgba(255,255,255,0.75);max-width:560px;margin:0 auto 40px;font-size:1.05rem;">Our prayer team is committed to standing with you in faith. Whatever you are facing, God hears and He answers prayer.</p>
-      <form id="prayerForm" style="max-width:600px;margin:0 auto;text-align:left;background:rgba(255,255,255,0.08);padding:40px;border-radius:12px;border:1px solid rgba(255,255,255,0.12);">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+    <div class="fade-in prayer-card">
+      <span class="section-tag" style="color:var(--light-gold); display:block; margin-bottom:8px;">We're Here For You</span>
+      <h2>Submit a Prayer Request</h2>
+      <p class="desc">Our prayer team is committed to standing with you in faith. Whatever you are facing, God hears and He answers prayer.</p>
+      <form id="prayerForm">
+        <div class="prayer-grid">
           <div>
-            <label style="display:block;font-family:'Raleway',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:6px;">Your Name</label>
-            <input type="text" placeholder="First name" style="width:100%;padding:12px 16px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:rgba(255,255,255,0.1);color:white;font-family:'Open Sans',sans-serif;font-size:0.95rem;">
+            <input type="text" class="prayer-input" placeholder="Your name" style="width:100%;">
           </div>
           <div>
-            <label style="display:block;font-family:'Raleway',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:6px;">Email / Phone</label>
-            <input type="text" placeholder="Contact info (optional)" style="width:100%;padding:12px 16px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:rgba(255,255,255,0.1);color:white;font-family:'Open Sans',sans-serif;font-size:0.95rem;">
+            <input type="text" class="prayer-input" placeholder="Email / Phone (optional)">
           </div>
         </div>
-        <div style="margin-bottom:20px;">
-          <label style="display:block;font-family:'Raleway',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:6px;">Your Prayer Request *</label>
-          <textarea rows="5" placeholder="Share what is on your heart..." style="width:100%;padding:12px 16px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:rgba(255,255,255,0.1);color:white;font-family:'Open Sans',sans-serif;font-size:0.95rem;resize:vertical;" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-gold" style="width:100%;padding:16px;font-size:1rem;">🙏 Submit Prayer Request</button>
-        <p style="text-align:center;font-size:0.78rem;color:rgba(255,255,255,0.45);margin-top:12px;">Your request is kept confidential and prayed for by our dedicated prayer team.</p>
+        <textarea class="prayer-textarea" rows="4" placeholder="Share what is on your heart..." required></textarea>
+        <button type="submit" class="btn-gold">Submit Prayer Request</button>
+        <p class="privacy-note">Your request is kept confidential and prayed for by our dedicated prayer team.</p>
       </form>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER (matching events page) -->
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="../images/logo.png" alt="AEMI Logo">
+        <img src="../images/logo.png" alt="AEMI Logo" onerror="this.style.display='none'">
         <strong>Ambassadors of Encouragement International Ministries</strong>
         <p>Touching lives with the love of Jesus Christ through proclamation, discipleship, and compassionate service in Uganda and beyond.</p>
-        <div class="footer-social">
-          <a href="https://facebook.com" class="social-btn" target="_blank">f</a>
-          <a href="https://youtube.com" class="social-btn" target="_blank">▶</a>
-          <a href="https://instagram.com" class="social-btn" target="_blank">📷</a>
-          <a href="https://twitter.com" class="social-btn" target="_blank">𝕏</a>
-        </div>
       </div>
       <div class="footer-col">
         <h4>Ministry</h4>
@@ -270,20 +938,59 @@
           <li><a href="#">Wednesday: 6 PM</a></li>
           <li><a href="#">Prayer: Fri 6 PM</a></li>
         </ul>
-        <div style="margin-top:20px;font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:1.8;">
-          📍 Kampala, Uganda<br>
-          📞 +256 700 000 000<br>
-          ✉ info@aemi.org
+        <div style="margin-top:20px;font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:2;">
+          Kampala, Uganda<br>
+          +256 700 000 000<br>
+          info@aemi.org
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <p>&copy; 2025 Ambassadors of Encouragement International Ministries. All rights reserved.</p>
-      <p>Built with ❤️ for the Kingdom of God</p>
+      <p>Built with love for the Kingdom of God</p>
     </div>
   </div>
 </footer>
 
-<script src="../js/main.js"></script>
+<script>
+  // Mobile sidebar toggles (exactly as events.html)
+  const hamburger = document.getElementById('hamburger');
+  const mobileSidebar = document.getElementById('mobileSidebar');
+  const navOverlay = document.getElementById('navOverlay');
+  const sidebarClose = document.getElementById('sidebarClose');
+
+  function openSidebar() {
+    hamburger.classList.add('open');
+    mobileSidebar.classList.add('open');
+    navOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSidebar() {
+    hamburger.classList.remove('open');
+    mobileSidebar.classList.remove('open');
+    navOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  hamburger.addEventListener('click', openSidebar);
+  sidebarClose.addEventListener('click', closeSidebar);
+  navOverlay.addEventListener('click', closeSidebar);
+
+  // Fade in on scroll
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // simple preventDefault for forms (demo)
+  const contactForm = document.getElementById('contactForm');
+  const prayerForm = document.getElementById('prayerForm');
+  if(contactForm) contactForm.addEventListener('submit', (e) => e.preventDefault());
+  if(prayerForm) prayerForm.addEventListener('submit', (e) => e.preventDefault());
+</script>
 </body>
 </html>

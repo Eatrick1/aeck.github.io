@@ -4,52 +4,726 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Events | A.E.M.I - Ambassadors of Encouragement International Ministries</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    :root {
+      --deep-blue: #0d1b3e;
+      --navy: #112255;
+      --light-gold: #c9a84c;
+      --gold: #d4a017;
+      --white: #ffffff;
+      --off-white: #f4f1ec;
+      --text-dark: #1a1a2e;
+      --text-light: #666;
+      --accent-red: #c0392b;
+      --accent-green: #1a6b3c;
+      --shadow: 0 8px 32px rgba(0,0,0,0.12);
+      --shadow-sm: 0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      color: var(--text-dark);
+      background: var(--off-white);
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ===== TOPBAR ===== */
+    .topbar {
+      background: var(--deep-blue);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.8rem;
+      padding: 8px 20px;
+    }
+    .topbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .topbar-inner a { color: rgba(255,255,255,0.75); transition: color 0.2s; }
+    .topbar-inner a:hover { color: var(--light-gold); }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background: var(--white);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .navbar-logo img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+    }
+    .navbar-brand-text strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--deep-blue);
+    }
+    .navbar-brand-text span {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--light-gold);
+    }
+
+    /* Desktop nav links */
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 6px;
+      align-items: center;
+    }
+    .nav-links li { position: relative; }
+    .nav-links li a {
+      padding: 8px 14px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--deep-blue);
+      border-radius: 6px;
+      transition: all 0.2s;
+      display: block;
+    }
+    .nav-links li a:hover, .nav-links li a.active { color: var(--light-gold); }
+    .nav-links li .nav-give {
+      background: var(--accent-red);
+      color: var(--white);
+      border-radius: 6px;
+    }
+    .nav-links li .nav-give:hover { background: #a93226; color: var(--white); }
+
+    /* Dropdown */
+    .nav-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+      min-width: 180px;
+      padding: 8px 0;
+      z-index: 100;
+    }
+    .nav-links li:hover .nav-dropdown { display: block; }
+    .nav-dropdown a {
+      padding: 10px 20px;
+      font-size: 0.85rem;
+      color: var(--deep-blue);
+      display: block;
+    }
+    .nav-dropdown a:hover { background: var(--off-white); color: var(--light-gold); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1200;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: var(--deep-blue);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* Mobile Sidebar Overlay */
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 1050;
+    }
+    .nav-overlay.open { display: block; }
+
+    /* Mobile Sidebar */
+    .mobile-sidebar {
+      position: fixed;
+      top: 0;
+      left: -320px;
+      width: 300px;
+      height: 100vh;
+      background: var(--deep-blue);
+      z-index: 1100;
+      transition: left 0.35s cubic-bezier(.4,0,.2,1);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      padding: 0 0 40px 0;
+    }
+    .mobile-sidebar.open { left: 0; }
+    .mobile-sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 20px 20px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .mobile-sidebar-header .brand {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .mobile-sidebar-header .brand strong {
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+    }
+    .mobile-sidebar-header .brand span {
+      color: var(--light-gold);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: block;
+    }
+    .mobile-sidebar-close {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+    .mobile-nav-links {
+      list-style: none;
+      padding: 20px 0;
+      flex: 1;
+    }
+    .mobile-nav-links li a {
+      display: block;
+      padding: 14px 24px;
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.2s, color 0.2s;
+    }
+    .mobile-nav-links li a:hover,
+    .mobile-nav-links li a.active {
+      background: rgba(255,255,255,0.07);
+      color: var(--light-gold);
+    }
+    .mobile-nav-links li a.mobile-give {
+      margin: 20px 24px 0;
+      background: var(--accent-red);
+      color: var(--white);
+      border-radius: 8px;
+      text-align: center;
+      border: none;
+    }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      position: relative;
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: var(--deep-blue);
+    }
+    .page-header-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.32);
+    }
+    .page-header-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(13,27,62,0.85) 0%, rgba(17,34,85,0.7) 100%);
+    }
+    .page-header-content {
+      position: relative;
+      z-index: 2;
+      padding: 60px 20px;
+    }
+    .page-header-tag {
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--light-gold);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===== FEATURED EVENT ===== */
+    .featured-section {
+      padding: 70px 0;
+      background: var(--deep-blue);
+    }
+    .featured-card {
+      border-radius: 20px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 420px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+    .featured-image-col {
+      position: relative;
+      overflow: hidden;
+    }
+    .featured-image-col img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .featured-image-col::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(13,27,62,0) 50%, var(--deep-blue) 100%);
+    }
+    .featured-content-col {
+      background: linear-gradient(135deg, #112255, #0d1b3e);
+      padding: 50px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .featured-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--light-gold);
+      margin-bottom: 14px;
+      display: block;
+    }
+    .featured-content-col h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .featured-content-col p {
+      color: rgba(255,255,255,0.72);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .featured-details {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .featured-detail-item {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .featured-detail-item strong {
+      color: var(--light-gold);
+      margin-right: 8px;
+    }
+    .btn-gold {
+      display: inline-block;
+      background: var(--light-gold);
+      color: var(--deep-blue);
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border-radius: 8px;
+      transition: all 0.25s;
+      border: none;
+      cursor: pointer;
+      align-self: flex-start;
+    }
+    .btn-gold:hover { background: #d4a017; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+
+    /* Sunday Services Block */
+    .sunday-services-block {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 28px;
+    }
+    .sunday-services-block h4 {
+      color: var(--light-gold);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .service-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .service-item {
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      padding: 14px 18px;
+      border-left: 3px solid var(--light-gold);
+    }
+    .service-item .service-name {
+      color: var(--white);
+      font-weight: 800;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+    .service-item .service-time {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.85rem;
+    }
+    .service-item .service-lang {
+      display: inline-block;
+      margin-top: 6px;
+      background: var(--light-gold);
+      color: var(--deep-blue);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    /* ===== EVENTS GRID ===== */
+    .events-section {
+      padding: 80px 0;
+      background: var(--off-white);
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .section-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      display: block;
+      margin-bottom: 12px;
+    }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--deep-blue);
+    }
+    .divider {
+      width: 50px;
+      height: 3px;
+      background: var(--light-gold);
+      margin: 16px auto 0;
+      border-radius: 2px;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .event-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .event-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-5px);
+    }
+    .event-card-image {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+    .event-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .event-card:hover .event-card-image img { transform: scale(1.05); }
+    .event-date-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--deep-blue);
+      color: var(--white);
+      border-radius: 10px;
+      padding: 10px 14px;
+      text-align: center;
+      min-width: 56px;
+    }
+    .event-date-badge .day {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--light-gold);
+      line-height: 1;
+    }
+    .event-date-badge .mon {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+    }
+    .event-card-body {
+      padding: 22px 24px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .event-card-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--deep-blue);
+      margin-bottom: 8px;
+    }
+    .event-meta {
+      margin-bottom: 12px;
+    }
+    .event-meta p {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-light);
+      margin-bottom: 3px;
+    }
+    .event-meta p strong { color: var(--deep-blue); }
+    .event-card-body p.desc {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 20px;
+    }
+    .btn-register {
+      display: inline-block;
+      background: var(--accent-red);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      border-radius: 7px;
+      transition: all 0.25s;
+      align-self: flex-start;
+    }
+    .btn-register:hover { background: #a93226; transform: translateY(-1px); }
+
+    /* ===== WEEKLY PROGRAMMES ===== */
+    .programmes-section {
+      padding: 80px 0;
+      background: var(--deep-blue);
+    }
+    .programmes-section .section-tag { color: var(--light-gold); }
+    .programmes-section .section-header h2 { color: var(--white); }
+    .programmes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .programme-card {
+      background: rgba(255,255,255,0.06);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s;
+    }
+    .programme-card:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-4px);
+    }
+    .programme-card-image {
+      height: 180px;
+      overflow: hidden;
+    }
+    .programme-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.75);
+      transition: transform 0.4s ease;
+    }
+    .programme-card:hover .programme-card-image img { transform: scale(1.05); }
+    .programme-card-body {
+      padding: 24px;
+      text-align: center;
+    }
+    .programme-card-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .programme-time {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--light-gold);
+      margin-bottom: 12px;
+    }
+    .programme-card-body p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.65;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #070f22;
+      color: rgba(255,255,255,0.7);
+      padding: 60px 0 0;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+    .footer-brand img { width: 54px; margin-bottom: 14px; }
+    .footer-brand strong { display: block; color: var(--white); font-size: 0.95rem; margin-bottom: 10px; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.7; }
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul li a { font-size: 0.85rem; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--light-gold); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+
+    /* ===== FADE IN ===== */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .fade-in.visible { opacity: 1; transform: none; }
-    .events-full-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:28px; margin-top:40px; }
-    @media(max-width:768px){ .events-full-grid{grid-template-columns:1fr;} }
-    .event-full-card { background:var(--white); border-radius:12px; overflow:hidden; box-shadow:var(--shadow-sm); border:1px solid var(--light-gray); transition:all 0.3s; display:flex; }
-    .event-full-card:hover { box-shadow:var(--shadow); transform:translateY(-4px); border-color:transparent; }
-    .event-full-date { background:var(--deep-blue); color:var(--white); min-width:90px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px; text-align:center; flex-shrink:0; }
-    .event-full-date .day { font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:900; line-height:1; color:var(--light-gold); }
-    .event-full-date .month { font-family:'Raleway',sans-serif; font-size:0.8rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.75); }
-    .event-full-body { padding:24px 28px; flex:1; }
-    .event-full-body h3 { font-size:1.15rem; margin-bottom:6px; }
-    .event-meta-row { display:flex; gap:16px; flex-wrap:wrap; margin:10px 0 14px; font-family:'Raleway',sans-serif; font-size:0.8rem; color:var(--text-light); }
-    .event-meta-row span { display:flex; align-items:center; gap:4px; }
-    .event-full-body p { font-size:0.9rem; margin-bottom:16px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .programmes-grid { grid-template-columns: 1fr; }
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-image-col { height: 260px; }
+      .featured-image-col::after { background: linear-gradient(180deg, rgba(13,27,62,0) 40%, var(--deep-blue) 100%); }
+      .featured-content-col { padding: 36px 28px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .topbar-inner { justify-content: center; font-size: 0.72rem; gap: 12px; }
+      .events-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .page-header { min-height: 260px; }
+      .page-header h1 { font-size: 2.2rem; }
+    }
+
+    @media (max-width: 480px) {
+      .featured-content-col { padding: 28px 20px; }
+      .featured-content-col h2 { font-size: 1.6rem; }
+      .events-section { padding: 50px 0; }
+      .programmes-section { padding: 50px 0; }
+    }
   </style>
 </head>
 <body>
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <div class="container">
-    <div class="topbar-left">
-      <span>📍 Kampala, Uganda</span>
-      <a href="mailto:info@aemi.org">✉ info@aemi.org</a>
-      <a href="tel:+256700000000">📞 +256 700 000 000</a>
-    </div>
-    <div class="topbar-right">
-      <a href="https://facebook.com" target="_blank">Facebook</a>
-      <a href="https://youtube.com" target="_blank">YouTube</a>
-      <a href="https://instagram.com" target="_blank">Instagram</a>
-    </div>
+  <div class="topbar-inner">
+    <a href="https://facebook.com" target="_blank">Facebook</a>
+    <a href="https://youtube.com" target="_blank">YouTube</a>
+    <a href="https://instagram.com" target="_blank">Instagram</a>
   </div>
 </div>
 
 <!-- NAVBAR -->
 <nav class="navbar">
-  <div class="container">
+  <div class="navbar-inner">
     <a href="../index.html" class="navbar-logo">
-      <img src="../images/logo.png" alt="AEMI Logo">
+      <img src="../images/logo.png" alt="AEMI Logo" onerror="this.style.display='none'">
       <div class="navbar-brand-text">
         <strong>Ambassadors of Encouragement</strong>
         <span>International Ministries — A.E.M.I</span>
       </div>
     </a>
+
     <ul class="nav-links" id="navLinks">
       <li><a href="../index.html">Home</a></li>
       <li>
@@ -80,198 +754,300 @@
       <li><a href="contact.html">Contact</a></li>
       <li><a href="give.html" class="nav-give">Give</a></li>
     </ul>
+
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
   </div>
 </nav>
 
+<!-- Mobile Overlay -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- Mobile Sidebar -->
+<div class="mobile-sidebar" id="mobileSidebar">
+  <div class="mobile-sidebar-header">
+    <div class="brand">
+      <div>
+        <strong>Ambassadors of Encouragement</strong>
+        <span>International Ministries — A.E.M.I</span>
+      </div>
+    </div>
+    <button class="mobile-sidebar-close" id="sidebarClose">✕</button>
+  </div>
+  <ul class="mobile-nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="about.html">Who We Are</a></li>
+    <li><a href="about.html#mission">Mission & Vision</a></li>
+    <li><a href="about.html#leadership">Leadership</a></li>
+    <li><a href="events.html" class="active">Events</a></li>
+    <li><a href="contact.html">Cell Groups</a></li>
+    <li><a href="contact.html">Membership</a></li>
+    <li><a href="contact.html">Volunteer</a></li>
+    <li><a href="sermons.html">Sermons</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="give.html" class="mobile-give">Give</a></li>
+  </ul>
+</div>
+
 <!-- PAGE HEADER -->
 <div class="page-header">
-  <div class="container">
-    <span class="section-tag" style="color:var(--light-gold);display:block;margin-bottom:10px;">What's Happening</span>
+  <div class="page-header-bg"></div>
+  <div class="page-header-overlay"></div>
+  <div class="page-header-content">
+    <span class="page-header-tag">What's Happening</span>
     <h1>Upcoming Events</h1>
-    <p class="breadcrumb"><a href="../index.html">Home</a> / Events</p>
   </div>
 </div>
 
-<!-- FEATURED EVENT -->
-<section style="background:var(--off-white);padding:70px 0;">
+<!-- FEATURED EVENT: Family Sunday Celebration -->
+<section class="featured-section">
   <div class="container">
-    <div style="background:linear-gradient(135deg,var(--deep-blue),var(--navy));border-radius:16px;padding:60px;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;">
-      <div>
-        <span style="font-family:'Raleway',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--light-gold);display:block;margin-bottom:12px;">Featured Event</span>
-        <h2 style="color:var(--white);margin-bottom:16px;">Family Sunday Celebration 2025</h2>
-        <p style="color:rgba(255,255,255,0.75);margin-bottom:28px;">A special family-focused service celebrating the gift of family with worship, testimonies, and activities for all ages. Don't miss this powerful time of togetherness!</p>
-        <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:28px;">
-          <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.75);font-family:'Raleway',sans-serif;font-size:0.88rem;">
-            📅 <span>April 20, 2025</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.75);font-family:'Raleway',sans-serif;font-size:0.88rem;">
-            ⏰ <span>9:00 AM – 12:30 PM</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.75);font-family:'Raleway',sans-serif;font-size:0.88rem;">
-            📍 <span>AEMI Main Sanctuary</span>
-          </div>
-        </div>
-        <a href="contact.html" class="btn btn-gold">Register to Attend</a>
+
+    <div class="featured-card fade-in">
+      <div class="featured-image-col">
+        <img
+          src="https://images.unsplash.com/photo-1609234656388-0ff363383899?w=900&q=80"
+          alt="Family Sunday Celebration"
+          onerror="this.src='https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=900&q=80'"
+        >
       </div>
-      <div style="text-align:center;">
-        <div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:48px;display:inline-block;">
-          <div style="font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;color:var(--light-gold);line-height:1;">20</div>
-          <div style="font-family:'Raleway',sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-top:8px;">APRIL 2025</div>
-          <div style="height:2px;background:rgba(255,255,255,0.15);margin:20px 0;"></div>
-          <div style="font-family:'Raleway',sans-serif;font-size:0.9rem;color:rgba(255,255,255,0.75);">Sunday Service</div>
-          <div style="font-family:'Raleway',sans-serif;font-size:1.1rem;font-weight:700;color:var(--white);margin-top:4px;">9:00 AM</div>
+      <div class="featured-content-col">
+        <span class="featured-tag">Featured Event</span>
+        <h2>Family Sunday Celebration 2025</h2>
+        <p>A special family-focused service celebrating the gift of family with worship, testimonies, and activities for all ages. Don't miss this powerful time of togetherness!</p>
+
+        <!-- Sunday Services block replacing old icon row -->
+        <div class="sunday-services-block">
+          <h4>Sunday Services — April 20, 2025 · AEMI Main Sanctuary</h4>
+          <div class="service-row">
+            <div class="service-item">
+              <div class="service-name">1st Service</div>
+              <div class="service-time">9:00 AM – 11:00 AM</div>
+              <span class="service-lang">English</span>
+            </div>
+            <div class="service-item">
+              <div class="service-name">2nd Service</div>
+              <div class="service-time">11:00 AM – 1:00 PM</div>
+              <span class="service-lang">Luganda &amp; English</span>
+            </div>
+          </div>
         </div>
+
+        <a href="contact.html" class="btn-gold">Register to Attend</a>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- EVENTS LIST -->
-<section class="section-pad">
+<!-- ALL UPCOMING EVENTS -->
+<section class="events-section">
   <div class="container">
-    <div class="text-center fade-in" style="margin-bottom:16px;">
-      <span class="section-tag">This Month & Beyond</span>
+    <div class="section-header fade-in">
+      <span class="section-tag">This Month &amp; Beyond</span>
       <h2>All Upcoming Events</h2>
       <div class="divider"></div>
     </div>
 
-    <div class="events-full-grid">
+    <div class="events-grid">
 
-      <div class="event-full-card fade-in">
-        <div class="event-full-date">
-          <div class="day">06</div>
-          <div class="month">Apr</div>
+      <!-- Men's Academy -->
+      <div class="event-card fade-in">
+        <div class="event-card-image">
+          <img
+            src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=700&q=80"
+            alt="Men's Academy"
+            onerror="this.src='https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=700&q=80'"
+          >
+          <div class="event-date-badge">
+            <div class="day">06</div>
+            <div class="mon">Apr</div>
+          </div>
         </div>
-        <div class="event-full-body">
+        <div class="event-card-body">
           <h3>Men's Academy</h3>
-          <div class="event-meta-row">
-            <span>⏰ 9:00 AM</span>
-            <span>📍 Main Hall</span>
-            <span>👥 Men</span>
+          <div class="event-meta">
+            <p><strong>Time:</strong> 9:00 AM</p>
+            <p><strong>Location:</strong> Main Hall</p>
+            <p><strong>Audience:</strong> Men</p>
           </div>
-          <p>A special gathering for all men of the church — fellowship, Bible study, and building godly brotherhood. All men are warmly invited.</p>
-          <a href="contact.html" class="btn btn-primary btn-sm">Register</a>
+          <p class="desc">A special gathering for all men of the church — fellowship, Bible study, and building godly brotherhood. All men are warmly invited.</p>
+          <a href="contact.html" class="btn-register">Register</a>
         </div>
       </div>
 
-      <div class="event-full-card fade-in">
-        <div class="event-full-date" style="background:var(--accent-green);">
-          <div class="day">11</div>
-          <div class="month">Apr</div>
+      <!-- Men's Prayer Breakfast -->
+      <div class="event-card fade-in">
+        <div class="event-card-image">
+          <img
+            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=80"
+            alt="Men's Prayer Breakfast"
+            onerror="this.src='https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=700&q=80'"
+          >
+          <div class="event-date-badge" style="background:var(--accent-green);">
+            <div class="day">11</div>
+            <div class="mon">Apr</div>
+          </div>
         </div>
-        <div class="event-full-body">
+        <div class="event-card-body">
           <h3>Men's Prayer Breakfast</h3>
-          <div class="event-meta-row">
-            <span>⏰ 8:00 AM – 11:30 AM</span>
-            <span>📍 Fellowship Hall</span>
+          <div class="event-meta">
+            <p><strong>Time:</strong> 8:00 AM – 11:30 AM</p>
+            <p><strong>Location:</strong> Fellowship Hall</p>
           </div>
-          <p>Men of faith gather for a morning of prayer, the Word, and breakfast. A powerful time of spiritual refreshing and godly community.</p>
-          <a href="contact.html" class="btn btn-primary btn-sm">Register</a>
+          <p class="desc">Men of faith gather for a morning of prayer, the Word, and breakfast. A powerful time of spiritual refreshing and godly community.</p>
+          <a href="contact.html" class="btn-register">Register</a>
         </div>
       </div>
 
-      <div class="event-full-card fade-in">
-        <div class="event-full-date" style="background:var(--accent-red);">
-          <div class="day">11</div>
-          <div class="month">Apr</div>
+      <!-- Counsellors' Prayer Altar -->
+      <div class="event-card fade-in">
+        <div class="event-card-image">
+          <img
+            src="https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=700&q=80"
+            alt="Counsellors Prayer Altar"
+            onerror="this.src='https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=700&q=80'"
+          >
+          <div class="event-date-badge" style="background:var(--accent-red);">
+            <div class="day">11</div>
+            <div class="mon">Apr</div>
+          </div>
         </div>
-        <div class="event-full-body">
+        <div class="event-card-body">
           <h3>Counsellors' Prayer Altar</h3>
-          <div class="event-meta-row">
-            <span>⏰ 3:00 PM</span>
-            <span>📍 Prayer Room</span>
-            <span>👥 Counsellors</span>
+          <div class="event-meta">
+            <p><strong>Time:</strong> 3:00 PM</p>
+            <p><strong>Location:</strong> Prayer Room</p>
+            <p><strong>Audience:</strong> Counsellors</p>
           </div>
-          <p>A dedicated prayer gathering for all counsellors and intercessors of the ministry. Come prepared to pray and be refreshed.</p>
-          <a href="contact.html" class="btn btn-primary btn-sm">Register</a>
+          <p class="desc">A dedicated prayer gathering for all counsellors and intercessors of the ministry. Come prepared to pray and be refreshed.</p>
+          <a href="contact.html" class="btn-register">Register</a>
         </div>
       </div>
 
-      <div class="event-full-card fade-in">
-        <div class="event-full-date" style="background:#6a1b9a;">
-          <div class="day">13</div>
-          <div class="month">Apr</div>
+      <!-- Women's Prayer Breakfast -->
+      <div class="event-card fade-in">
+        <div class="event-card-image">
+          <img
+            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&q=80"
+            alt="Women's Prayer Breakfast"
+            onerror="this.src='https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=700&q=80'"
+          >
+          <div class="event-date-badge" style="background:#6a1b9a;">
+            <div class="day">13</div>
+            <div class="mon">Apr</div>
+          </div>
         </div>
-        <div class="event-full-body">
+        <div class="event-card-body">
           <h3>Women's Prayer Breakfast</h3>
-          <div class="event-meta-row">
-            <span>⏰ 8:00 AM</span>
-            <span>📍 Fellowship Hall</span>
-            <span>👥 Women</span>
+          <div class="event-meta">
+            <p><strong>Time:</strong> 8:00 AM</p>
+            <p><strong>Location:</strong> Fellowship Hall</p>
+            <p><strong>Audience:</strong> Women</p>
           </div>
-          <p>Ladies of the congregation come together for a morning of prayer, worship, and breakfast. A beautiful time of sisterhood and seeking God.</p>
-          <a href="contact.html" class="btn btn-primary btn-sm">Register</a>
+          <p class="desc">Ladies of the congregation come together for a morning of prayer, worship, and breakfast. A beautiful time of sisterhood and seeking God.</p>
+          <a href="contact.html" class="btn-register">Register</a>
         </div>
       </div>
 
-      <div class="event-full-card fade-in">
-        <div class="event-full-date" style="background:#e67e22;">
-          <div class="day">18</div>
-          <div class="month">Apr</div>
+      <!-- Youth Night Live -->
+      <div class="event-card fade-in">
+        <div class="event-card-image">
+          <img
+            src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=700&q=80"
+            alt="Youth Night Live"
+            onerror="this.src='https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=700&q=80'"
+          >
+          <div class="event-date-badge" style="background:#e67e22;">
+            <div class="day">18</div>
+            <div class="mon">Apr</div>
+          </div>
         </div>
-        <div class="event-full-body">
+        <div class="event-card-body">
           <h3>Youth Night Live</h3>
-          <div class="event-meta-row">
-            <span>⏰ 6:00 PM</span>
-            <span>📍 Main Sanctuary</span>
-            <span>👥 Youth & Young Adults</span>
+          <div class="event-meta">
+            <p><strong>Time:</strong> 6:00 PM</p>
+            <p><strong>Location:</strong> Main Sanctuary</p>
+            <p><strong>Audience:</strong> Youth &amp; Young Adults</p>
           </div>
-          <p>An exciting night of worship, testimonies, and ministry for young people. Come with your friends and experience the power of God!</p>
-          <a href="contact.html" class="btn btn-primary btn-sm">Register</a>
+          <p class="desc">An exciting night of worship, testimonies, and ministry for young people. Come with your friends and experience the power of God!</p>
+          <a href="contact.html" class="btn-register">Register</a>
         </div>
       </div>
 
-      <div class="event-full-card fade-in">
-        <div class="event-full-date">
-          <div class="day">20</div>
-          <div class="month">Apr</div>
+      <!-- Family Sunday -->
+      <div class="event-card fade-in">
+        <div class="event-card-image">
+          <img
+            src="https://images.unsplash.com/photo-1609234656388-0ff363383899?w=700&q=80"
+            alt="Family Sunday Celebration"
+            onerror="this.src='https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=700&q=80'"
+          >
+          <div class="event-date-badge">
+            <div class="day">20</div>
+            <div class="mon">Apr</div>
+          </div>
         </div>
-        <div class="event-full-body">
+        <div class="event-card-body">
           <h3>Family Sunday Celebration</h3>
-          <div class="event-meta-row">
-            <span>⏰ 9:00 AM – 12:30 PM</span>
-            <span>📍 Main Sanctuary</span>
-            <span>👥 All Family</span>
+          <div class="event-meta">
+            <p><strong>1st Service:</strong> 9:00 AM – 11:00 AM (English)</p>
+            <p><strong>2nd Service:</strong> 11:00 AM – 1:00 PM (Luganda &amp; English)</p>
+            <p><strong>Location:</strong> Main Sanctuary</p>
           </div>
-          <p>Celebrate the gift of family together! A special service with worship, testimonies, and activities for children, youth, and adults.</p>
-          <a href="contact.html" class="btn btn-primary btn-sm">Register</a>
+          <p class="desc">Celebrate the gift of family together! A special service with worship, testimonies, and activities for children, youth, and adults.</p>
+          <a href="contact.html" class="btn-register">Register</a>
         </div>
       </div>
 
-      <div class="event-full-card fade-in">
-        <div class="event-full-date" style="background:var(--accent-green);">
-          <div class="day">25</div>
-          <div class="month">Apr</div>
+      <!-- Community Outreach -->
+      <div class="event-card fade-in">
+        <div class="event-card-image">
+          <img
+            src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=700&q=80"
+            alt="Community Outreach Day"
+            onerror="this.src='https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=700&q=80'"
+          >
+          <div class="event-date-badge" style="background:var(--accent-green);">
+            <div class="day">25</div>
+            <div class="mon">Apr</div>
+          </div>
         </div>
-        <div class="event-full-body">
+        <div class="event-card-body">
           <h3>Community Outreach Day</h3>
-          <div class="event-meta-row">
-            <span>⏰ 7:00 AM</span>
-            <span>📍 Various Locations</span>
-            <span>👥 All Welcome</span>
+          <div class="event-meta">
+            <p><strong>Time:</strong> 7:00 AM</p>
+            <p><strong>Location:</strong> Various Locations</p>
+            <p><strong>Audience:</strong> All Welcome</p>
           </div>
-          <p>Join our teams as we take the love of God to the streets — food distribution, evangelism, and community service across Kampala.</p>
-          <a href="contact.html" class="btn btn-primary btn-sm">Volunteer</a>
+          <p class="desc">Join our teams as we take the love of God to the streets — food distribution, evangelism, and community service across Kampala.</p>
+          <a href="contact.html" class="btn-register">Volunteer</a>
         </div>
       </div>
 
-      <div class="event-full-card fade-in">
-        <div class="event-full-date" style="background:#1565c0;">
-          <div class="day">04</div>
-          <div class="month">May</div>
-        </div>
-        <div class="event-full-body">
-          <h3>Cell Group Leaders Summit</h3>
-          <div class="event-meta-row">
-            <span>⏰ 9:00 AM – 4:00 PM</span>
-            <span>📍 Conference Room</span>
-            <span>👥 Cell Leaders</span>
+      <!-- Cell Group Leaders Summit -->
+      <div class="event-card fade-in">
+        <div class="event-card-image">
+          <img
+            src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=700&q=80"
+            alt="Cell Group Leaders Summit"
+            onerror="this.src='https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=700&q=80'"
+          >
+          <div class="event-date-badge" style="background:#1565c0;">
+            <div class="day">04</div>
+            <div class="mon">May</div>
           </div>
-          <p>A strategic gathering for all cell group leaders to receive training, vision, and equipping for effective ministry in the home context.</p>
-          <a href="contact.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+        <div class="event-card-body">
+          <h3>Cell Group Leaders Summit</h3>
+          <div class="event-meta">
+            <p><strong>Time:</strong> 9:00 AM – 4:00 PM</p>
+            <p><strong>Location:</strong> Conference Room</p>
+            <p><strong>Audience:</strong> Cell Leaders</p>
+          </div>
+          <p class="desc">A strategic gathering for all cell group leaders to receive training, vision, and equipping for effective ministry in the home context.</p>
+          <a href="contact.html" class="btn-register">Register</a>
         </div>
       </div>
 
@@ -280,32 +1056,63 @@
 </section>
 
 <!-- WEEKLY PROGRAMMES -->
-<section style="background:var(--off-white);padding:70px 0;">
+<section class="programmes-section">
   <div class="container">
-    <div class="text-center fade-in" style="margin-bottom:48px;">
+    <div class="section-header fade-in">
       <span class="section-tag">Every Week</span>
-      <h2>Regular Programmes</h2>
+      <h2 style="color:var(--white);">Regular Programmes</h2>
       <div class="divider"></div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
-      <div class="fade-in" style="background:var(--white);padding:32px;border-radius:10px;box-shadow:var(--shadow-sm);text-align:center;border-top:4px solid var(--deep-blue);">
-        <div style="font-size:2rem;margin-bottom:16px;">🌅</div>
-        <h3 style="font-size:1.1rem;margin-bottom:8px;">Sunday Services</h3>
-        <p style="font-family:'Raleway',sans-serif;font-size:0.88rem;color:var(--accent-red);font-weight:700;margin-bottom:8px;">7 AM • 9 AM • 11:30 AM</p>
-        <p style="font-size:0.88rem;">Join us every Sunday for powerful worship, anointed preaching, and fellowship with the family of God.</p>
+
+    <div class="programmes-grid">
+
+      <div class="programme-card fade-in">
+        <div class="programme-card-image">
+          <img
+            src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=700&q=80"
+            alt="Sunday Services"
+            onerror="this.src='https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=700&q=80'"
+          >
+        </div>
+        <div class="programme-card-body">
+          <h3>Sunday Services</h3>
+          <div class="programme-time">
+            1st: 9–11 AM (English) &nbsp;|&nbsp; 2nd: 11 AM–1 PM (Luganda &amp; English)
+          </div>
+          <p>Join us every Sunday for powerful worship, anointed preaching, and fellowship with the family of God.</p>
+        </div>
       </div>
-      <div class="fade-in" style="background:var(--white);padding:32px;border-radius:10px;box-shadow:var(--shadow-sm);text-align:center;border-top:4px solid var(--accent-green);">
-        <div style="font-size:2rem;margin-bottom:16px;">📖</div>
-        <h3 style="font-size:1.1rem;margin-bottom:8px;">Midweek Bible Study</h3>
-        <p style="font-family:'Raleway',sans-serif;font-size:0.88rem;color:var(--accent-red);font-weight:700;margin-bottom:8px;">Wednesday • 6:00 PM</p>
-        <p style="font-size:0.88rem;">Deepen your understanding of God's Word through verse-by-verse teaching and group discussion every Wednesday evening.</p>
+
+      <div class="programme-card fade-in">
+        <div class="programme-card-image">
+          <img
+            src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=700&q=80"
+            alt="Midweek Bible Study"
+            onerror="this.src='https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=700&q=80'"
+          >
+        </div>
+        <div class="programme-card-body">
+          <h3>Midweek Bible Study</h3>
+          <div class="programme-time">Wednesday · 6:00 PM</div>
+          <p>Deepen your understanding of God's Word through verse-by-verse teaching and group discussion every Wednesday evening.</p>
+        </div>
       </div>
-      <div class="fade-in" style="background:var(--white);padding:32px;border-radius:10px;box-shadow:var(--shadow-sm);text-align:center;border-top:4px solid var(--accent-red);">
-        <div style="font-size:2rem;margin-bottom:16px;">🙏</div>
-        <h3 style="font-size:1.1rem;margin-bottom:8px;">Friday Prayer Night</h3>
-        <p style="font-family:'Raleway',sans-serif;font-size:0.88rem;color:var(--accent-red);font-weight:700;margin-bottom:8px;">Friday • 6:00 PM</p>
-        <p style="font-size:0.88rem;">End the week in God's presence. Friday Prayer Nights are powerful times of intercession, worship, and seeking God together.</p>
+
+      <div class="programme-card fade-in">
+        <div class="programme-card-image">
+          <img
+            src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=700&q=80"
+            alt="Friday Prayer Night"
+            onerror="this.src='https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=700&q=80'"
+          >
+        </div>
+        <div class="programme-card-body">
+          <h3>Friday Prayer Night</h3>
+          <div class="programme-time">Friday · 6:00 PM</div>
+          <p>End the week in God's presence. Friday Prayer Nights are powerful times of intercession, worship, and seeking God together.</p>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -315,15 +1122,9 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="../images/logo.png" alt="AEMI Logo">
+        <img src="../images/logo.png" alt="AEMI Logo" onerror="this.style.display='none'">
         <strong>Ambassadors of Encouragement International Ministries</strong>
         <p>Touching lives with the love of Jesus Christ through proclamation, discipleship, and compassionate service in Uganda and beyond.</p>
-        <div class="footer-social">
-          <a href="https://facebook.com" class="social-btn" target="_blank">f</a>
-          <a href="https://youtube.com" class="social-btn" target="_blank">▶</a>
-          <a href="https://instagram.com" class="social-btn" target="_blank">📷</a>
-          <a href="https://twitter.com" class="social-btn" target="_blank">𝕏</a>
-        </div>
       </div>
       <div class="footer-col">
         <h4>Ministry</h4>
@@ -348,26 +1149,55 @@
       <div class="footer-col">
         <h4>Service Times</h4>
         <ul>
-          <li><a href="#">Sunday: 7 AM</a></li>
-          <li><a href="#">Sunday: 9 AM</a></li>
-          <li><a href="#">Sunday: 11:30 AM</a></li>
+          <li><a href="#">Sunday: 9–11 AM (English)</a></li>
+          <li><a href="#">Sunday: 11 AM–1 PM (Luganda &amp; English)</a></li>
           <li><a href="#">Wednesday: 6 PM</a></li>
-          <li><a href="#">Prayer: Fri 6 PM</a></li>
+          <li><a href="#">Friday: 6 PM</a></li>
         </ul>
-        <div style="margin-top:20px;font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:1.8;">
-          📍 Kampala, Uganda<br>
-          📞 +256 700 000 000<br>
-          ✉ info@aemi.org
+        <div style="margin-top:20px;font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:2;">
+          Kampala, Uganda<br>
+          +256 700 000 000<br>
+          info@aemi.org
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <p>&copy; 2025 Ambassadors of Encouragement International Ministries. All rights reserved.</p>
-      <p>Built with ❤️ for the Kingdom of God</p>
+      <p>Built with love for the Kingdom of God</p>
     </div>
   </div>
 </footer>
 
-<script src="../js/main.js"></script>
+<script>
+  // Hamburger / sidebar
+  const hamburger = document.getElementById('hamburger');
+  const mobileSidebar = document.getElementById('mobileSidebar');
+  const navOverlay = document.getElementById('navOverlay');
+  const sidebarClose = document.getElementById('sidebarClose');
+
+  function openSidebar() {
+    hamburger.classList.add('open');
+    mobileSidebar.classList.add('open');
+    navOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSidebar() {
+    hamburger.classList.remove('open');
+    mobileSidebar.classList.remove('open');
+    navOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', openSidebar);
+  sidebarClose.addEventListener('click', closeSidebar);
+  navOverlay.addEventListener('click', closeSidebar);
+
+  // Fade in on scroll
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
