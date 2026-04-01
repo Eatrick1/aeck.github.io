@@ -140,7 +140,7 @@
     }
     .nav-dropdown a:hover { background: var(--off-white); color: var(--light-gold); }
 
-    /* Hamburger */
+    /* Hamburger - exactly like events.html */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -161,7 +161,7 @@
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-    /* Mobile Sidebar Overlay */
+    /* Mobile Sidebar Overlay - exactly like events.html */
     .nav-overlay {
       display: none;
       position: fixed;
@@ -171,7 +171,7 @@
     }
     .nav-overlay.open { display: block; }
 
-    /* Mobile Sidebar */
+    /* Mobile Sidebar - exactly like events.html */
     .mobile-sidebar {
       position: fixed;
       top: 0;
@@ -256,9 +256,9 @@
 
     /* ---- Timeline ---- */
     .timeline { position:relative; padding-left:36px; }
-    .timeline::before { content:''; position:absolute; left:10px; top:0; bottom:0; width:2px; background:var(--light-gray, #ddd); }
+    .timeline::before { content:''; position:absolute; left:10px; top:0; bottom:0; width:2px; background:#ddd; }
     .timeline-item { position:relative; margin-bottom:36px; }
-    .timeline-item::before { content:''; position:absolute; left:-30px; top:6px; width:14px; height:14px; background:var(--deep-blue); border-radius:50%; border:2px solid var(--white); box-shadow:0 0 0 3px var(--light-gray, #ddd); }
+    .timeline-item::before { content:''; position:absolute; left:-30px; top:6px; width:14px; height:14px; background:var(--deep-blue); border-radius:50%; border:2px solid var(--white); box-shadow:0 0 0 3px #ddd; }
     .timeline-year { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--accent-red); margin-bottom:4px; }
     .timeline-item h4 { font-family:'Raleway',sans-serif; font-weight:700; margin-bottom:6px; color:var(--text-dark); }
     .timeline-item p { font-size:0.9rem; }
@@ -542,7 +542,7 @@
     }
     .leader-info p {
       font-size: 0.88rem;
-      color: var(--text-mid, #555);
+      color: #555;
       line-height: 1.7;
     }
 
@@ -641,6 +641,10 @@
     @media (max-width: 768px) {
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
+      /* Mobile nav visibility */
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .topbar-inner { justify-content: center; font-size: 0.72rem; gap: 12px; }
     }
 
     .footer-social {
@@ -673,7 +677,7 @@
   </div>
 </div>
 
-<!-- NAVBAR (matching events.html structure) -->
+<!-- NAVBAR (matching events.html structure with responsive mobile) -->
 <nav class="navbar">
   <div class="navbar-inner">
     <a href="../index.html" class="navbar-logo">
@@ -684,6 +688,7 @@
       </div>
     </a>
 
+    <!-- Desktop Navigation -->
     <ul class="nav-links" id="navLinks">
       <li><a href="../index.html">Home</a></li>
       <li>
@@ -715,16 +720,17 @@
       <li><a href="give.html" class="nav-give">Give</a></li>
     </ul>
 
+    <!-- Hamburger Menu Button (visible on mobile) -->
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
   </div>
 </nav>
 
-<!-- Mobile Overlay -->
+<!-- Mobile Sidebar Overlay -->
 <div class="nav-overlay" id="navOverlay"></div>
 
-<!-- Mobile Sidebar -->
+<!-- Mobile Sidebar (exactly like events.html) -->
 <div class="mobile-sidebar" id="mobileSidebar">
   <div class="mobile-sidebar-header">
     <div class="brand">
@@ -994,7 +1000,7 @@
 <script>
   document.getElementById('footerYear').textContent = new Date().getFullYear();
 
-  // Hamburger / sidebar (matching events.html)
+  // Mobile sidebar functionality - exactly like events.html
   const hamburger = document.getElementById('hamburger');
   const mobileSidebar = document.getElementById('mobileSidebar');
   const navOverlay = document.getElementById('navOverlay');
@@ -1017,7 +1023,7 @@
   if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
   if (navOverlay) navOverlay.addEventListener('click', closeSidebar);
 
-  // Slideshow
+  // Slideshow functionality
   (function () {
     const slides = document.querySelectorAll('#headerMediaBg .header-slide');
     const dots   = document.querySelectorAll('#headerDots .header-dot');
@@ -1065,7 +1071,7 @@
     counters.forEach(el => observer.observe(el));
   })();
 
-  // Fade-in scroll
+  // Fade-in scroll animation
   (function () {
     const els = document.querySelectorAll('.fade-in');
     const obs = new IntersectionObserver((entries) => {
