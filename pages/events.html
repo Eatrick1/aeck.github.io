@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events | A.E.M.I - Ambassadors of Encouragement International Ministries</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+    .events-full-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:28px; margin-top:40px; }
+    @media(max-width:768px){ .events-full-grid{grid-template-columns:1fr;} }
+    .event-full-card { background:var(--white); border-radius:12px; overflow:hidden; box-shadow:var(--shadow-sm); border:1px solid var(--light-gray); transition:all 0.3s; display:flex; }
+    .event-full-card:hover { box-shadow:var(--shadow); transform:translateY(-4px); border-color:transparent; }
+    .event-full-date { background:var(--deep-blue); color:var(--white); min-width:90px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px; text-align:center; flex-shrink:0; }
+    .event-full-date .day { font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:900; line-height:1; color:var(--light-gold); }
+    .event-full-date .month { font-family:'Raleway',sans-serif; font-size:0.8rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.75); }
+    .event-full-body { padding:24px 28px; flex:1; }
+    .event-full-body h3 { font-size:1.15rem; margin-bottom:6px; }
+    .event-meta-row { display:flex; gap:16px; flex-wrap:wrap; margin:10px 0 14px; font-family:'Raleway',sans-serif; font-size:0.8rem; color:var(--text-light); }
+    .event-meta-row span { display:flex; align-items:center; gap:4px; }
+    .event-full-body p { font-size:0.9rem; margin-bottom:16px; }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left">
+      <span>📍 Kampala, Uganda</span>
+      <a href="mailto:info@aemi.org">✉ info@aemi.org</a>
+      <a href="tel:+256700000000">📞 +256 700 000 000</a>
+    </div>
+    <div class="topbar-right">
+      <a href="https://facebook.com" target="_blank">Facebook</a>
+      <a href="https://youtube.com" target="_blank">YouTube</a>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <a href="../index.html" class="navbar-logo">
+      <img src="../images/logo.png" alt="AEMI Logo">
+      <div class="navbar-brand-text">
+        <strong>Ambassadors of Encouragement</strong>
+        <span>International Ministries — A.E.M.I</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html">Home</a></li>
+      <li>
+        <a href="#">About ▾</a>
+        <div class="nav-dropdown">
+          <a href="about.html">Who We Are</a>
+          <a href="about.html#history">Our History</a>
+          <a href="about.html#mission">Mission & Vision</a>
+          <a href="about.html#leadership">Leadership</a>
+        </div>
+      </li>
+      <li>
+        <a href="#" class="active">Connect ▾</a>
+        <div class="nav-dropdown">
+          <a href="events.html" class="active">Events</a>
+          <a href="contact.html">Cell Groups</a>
+          <a href="contact.html">Membership</a>
+          <a href="contact.html">Volunteer</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Resources ▾</a>
+        <div class="nav-dropdown">
+          <a href="sermons.html">Sermons</a>
+          <a href="sermons.html">Devotionals</a>
+        </div>
+      </li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="give.html" class="nav-give">Give</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <span class="section-tag" style="color:var(--light-gold);display:block;margin-bottom:10px;">What's Happening</span>
+    <h1>Upcoming Events</h1>
+    <p class="breadcrumb"><a href="../index.html">Home</a> / Events</p>
+  </div>
+</div>
+
+<!-- FEATURED EVENT -->
+<section style="background:var(--off-white);padding:70px 0;">
+  <div class="container">
+    <div style="background:linear-gradient(135deg,var(--deep-blue),var(--navy));border-radius:16px;padding:60px;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;">
+      <div>
+        <span style="font-family:'Raleway',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--light-gold);display:block;margin-bottom:12px;">Featured Event</span>
+        <h2 style="color:var(--white);margin-bottom:16px;">Family Sunday Celebration 2025</h2>
+        <p style="color:rgba(255,255,255,0.75);margin-bottom:28px;">A special family-focused service celebrating the gift of family with worship, testimonies, and activities for all ages. Don't miss this powerful time of togetherness!</p>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:28px;">
+          <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.75);font-family:'Raleway',sans-serif;font-size:0.88rem;">
+            📅 <span>April 20, 2025</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.75);font-family:'Raleway',sans-serif;font-size:0.88rem;">
+            ⏰ <span>9:00 AM – 12:30 PM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.75);font-family:'Raleway',sans-serif;font-size:0.88rem;">
+            📍 <span>AEMI Main Sanctuary</span>
+          </div>
+        </div>
+        <a href="contact.html" class="btn btn-gold">Register to Attend</a>
+      </div>
+      <div style="text-align:center;">
+        <div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:48px;display:inline-block;">
+          <div style="font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;color:var(--light-gold);line-height:1;">20</div>
+          <div style="font-family:'Raleway',sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-top:8px;">APRIL 2025</div>
+          <div style="height:2px;background:rgba(255,255,255,0.15);margin:20px 0;"></div>
+          <div style="font-family:'Raleway',sans-serif;font-size:0.9rem;color:rgba(255,255,255,0.75);">Sunday Service</div>
+          <div style="font-family:'Raleway',sans-serif;font-size:1.1rem;font-weight:700;color:var(--white);margin-top:4px;">9:00 AM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS LIST -->
+<section class="section-pad">
+  <div class="container">
+    <div class="text-center fade-in" style="margin-bottom:16px;">
+      <span class="section-tag">This Month & Beyond</span>
+      <h2>All Upcoming Events</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="events-full-grid">
+
+      <div class="event-full-card fade-in">
+        <div class="event-full-date">
+          <div class="day">06</div>
+          <div class="month">Apr</div>
+        </div>
+        <div class="event-full-body">
+          <h3>Men's Academy</h3>
+          <div class="event-meta-row">
+            <span>⏰ 9:00 AM</span>
+            <span>📍 Main Hall</span>
+            <span>👥 Men</span>
+          </div>
+          <p>A special gathering for all men of the church — fellowship, Bible study, and building godly brotherhood. All men are warmly invited.</p>
+          <a href="contact.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+      </div>
+
+      <div class="event-full-card fade-in">
+        <div class="event-full-date" style="background:var(--accent-green);">
+          <div class="day">11</div>
+          <div class="month">Apr</div>
+        </div>
+        <div class="event-full-body">
+          <h3>Men's Prayer Breakfast</h3>
+          <div class="event-meta-row">
+            <span>⏰ 8:00 AM – 11:30 AM</span>
+            <span>📍 Fellowship Hall</span>
+          </div>
+          <p>Men of faith gather for a morning of prayer, the Word, and breakfast. A powerful time of spiritual refreshing and godly community.</p>
+          <a href="contact.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+      </div>
+
+      <div class="event-full-card fade-in">
+        <div class="event-full-date" style="background:var(--accent-red);">
+          <div class="day">11</div>
+          <div class="month">Apr</div>
+        </div>
+        <div class="event-full-body">
+          <h3>Counsellors' Prayer Altar</h3>
+          <div class="event-meta-row">
+            <span>⏰ 3:00 PM</span>
+            <span>📍 Prayer Room</span>
+            <span>👥 Counsellors</span>
+          </div>
+          <p>A dedicated prayer gathering for all counsellors and intercessors of the ministry. Come prepared to pray and be refreshed.</p>
+          <a href="contact.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+      </div>
+
+      <div class="event-full-card fade-in">
+        <div class="event-full-date" style="background:#6a1b9a;">
+          <div class="day">13</div>
+          <div class="month">Apr</div>
+        </div>
+        <div class="event-full-body">
+          <h3>Women's Prayer Breakfast</h3>
+          <div class="event-meta-row">
+            <span>⏰ 8:00 AM</span>
+            <span>📍 Fellowship Hall</span>
+            <span>👥 Women</span>
+          </div>
+          <p>Ladies of the congregation come together for a morning of prayer, worship, and breakfast. A beautiful time of sisterhood and seeking God.</p>
+          <a href="contact.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+      </div>
+
+      <div class="event-full-card fade-in">
+        <div class="event-full-date" style="background:#e67e22;">
+          <div class="day">18</div>
+          <div class="month">Apr</div>
+        </div>
+        <div class="event-full-body">
+          <h3>Youth Night Live</h3>
+          <div class="event-meta-row">
+            <span>⏰ 6:00 PM</span>
+            <span>📍 Main Sanctuary</span>
+            <span>👥 Youth & Young Adults</span>
+          </div>
+          <p>An exciting night of worship, testimonies, and ministry for young people. Come with your friends and experience the power of God!</p>
+          <a href="contact.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+      </div>
+
+      <div class="event-full-card fade-in">
+        <div class="event-full-date">
+          <div class="day">20</div>
+          <div class="month">Apr</div>
+        </div>
+        <div class="event-full-body">
+          <h3>Family Sunday Celebration</h3>
+          <div class="event-meta-row">
+            <span>⏰ 9:00 AM – 12:30 PM</span>
+            <span>📍 Main Sanctuary</span>
+            <span>👥 All Family</span>
+          </div>
+          <p>Celebrate the gift of family together! A special service with worship, testimonies, and activities for children, youth, and adults.</p>
+          <a href="contact.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+      </div>
+
+      <div class="event-full-card fade-in">
+        <div class="event-full-date" style="background:var(--accent-green);">
+          <div class="day">25</div>
+          <div class="month">Apr</div>
+        </div>
+        <div class="event-full-body">
+          <h3>Community Outreach Day</h3>
+          <div class="event-meta-row">
+            <span>⏰ 7:00 AM</span>
+            <span>📍 Various Locations</span>
+            <span>👥 All Welcome</span>
+          </div>
+          <p>Join our teams as we take the love of God to the streets — food distribution, evangelism, and community service across Kampala.</p>
+          <a href="contact.html" class="btn btn-primary btn-sm">Volunteer</a>
+        </div>
+      </div>
+
+      <div class="event-full-card fade-in">
+        <div class="event-full-date" style="background:#1565c0;">
+          <div class="day">04</div>
+          <div class="month">May</div>
+        </div>
+        <div class="event-full-body">
+          <h3>Cell Group Leaders Summit</h3>
+          <div class="event-meta-row">
+            <span>⏰ 9:00 AM – 4:00 PM</span>
+            <span>📍 Conference Room</span>
+            <span>👥 Cell Leaders</span>
+          </div>
+          <p>A strategic gathering for all cell group leaders to receive training, vision, and equipping for effective ministry in the home context.</p>
+          <a href="contact.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WEEKLY PROGRAMMES -->
+<section style="background:var(--off-white);padding:70px 0;">
+  <div class="container">
+    <div class="text-center fade-in" style="margin-bottom:48px;">
+      <span class="section-tag">Every Week</span>
+      <h2>Regular Programmes</h2>
+      <div class="divider"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <div class="fade-in" style="background:var(--white);padding:32px;border-radius:10px;box-shadow:var(--shadow-sm);text-align:center;border-top:4px solid var(--deep-blue);">
+        <div style="font-size:2rem;margin-bottom:16px;">🌅</div>
+        <h3 style="font-size:1.1rem;margin-bottom:8px;">Sunday Services</h3>
+        <p style="font-family:'Raleway',sans-serif;font-size:0.88rem;color:var(--accent-red);font-weight:700;margin-bottom:8px;">7 AM • 9 AM • 11:30 AM</p>
+        <p style="font-size:0.88rem;">Join us every Sunday for powerful worship, anointed preaching, and fellowship with the family of God.</p>
+      </div>
+      <div class="fade-in" style="background:var(--white);padding:32px;border-radius:10px;box-shadow:var(--shadow-sm);text-align:center;border-top:4px solid var(--accent-green);">
+        <div style="font-size:2rem;margin-bottom:16px;">📖</div>
+        <h3 style="font-size:1.1rem;margin-bottom:8px;">Midweek Bible Study</h3>
+        <p style="font-family:'Raleway',sans-serif;font-size:0.88rem;color:var(--accent-red);font-weight:700;margin-bottom:8px;">Wednesday • 6:00 PM</p>
+        <p style="font-size:0.88rem;">Deepen your understanding of God's Word through verse-by-verse teaching and group discussion every Wednesday evening.</p>
+      </div>
+      <div class="fade-in" style="background:var(--white);padding:32px;border-radius:10px;box-shadow:var(--shadow-sm);text-align:center;border-top:4px solid var(--accent-red);">
+        <div style="font-size:2rem;margin-bottom:16px;">🙏</div>
+        <h3 style="font-size:1.1rem;margin-bottom:8px;">Friday Prayer Night</h3>
+        <p style="font-family:'Raleway',sans-serif;font-size:0.88rem;color:var(--accent-red);font-weight:700;margin-bottom:8px;">Friday • 6:00 PM</p>
+        <p style="font-size:0.88rem;">End the week in God's presence. Friday Prayer Nights are powerful times of intercession, worship, and seeking God together.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../images/logo.png" alt="AEMI Logo">
+        <strong>Ambassadors of Encouragement International Ministries</strong>
+        <p>Touching lives with the love of Jesus Christ through proclamation, discipleship, and compassionate service in Uganda and beyond.</p>
+        <div class="footer-social">
+          <a href="https://facebook.com" class="social-btn" target="_blank">f</a>
+          <a href="https://youtube.com" class="social-btn" target="_blank">▶</a>
+          <a href="https://instagram.com" class="social-btn" target="_blank">📷</a>
+          <a href="https://twitter.com" class="social-btn" target="_blank">𝕏</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Ministry</h4>
+        <ul>
+          <li><a href="about.html">Who We Are</a></li>
+          <li><a href="about.html#history">Our History</a></li>
+          <li><a href="about.html#mission">Mission & Vision</a></li>
+          <li><a href="about.html#leadership">Leadership</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get Connected</h4>
+        <ul>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="sermons.html">Sermons</a></li>
+          <li><a href="give.html">Give</a></li>
+          <li><a href="contact.html">Prayer Requests</a></li>
+          <li><a href="contact.html">Volunteer</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Service Times</h4>
+        <ul>
+          <li><a href="#">Sunday: 7 AM</a></li>
+          <li><a href="#">Sunday: 9 AM</a></li>
+          <li><a href="#">Sunday: 11:30 AM</a></li>
+          <li><a href="#">Wednesday: 6 PM</a></li>
+          <li><a href="#">Prayer: Fri 6 PM</a></li>
+        </ul>
+        <div style="margin-top:20px;font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:1.8;">
+          📍 Kampala, Uganda<br>
+          📞 +256 700 000 000<br>
+          ✉ info@aemi.org
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Ambassadors of Encouragement International Ministries. All rights reserved.</p>
+      <p>Built with ❤️ for the Kingdom of God</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

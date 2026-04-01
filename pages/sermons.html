@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sermons | A.E.M.I - Ambassadors of Encouragement International Ministries</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left">
+      <span>📍 Kampala, Uganda</span>
+      <a href="mailto:info@aemi.org">✉ info@aemi.org</a>
+      <a href="tel:+256700000000">📞 +256 700 000 000</a>
+    </div>
+    <div class="topbar-right">
+      <a href="https://facebook.com" target="_blank">Facebook</a>
+      <a href="https://youtube.com" target="_blank">YouTube</a>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <a href="../index.html" class="navbar-logo">
+      <img src="../images/logo.png" alt="AEMI Logo">
+      <div class="navbar-brand-text">
+        <strong>Ambassadors of Encouragement</strong>
+        <span>International Ministries — A.E.M.I</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html">Home</a></li>
+      <li>
+        <a href="#">About ▾</a>
+        <div class="nav-dropdown">
+          <a href="about.html">Who We Are</a>
+          <a href="about.html#history">Our History</a>
+          <a href="about.html#mission">Mission & Vision</a>
+          <a href="about.html#leadership">Leadership</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Connect ▾</a>
+        <div class="nav-dropdown">
+          <a href="events.html">Events</a>
+          <a href="contact.html">Cell Groups</a>
+          <a href="contact.html">Membership</a>
+          <a href="contact.html">Volunteer</a>
+        </div>
+      </li>
+      <li>
+        <a href="#" class="active">Resources ▾</a>
+        <div class="nav-dropdown">
+          <a href="sermons.html" class="active">Sermons</a>
+          <a href="sermons.html">Devotionals</a>
+        </div>
+      </li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="give.html" class="nav-give">Give</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <span class="section-tag" style="color:var(--light-gold);display:block;margin-bottom:10px;">Resources</span>
+    <h1>Sermons & Messages</h1>
+    <p class="breadcrumb"><a href="../index.html">Home</a> / Sermons</p>
+  </div>
+</div>
+
+<!-- FEATURED SERMON -->
+<section class="section-pad" style="background:var(--off-white);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center;">
+      <div class="fade-in">
+        <div class="sermon-thumb" style="min-height:320px;">
+          <div class="sermon-thumb-bg">
+            <div class="sermon-thumb-icon">✝</div>
+          </div>
+          <div class="sermon-play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75));padding:28px 24px;">
+            <p style="color:rgba(255,255,255,0.7);font-size:0.75rem;font-family:'Raleway',sans-serif;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">This Week's Message</p>
+            <h3 style="color:white;font-size:1.3rem;">"Standing Firm in the Full Armour of God"</h3>
+          </div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <span class="section-tag">Featured Message</span>
+        <h2>Standing Firm in the Full Armour of God</h2>
+        <div class="divider divider-left"></div>
+        <div class="sermon-meta">
+          <span>📅 March 30, 2025</span>
+          <span>🎙️ Senior Overseer</span>
+          <span>📖 Ephesians 6:10-18</span>
+        </div>
+        <p>In times of uncertainty and spiritual warfare, God equips every believer with His full armour. This powerful message explores each piece of armour and how to apply it in our daily walk with Christ.</p>
+        <div style="margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="https://youtube.com" target="_blank" class="btn btn-primary">Watch Now</a>
+          <a href="#" class="btn" style="border:2px solid var(--deep-blue);color:var(--deep-blue);">Download Notes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTERS -->
+<div class="sermon-filters">
+  <div class="container">
+    <input type="text" class="filter-search" placeholder="🔍 Search sermons...">
+    <select class="filter-select">
+      <option>All Series</option>
+      <option>Walking in Purpose</option>
+      <option>The Armour of God</option>
+      <option>Ambassadors Series</option>
+      <option>Faith & Family</option>
+      <option>Prayer & Worship</option>
+    </select>
+    <select class="filter-select">
+      <option>All Speakers</option>
+      <option>Senior Overseer</option>
+      <option>Associate Pastor</option>
+      <option>Guest Speaker</option>
+    </select>
+    <select class="filter-select">
+      <option>All Years</option>
+      <option>2025</option>
+      <option>2024</option>
+      <option>2023</option>
+      <option>2022</option>
+    </select>
+  </div>
+</div>
+
+<!-- SERMONS GRID -->
+<section class="section-pad">
+  <div class="container">
+    <div class="sermons-grid">
+
+      <!-- Sermon 1 -->
+      <div class="sermon-card fade-in">
+        <div class="sermon-card-thumb">
+          <div class="sermon-card-play">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div style="position:absolute;top:12px;left:12px;">
+            <span style="background:var(--accent-red);color:white;font-family:'Raleway',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:50px;">NEW</span>
+          </div>
+        </div>
+        <div class="sermon-card-body">
+          <span class="series-tag">The Armour of God</span>
+          <h3>Standing Firm in the Full Armour of God</h3>
+          <div class="sermon-meta">
+            <span>Mar 30, 2025</span><span>Senior Overseer</span><span>Eph 6:10-18</span>
+          </div>
+          <div class="sermon-card-actions">
+            <a href="https://youtube.com" target="_blank" class="btn btn-primary btn-sm">▶ Watch</a>
+            <a href="#" class="btn btn-sm" style="border:1px solid var(--light-gray);color:var(--text-mid);">📥 Notes</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sermon 2 -->
+      <div class="sermon-card fade-in">
+        <div class="sermon-card-thumb" style="background:linear-gradient(135deg,#1a3a8f,#0d2461);">
+          <div class="sermon-card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="sermon-card-body">
+          <span class="series-tag">Walking in Purpose</span>
+          <h3>Walking in Divine Purpose</h3>
+          <div class="sermon-meta">
+            <span>Mar 23, 2025</span><span>Senior Overseer</span><span>Jer 29:11</span>
+          </div>
+          <div class="sermon-card-actions">
+            <a href="https://youtube.com" target="_blank" class="btn btn-primary btn-sm">▶ Watch</a>
+            <a href="#" class="btn btn-sm" style="border:1px solid var(--light-gray);color:var(--text-mid);">📥 Notes</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sermon 3 -->
+      <div class="sermon-card fade-in">
+        <div class="sermon-card-thumb" style="background:linear-gradient(135deg,#1a7a3c,#0a4020);">
+          <div class="sermon-card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="sermon-card-body">
+          <span class="series-tag">Ambassadors Series</span>
+          <h3>The Power of Encouragement</h3>
+          <div class="sermon-meta">
+            <span>Mar 16, 2025</span><span>Associate Pastor</span><span>Heb 10:24-25</span>
+          </div>
+          <div class="sermon-card-actions">
+            <a href="https://youtube.com" target="_blank" class="btn btn-primary btn-sm">▶ Watch</a>
+            <a href="#" class="btn btn-sm" style="border:1px solid var(--light-gray);color:var(--text-mid);">📥 Notes</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sermon 4 -->
+      <div class="sermon-card fade-in">
+        <div class="sermon-card-thumb" style="background:linear-gradient(135deg,#6d2b2b,#3d0a0a);">
+          <div class="sermon-card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="sermon-card-body">
+          <span class="series-tag">Ambassadors Series</span>
+          <h3>Ambassadors for Christ</h3>
+          <div class="sermon-meta">
+            <span>Mar 9, 2025</span><span>Senior Overseer</span><span>2 Cor 5:20</span>
+          </div>
+          <div class="sermon-card-actions">
+            <a href="https://youtube.com" target="_blank" class="btn btn-primary btn-sm">▶ Watch</a>
+            <a href="#" class="btn btn-sm" style="border:1px solid var(--light-gray);color:var(--text-mid);">📥 Notes</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sermon 5 -->
+      <div class="sermon-card fade-in">
+        <div class="sermon-card-thumb" style="background:linear-gradient(135deg,#0a3d62,#0c2a4a);">
+          <div class="sermon-card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="sermon-card-body">
+          <span class="series-tag">Faith & Family</span>
+          <h3>Building a Godly Home</h3>
+          <div class="sermon-meta">
+            <span>Mar 2, 2025</span><span>Senior Overseer</span><span>Joshua 24:15</span>
+          </div>
+          <div class="sermon-card-actions">
+            <a href="https://youtube.com" target="_blank" class="btn btn-primary btn-sm">▶ Watch</a>
+            <a href="#" class="btn btn-sm" style="border:1px solid var(--light-gray);color:var(--text-mid);">📥 Notes</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sermon 6 -->
+      <div class="sermon-card fade-in">
+        <div class="sermon-card-thumb" style="background:linear-gradient(135deg,#2d4a2d,#1a2e1a);">
+          <div class="sermon-card-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="sermon-card-body">
+          <span class="series-tag">Prayer & Worship</span>
+          <h3>The Discipline of Prayer</h3>
+          <div class="sermon-meta">
+            <span>Feb 23, 2025</span><span>Associate Pastor</span><span>Matt 6:5-15</span>
+          </div>
+          <div class="sermon-card-actions">
+            <a href="https://youtube.com" target="_blank" class="btn btn-primary btn-sm">▶ Watch</a>
+            <a href="#" class="btn btn-sm" style="border:1px solid var(--light-gray);color:var(--text-mid);">📥 Notes</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center" style="margin-top:50px;">
+      <a href="#" class="btn btn-primary">Load More Sermons</a>
+    </div>
+  </div>
+</section>
+
+<!-- PODCAST / YOUTUBE CTA -->
+<section style="background:var(--deep-blue);padding:70px 0;text-align:center;">
+  <div class="container">
+    <span class="section-tag" style="color:var(--light-gold);display:block;margin-bottom:10px;">Never Miss a Message</span>
+    <h2 style="color:white;margin-bottom:16px;">Subscribe to Our Channels</h2>
+    <p style="color:rgba(255,255,255,0.7);max-width:500px;margin:0 auto 36px;">Get the latest sermons delivered to you every week. Subscribe on YouTube or follow our podcast.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://youtube.com" target="_blank" class="btn btn-primary">Subscribe on YouTube</a>
+      <a href="#" class="btn btn-outline">Listen on Podcast</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../images/logo.png" alt="AEMI Logo">
+        <strong>Ambassadors of Encouragement International Ministries</strong>
+        <p>Touching lives with the love of Jesus Christ through proclamation, discipleship, and compassionate service in Uganda and beyond.</p>
+        <div class="footer-social">
+          <a href="https://facebook.com" class="social-btn" target="_blank">f</a>
+          <a href="https://youtube.com" class="social-btn" target="_blank">▶</a>
+          <a href="https://instagram.com" class="social-btn" target="_blank">📷</a>
+          <a href="https://twitter.com" class="social-btn" target="_blank">𝕏</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Ministry</h4>
+        <ul>
+          <li><a href="about.html">Who We Are</a></li>
+          <li><a href="about.html#history">Our History</a></li>
+          <li><a href="about.html#mission">Mission & Vision</a></li>
+          <li><a href="about.html#leadership">Leadership</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get Connected</h4>
+        <ul>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="sermons.html">Sermons</a></li>
+          <li><a href="give.html">Give</a></li>
+          <li><a href="contact.html">Prayer Requests</a></li>
+          <li><a href="contact.html">Volunteer</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Service Times</h4>
+        <ul>
+          <li><a href="#">Sunday: 7 AM</a></li>
+          <li><a href="#">Sunday: 9 AM</a></li>
+          <li><a href="#">Sunday: 11:30 AM</a></li>
+          <li><a href="#">Wednesday: 6 PM</a></li>
+          <li><a href="#">Prayer: Fri 6 PM</a></li>
+        </ul>
+        <div style="margin-top:20px;font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:1.8;">
+          📍 Kampala, Uganda<br>
+          📞 +256 700 000 000<br>
+          ✉ info@aemi.org
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Ambassadors of Encouragement International Ministries. All rights reserved.</p>
+      <p>Built with ❤️ for the Kingdom of God</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
