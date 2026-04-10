@@ -1033,7 +1033,7 @@ a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
 .join-sunday-section {
   position: relative;
   min-height: 500px;
-  background: url('images/live.jpeg') center center / cover no-repeat;
+  background: url('images/youth.jpeg') center center / cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
