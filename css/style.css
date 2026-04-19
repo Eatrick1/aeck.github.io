@@ -1033,7 +1033,7 @@ a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
 .join-sunday-section {
   position: relative;
   min-height: 500px;
-  background: url('images/youth.jpeg') center center / cover no-repeat;
+  background: url('../images/prayerw.jpg') center center / cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1593,7 +1593,7 @@ a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
    ============================================= */
 
 .prayer-section {
-  background: linear-gradient(135deg, rgba(10,22,40,0.85), rgba(13,36,97,0.85)), url('../images/live.jpeg');
+  background: linear-gradient(135deg, rgba(10,22,40,0.85), rgba(13,36,97,0.85)), url('../images/prayerw.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -2529,7 +2529,7 @@ footer {
 .weekly-programs-bg {
   position: absolute;
   inset: 0;
-  background-image: url('../images/live.jpeg');
+  background-image: url('../images/spirit.jpg');
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
