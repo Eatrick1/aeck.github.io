@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Today's specials and exclusive deals at Golden Hills Restaurant, Kampala.">
+  <title>Specials | Golden Hills Restaurant</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="page-fade-in">
+  <div id="scroll-progress"></div>
+  <div id="loading-screen" aria-hidden="true">
+    <div class="loader-logo">Golden Hills</div>
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  </div>
+
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">Golden Hills <span>Restaurant</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="specials.html" class="active">Specials</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="reservation.html">Reservation</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="nav-order"><a href="reservation.html" class="btn btn-gold">Order Now</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="container">
+      <h1>Today's Specials</h1>
+      <p class="breadcrumb"><a href="index.html">Home</a> &rsaquo; Specials</p>
+    </div>
+  </header>
+
+  <!-- Featured Special -->
+  <section id="specials-preview" class="section-pad" aria-labelledby="featured-special">
+    <div class="container">
+      <div class="special-inner">
+        <div class="special-img-wrap reveal reveal-left">
+          <img
+            src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800&q=80"
+            alt="Slow-Braised Lamb Shank with mashed potatoes — today's featured special"
+            class="special-dish-img"
+          >
+          <div class="badge-off" aria-label="20 percent off">20%<br>OFF</div>
+        </div>
+        <div class="special-text reveal reveal-right">
+          <span class="eyebrow">Featured Special &mdash; Today Only</span>
+          <h2 id="featured-special">This Week's<br>Chef's Choice</h2>
+          <p class="dish-name">Slow-Braised Lamb Shank</p>
+          <p>Tender Ugandan lamb braised for six hours in a rich tomato and herb sauce, rested on creamy mashed potatoes. Available today only &mdash; limited portions.</p>
+          <div class="price-row">
+            <span class="price-now">UGX 40,000</span>
+            <span class="price-was">UGX 50,000</span>
+          </div>
+          <a href="reservation.html" class="btn btn-gold">Order This Deal</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- All Specials Grid -->
+  <section class="section-pad" style="background:var(--bg-brown);" aria-labelledby="all-specials-heading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Limited Time Offers</span>
+        <h2 id="all-specials-heading">All Current Deals</h2>
+        <div class="divider"></div>
+        <p>These offers are available for a limited time. Don't miss out.</p>
+      </div>
+
+      <div class="specials-grid stagger-children">
+
+        <article class="special-card">
+          <div class="special-card-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?w=700&q=80"
+              alt="Grilled Nile Tilapia Combo dinner deal"
+              class="special-card-img"
+              loading="lazy"
+            >
+            <div class="badge-off" style="width:60px;height:60px;font-size:.82rem;">15%<br>OFF</div>
+          </div>
+          <div class="special-card-body">
+            <p class="menu-tag">Dinner Deal</p>
+            <h3>Grilled Nile Tilapia Combo</h3>
+            <p>Whole grilled tilapia + ugali + kachumbari + a free soft drink. Perfect evening meal.</p>
+            <div class="price-row"><span class="price-now">UGX 30,000</span><span class="price-was">UGX 35,000</span></div>
+            <a href="reservation.html" class="btn btn-gold">Order Now</a>
+          </div>
+        </article>
+
+        <article class="special-card">
+          <div class="special-card-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=700&q=80"
+              alt="Pizza and Smoothie weekend bundle deal"
+              class="special-card-img"
+              loading="lazy"
+            >
+            <div class="badge-off" style="width:60px;height:60px;font-size:.82rem;">25%<br>OFF</div>
+          </div>
+          <div class="special-card-body">
+            <p class="menu-tag">Weekend Special</p>
+            <h3>Pizza &amp; Smoothie Bundle</h3>
+            <p>Any large pizza plus two mango passionfruit smoothies at a Friday&ndash;Sunday price.</p>
+            <div class="price-row"><span class="price-now">UGX 48,000</span><span class="price-was">UGX 64,000</span></div>
+            <a href="reservation.html" class="btn btn-gold">Order Now</a>
+          </div>
+        </article>
+
+        <article class="special-card">
+          <div class="special-card-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=700&q=80"
+              alt="Golden Sunrise Breakfast for 2 deal"
+              class="special-card-img"
+              loading="lazy"
+            >
+            <div class="badge-off" style="width:60px;height:60px;font-size:.82rem;">20%<br>OFF</div>
+          </div>
+          <div class="special-card-body">
+            <p class="menu-tag">Breakfast Deal</p>
+            <h3>Golden Sunrise Breakfast for 2</h3>
+            <p>Two full Golden Sunrise Plates with tea or juice each. Start your day the right way.</p>
+            <div class="price-row"><span class="price-now">UGX 29,000</span><span class="price-was">UGX 36,000</span></div>
+            <a href="reservation.html" class="btn btn-gold">Order Now</a>
+          </div>
+        </article>
+
+        <article class="special-card">
+          <div class="special-card-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=700&q=80"
+              alt="Burger and Chips Monday lunchtime offer"
+              class="special-card-img"
+              loading="lazy"
+            >
+            <div class="badge-off" style="width:60px;height:60px;font-size:.82rem;">30%<br>OFF</div>
+          </div>
+          <div class="special-card-body">
+            <p class="menu-tag">Lunchtime Deal</p>
+            <h3>Burger &amp; Chips Monday Offer</h3>
+            <p>Any burger from our menu plus large fries and a cold drink. Mondays only.</p>
+            <div class="price-row"><span class="price-now">UGX 22,000</span><span class="price-was">UGX 32,000</span></div>
+            <a href="reservation.html" class="btn btn-gold">Order Now</a>
+          </div>
+        </article>
+
+        <article class="special-card">
+          <div class="special-card-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1598103442097-8b74394b95c7?w=700&q=80"
+              alt="Sunday Family Feast with whole roast chicken and sides"
+              class="special-card-img"
+              loading="lazy"
+            >
+            <div class="badge-off" style="width:60px;height:60px;font-size:.82rem;">20%<br>OFF</div>
+          </div>
+          <div class="special-card-body">
+            <p class="menu-tag">Family Bundle</p>
+            <h3>Sunday Family Feast</h3>
+            <p>Whole roast chicken + matoke + posho + beans + 4 soft drinks. For 4 people.</p>
+            <div class="price-row"><span class="price-now">UGX 80,000</span><span class="price-was">UGX 100,000</span></div>
+            <a href="reservation.html" class="btn btn-gold">Order Now</a>
+          </div>
+        </article>
+
+        <article class="special-card">
+          <div class="special-card-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=700&q=80"
+              alt="Free dessert with any dinner main course on Wednesdays"
+              class="special-card-img"
+              loading="lazy"
+            >
+            <div class="badge-off" style="width:60px;height:60px;font-size:.75rem;line-height:1.2;">Free!</div>
+          </div>
+          <div class="special-card-body">
+            <p class="menu-tag">Sweet Finish</p>
+            <h3>Free Dessert with Any Dinner</h3>
+            <p>Order any dinner main course and receive a complimentary dessert of your choice. Wednesday evenings only.</p>
+            <div class="price-row"><span class="price-now">Value: UGX 15,000</span></div>
+            <a href="reservation.html" class="btn btn-gold">Book Your Table</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section id="newsletter">
+    <div class="container">
+      <span class="eyebrow" style="display:block;margin-bottom:10px;">Never Miss a Deal</span>
+      <h2>Subscribe for Exclusive Offers</h2>
+      <p>Get our latest specials delivered straight to your inbox every week.</p>
+      <form class="newsletter-form" id="newsletter-form" novalidate>
+        <input type="email" placeholder="Your email address" required aria-label="Email address">
+        <button type="submit" class="btn btn-gold">Subscribe</button>
+      </form>
+      <p id="newsletter-success" role="status">Thank you! Welcome to the Golden Hills family.</p>
+    </div>
+  </section>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><div class="nav-logo">Golden Hills <span>Restaurant</span></div><p>Fine dining in the heart of Kampala.</p><div class="footer-socials"><a href="#" class="social-link">Facebook</a><a href="#" class="social-link">Instagram</a><a href="https://wa.me/256747995116" class="social-link">WhatsApp</a></div></div>
+        <div><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="menu.html">Our Menu</a></li><li><a href="specials.html">Specials</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="reservation.html">Reservation</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div><h4>Opening Hours</h4><ul class="footer-hours"><li><span>Mon &ndash; Fri:</span> 10:00 AM &ndash; 10:00 PM</li><li><span>Sat &ndash; Sun:</span> 9:00 AM &ndash; 11:00 PM</li></ul></div>
+        <div><h4>Contact Us</h4><div class="footer-contact-item"><strong>Phone</strong><a href="tel:+256747995116" style="color:var(--gray-mid)">+256 747 995 116</a></div><div class="footer-contact-item"><strong>Email</strong><a href="mailto:info@goldenhillsrestaurant.com" style="color:var(--gray-mid)">info@goldenhillsrestaurant.com</a></div><div class="footer-contact-item"><strong>Address</strong><p>Plot 14, Kampala Road, Kampala, Uganda</p></div></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2024 Golden Hills Restaurant. All rights reserved.</p><p>Designed with care in Kampala, Uganda</p></div>
+    </div>
+  </footer>
+  <button id="back-top" aria-label="Back to top">&#8679;</button>
+  <script src="js/script.js"></script>
+</body>
+</html>

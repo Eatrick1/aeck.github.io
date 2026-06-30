@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Golden Hills Restaurant – our story, team and mission in Kampala, Uganda.">
+  <title>About Us | Golden Hills Restaurant</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="page-fade-in">
+  <div id="scroll-progress"></div>
+  <div id="loading-screen" aria-hidden="true">
+    <div class="loader-logo">Golden Hills</div>
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  </div>
+
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">Golden Hills <span>Restaurant</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="specials.html">Specials</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="reservation.html">Reservation</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="nav-order"><a href="reservation.html" class="btn btn-gold">Order Now</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="container">
+      <h1>About Us</h1>
+      <p class="breadcrumb"><a href="index.html">Home</a> &rsaquo; About</p>
+    </div>
+  </header>
+
+  <!-- Our Story -->
+  <section class="section-pad" style="background:var(--bg-dark);" aria-labelledby="story-heading">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-images reveal reveal-left">
+          <img
+            src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=900&q=80"
+            alt="Golden Hills Restaurant dining room interior"
+            class="about-img-main"
+          >
+          <img
+            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80"
+            alt="Fine dining table setting at Golden Hills"
+            class="about-img-accent"
+          >
+          <div class="about-badge"><strong>2009</strong><span>Est.</span></div>
+        </div>
+        <div class="about-text reveal reveal-right">
+          <span class="eyebrow">Our Story</span>
+          <h2 id="story-heading">From a Small Kitchen<br>to Kampala's Finest Table</h2>
+          <p>Golden Hills Restaurant was founded in 2009 by the Ssekandi family with a clear vision: to create a place where Ugandan warmth meets world-class cuisine. What started as a modest 20-seat dining room on Kampala Road has grown into a 150-seat landmark restaurant that has welcomed over 12,000 guests from Uganda and across the globe.</p>
+          <p>Our journey has been shaped by a deep respect for local farmers, a love of bold flavours, and the unwavering belief that every guest deserves to feel like family. Every recipe on our menu carries a story — some rooted in generations-old Ugandan tradition, others inspired by the world travels of our culinary team.</p>
+          <div class="about-stats">
+            <div class="stat"><strong>15+</strong><span>Years Open</span></div>
+            <div class="stat"><strong>8</strong><span>Expert Chefs</span></div>
+            <div class="stat"><strong>12K+</strong><span>Happy Guests</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="section-pad" style="background:var(--bg-brown);" aria-labelledby="mv-heading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Our Purpose</span>
+        <h2 id="mv-heading">Mission &amp; Vision</h2>
+        <div class="divider"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px;" class="stagger-children">
+        <div class="feature-card glow-hover">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=120&q=80" alt="Fresh food mission" class="feature-icon-img">
+          <h3>Our Mission</h3>
+          <p>To serve exceptionally crafted food made from the freshest local ingredients, delivered with genuine warmth and hospitality. We exist to create memorable moments — one plate at a time.</p>
+        </div>
+        <div class="feature-card glow-hover">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=120&q=80" alt="Restaurant vision of excellence" class="feature-icon-img">
+          <h3>Our Vision</h3>
+          <p>To be East Africa's most celebrated restaurant brand — recognized not just for the quality of our food, but for the joy we bring to every table and every community we serve.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chef Section -->
+  <section class="section-pad" style="background:var(--bg-dark);" aria-labelledby="chef-heading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">The Team</span>
+        <h2 id="chef-heading">Meet Our Head Chef</h2>
+        <div class="divider"></div>
+      </div>
+      <div style="max-width:780px;margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:center;" class="reveal">
+        <img
+          src="https://images.unsplash.com/photo-1583394293214-0b3e4e2f3e75?w=400&q=80"
+          alt="Chef Emmanuel Okello, Executive Chef and Co-Founder of Golden Hills Restaurant"
+          class="chef-img"
+          style="height:280px;"
+        >
+        <div>
+          <span class="eyebrow">Head Chef</span>
+          <h3 style="font-family:var(--font-display);font-size:1.8rem;color:var(--white);margin-bottom:8px;">Chef Emmanuel Okello</h3>
+          <p style="color:var(--gold);margin-bottom:16px;font-style:italic;">Executive Chef &amp; Co-Founder</p>
+          <p style="color:var(--gray-mid);margin-bottom:14px;">Chef Emmanuel trained at the Kenya Utalii College in Nairobi and completed advanced studies at the Cordon Bleu Academy in Paris. He returned to Uganda in 2008 with a passion to elevate local cuisine on the global stage.</p>
+          <p style="color:var(--gray-mid);">His philosophy is simple: "The best cooking starts at the farm gate." He works directly with local farmers in Wakiso and Mukono to source the freshest seasonal produce every week.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section-pad" style="background:var(--bg-brown);" aria-labelledby="values-heading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">What We Stand For</span>
+        <h2 id="values-heading">Our Core Values</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="features-grid stagger-children">
+        <div class="feature-card glow-hover">
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=120&q=80" alt="Handshake representing integrity" class="feature-icon-img">
+          <h3>Integrity</h3>
+          <p>We are honest in everything — the quality of our ingredients, our pricing, and the promises we make to every guest.</p>
+        </div>
+        <div class="feature-card glow-hover">
+          <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=120&q=80" alt="Community and local produce" class="feature-icon-img">
+          <h3>Community</h3>
+          <p>We invest in local farmers, employ local talent, and give back to the neighbourhoods that have supported us since day one.</p>
+        </div>
+        <div class="feature-card glow-hover">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=120&q=80" alt="Excellence in food preparation" class="feature-icon-img">
+          <h3>Excellence</h3>
+          <p>We never settle for "good enough." Every plate, every interaction, every moment must meet our highest standards.</p>
+        </div>
+        <div class="feature-card glow-hover">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=120&q=80" alt="Fresh sustainable ingredients" class="feature-icon-img">
+          <h3>Sustainability</h3>
+          <p>We minimise food waste, compost, and partner with eco-conscious suppliers to protect Uganda's environment for future generations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section id="newsletter">
+    <div class="container">
+      <span class="eyebrow" style="display:block;margin-bottom:10px;">Stay Connected</span>
+      <h2>Get Exclusive Offers &amp; Updates</h2>
+      <p>Subscribe and be the first to hear about new dishes and special events.</p>
+      <form class="newsletter-form" id="newsletter-form" novalidate>
+        <input type="email" placeholder="Your email address" aria-label="Email address" required>
+        <button type="submit" class="btn btn-gold">Subscribe</button>
+      </form>
+      <p id="newsletter-success" role="status">Thank you! Welcome to the Golden Hills family.</p>
+    </div>
+  </section>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">Golden Hills <span>Restaurant</span></div>
+          <p>Fine dining in the heart of Kampala.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-link">Facebook</a>
+            <a href="#" class="social-link">Instagram</a>
+            <a href="https://wa.me/256747995116" class="social-link">WhatsApp</a>
+          </div>
+        </div>
+        <div><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="menu.html">Our Menu</a></li><li><a href="specials.html">Specials</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="reservation.html">Reservation</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div><h4>Opening Hours</h4><ul class="footer-hours"><li><span>Mon &ndash; Fri:</span> 10:00 AM &ndash; 10:00 PM</li><li><span>Sat &ndash; Sun:</span> 9:00 AM &ndash; 11:00 PM</li></ul></div>
+        <div><h4>Contact Us</h4>
+          <div class="footer-contact-item"><strong>Phone</strong><a href="tel:+256747995116" style="color:var(--gray-mid)">+256 747 995 116</a></div>
+          <div class="footer-contact-item"><strong>Email</strong><a href="mailto:info@goldenhillsrestaurant.com" style="color:var(--gray-mid)">info@goldenhillsrestaurant.com</a></div>
+          <div class="footer-contact-item"><strong>Address</strong><p>Plot 14, Kampala Road, Kampala, Uganda</p></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2024 Golden Hills Restaurant. All rights reserved.</p><p>Designed with care in Kampala, Uganda</p></div>
+    </div>
+  </footer>
+  <button id="back-top" aria-label="Back to top">&#8679;</button>
+  <script src="js/script.js"></script>
+</body>
+</html>

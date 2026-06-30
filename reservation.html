@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Book a table at Golden Hills Restaurant, Kampala. Online reservation form.">
+  <title>Reservation | Golden Hills Restaurant</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="page-fade-in">
+  <div id="scroll-progress"></div>
+  <div id="loading-screen" aria-hidden="true">
+    <div class="loader-logo">Golden Hills</div>
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  </div>
+
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">Golden Hills <span>Restaurant</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="specials.html">Specials</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="reservation.html" class="active">Reservation</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="nav-order"><a href="reservation.html" class="btn btn-gold">Order Now</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="container">
+      <h1>Make a Reservation</h1>
+      <p class="breadcrumb"><a href="index.html">Home</a> &rsaquo; Reservation</p>
+    </div>
+  </header>
+
+  <!-- Reservation Section -->
+  <section class="section-pad form-section" aria-labelledby="reservation-heading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Book Your Table</span>
+        <h2 id="reservation-heading">Reserve Your Seat Tonight</h2>
+        <div class="divider"></div>
+        <p>Fill in the form below and we will confirm your table within 30 minutes.</p>
+      </div>
+
+      <div class="form-wrap reveal">
+        <!-- Form -->
+        <form id="reservation-form" novalidate aria-label="Table reservation form">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="res-name">Full Name</label>
+              <input type="text" id="res-name" name="full_name" placeholder="e.g. John Ssekandi" required aria-required="true">
+              <span class="error-msg" role="alert">Please enter your full name.</span>
+            </div>
+            <div class="form-group">
+              <label for="res-phone">Phone Number</label>
+              <input type="tel" id="res-phone" name="phone" placeholder="e.g. +256 700 000 000" required aria-required="true">
+              <span class="error-msg" role="alert">Please enter a valid phone number.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="res-email">Email Address</label>
+            <input type="email" id="res-email" name="email" placeholder="e.g. john@example.com" required aria-required="true">
+            <span class="error-msg" role="alert">Please enter a valid email address.</span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="res-guests">Number of Guests</label>
+              <select id="res-guests" name="guests" required aria-required="true">
+                <option value="" disabled selected>Select guests</option>
+                <option value="1">1 Person</option>
+                <option value="2">2 People</option>
+                <option value="3">3 People</option>
+                <option value="4">4 People</option>
+                <option value="5">5 People</option>
+                <option value="6">6 People</option>
+                <option value="7">7 People</option>
+                <option value="8">8 People</option>
+                <option value="9+">9+ People (Large Group)</option>
+              </select>
+              <span class="error-msg" role="alert">Please select the number of guests.</span>
+            </div>
+            <div class="form-group">
+              <label for="res-occasion">Occasion (Optional)</label>
+              <select id="res-occasion" name="occasion">
+                <option value="" selected>Select occasion</option>
+                <option value="birthday">Birthday</option>
+                <option value="anniversary">Anniversary</option>
+                <option value="business">Business Dinner</option>
+                <option value="date">Romantic Date</option>
+                <option value="family">Family Gathering</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="res-date">Preferred Date</label>
+              <input type="date" id="res-date" name="date" required aria-required="true">
+              <span class="error-msg" role="alert">Please select a date.</span>
+            </div>
+            <div class="form-group">
+              <label for="res-time">Preferred Time</label>
+              <select id="res-time" name="time" required aria-required="true">
+                <option value="" disabled selected>Select time</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="12:00">12:00 PM (Noon)</option>
+                <option value="13:00">1:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="15:00">3:00 PM</option>
+                <option value="16:00">4:00 PM</option>
+                <option value="17:00">5:00 PM</option>
+                <option value="18:00">6:00 PM</option>
+                <option value="19:00">7:00 PM</option>
+                <option value="20:00">8:00 PM</option>
+                <option value="21:00">9:00 PM</option>
+              </select>
+              <span class="error-msg" role="alert">Please select a time.</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="res-requests">Special Requests (Optional)</label>
+            <textarea id="res-requests" name="requests" placeholder="Dietary requirements, seating preferences, decorations, allergies…"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-gold" style="width:100%;padding:16px;" aria-label="Submit reservation">
+            Confirm Reservation
+          </button>
+        </form>
+
+        <!-- Success Message -->
+        <div class="form-success" id="reservation-success" role="status" aria-live="polite">
+          <div class="tick" aria-hidden="true">&#10003;</div>
+          <h3>Reservation Confirmed!</h3>
+          <p>Thank you! We have received your reservation request and will confirm your table via phone or email within 30 minutes.</p>
+          <p style="margin-top:14px;color:var(--gold);">We look forward to welcoming you to Golden Hills.</p>
+        </div>
+      </div><!-- /form-wrap -->
+
+      <!-- Info Boxes -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;" class="stagger-children">
+        <div class="feature-card glow-hover">
+          <img src="https://images.unsplash.com/photo-1556745753-b2904692b3cd?w=120&q=80" alt="Phone call icon" class="feature-icon-img">
+          <h3>Call Us</h3>
+          <p>Prefer to book by phone? Call us on <a href="tel:+256747995116" style="color:var(--gold);">+256 747 995 116</a> and our team will take care of everything.</p>
+        </div>
+        <div class="feature-card glow-hover">
+          <img src="https://images.unsplash.com/photo-1501139083538-0139583c060f?w=120&q=80" alt="Clock showing opening hours" class="feature-icon-img">
+          <h3>Opening Hours</h3>
+          <p>Mon–Fri: 10:00 AM – 10:00 PM<br>Sat–Sun: 9:00 AM – 11:00 PM<br>Open on public holidays.</p>
+        </div>
+        <div class="feature-card glow-hover">
+          <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=120&q=80" alt="Location pin map" class="feature-icon-img">
+          <h3>Find Us</h3>
+          <p>Plot 14, Kampala Road,<br>Kampala, Uganda.<br>Free parking available.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section id="newsletter">
+    <div class="container">
+      <span class="eyebrow" style="display:block;margin-bottom:10px;">Stay Connected</span>
+      <h2>Get Exclusive Offers &amp; Updates</h2>
+      <p>Be the first to hear about new dishes and special events.</p>
+      <form class="newsletter-form" id="newsletter-form" novalidate>
+        <input type="email" placeholder="Your email address" required aria-label="Email address">
+        <button type="submit" class="btn btn-gold">Subscribe</button>
+      </form>
+      <p id="newsletter-success" role="status">Thank you! Welcome to the Golden Hills family.</p>
+    </div>
+  </section>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><div class="nav-logo">Golden Hills <span>Restaurant</span></div><p>Fine dining in the heart of Kampala.</p><div class="footer-socials"><a href="#" class="social-link">Facebook</a><a href="#" class="social-link">Instagram</a><a href="https://wa.me/256747995116" class="social-link">WhatsApp</a></div></div>
+        <div><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="menu.html">Our Menu</a></li><li><a href="specials.html">Specials</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="reservation.html">Reservation</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div><h4>Opening Hours</h4><ul class="footer-hours"><li><span>Mon – Fri:</span> 10:00 AM – 10:00 PM</li><li><span>Sat – Sun:</span> 9:00 AM – 11:00 PM</li></ul></div>
+        <div><h4>Contact Us</h4><div class="footer-contact-item"><strong>Phone</strong><a href="tel:+256747995116" style="color:var(--gray-mid)">+256 747 995 116</a></div><div class="footer-contact-item"><strong>Email</strong><a href="mailto:info@goldenhillsrestaurant.com" style="color:var(--gray-mid)">info@goldenhillsrestaurant.com</a></div><div class="footer-contact-item"><strong>Address</strong><p>Plot 14, Kampala Road, Kampala, Uganda</p></div></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2024 Golden Hills Restaurant. All rights reserved.</p><p>Designed with care in Kampala, Uganda</p></div>
+    </div>
+  </footer>
+  <button id="back-top" aria-label="Back to top">&#8679;</button>
+  <script src="js/script.js"></script>
+  <script>
+    /* ── Reservation Form Validation ────────────────────── */
+    (function() {
+      const form    = document.getElementById('reservation-form');
+      const success = document.getElementById('reservation-success');
+      if (!form) return;
+
+      // Set minimum date to today
+      const dateInput = document.getElementById('res-date');
+      if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+      }
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (validateForm('reservation-form')) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

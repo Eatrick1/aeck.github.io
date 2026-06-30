@@ -2,606 +2,546 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Ambassadors of Encouragement International Ministries - A.E.M.I - Touching lives with the love of Jesus Christ in Uganda and beyond.">
-  <title>Home | A.E.M.I - Ambassadors of Encouragement International Ministries</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Golden Hills Restaurant – Fine dining in Kampala, Uganda. Fresh ingredients, expert chefs, unforgettable flavours.">
+  <title>Golden Hills Restaurant | Fine Dining in Kampala</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body>
+<body class="page-fade-in">
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <div class="container">
-    <div class="topbar-left">
-      <span>Kampala, Uganda</span>
-      <a href="mailto:ambassorsofencouragement@gmail.com">ambassorsofencouragement@gmail.com</a>
-      <a href="tel:+256772421468">+256772421468</a>
-    </div>
-    <div class="topbar-right">
-      <a href="https://facebook.com" target="_blank">Facebook</a>
-      <a href="https://youtube.com" target="_blank">YouTube</a>
-      <a href="https://instagram.com" target="_blank">Instagram</a>
-    </div>
-  </div>
-</div>
+  <div id="scroll-progress" role="progressbar" aria-label="Page scroll progress"></div>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-  <div class="container">
-    <a href="index.html" class="navbar-logo">
-      <img src="images/logo.png" alt="AEMI Logo">
-      <div class="navbar-brand-text">
-        <strong>Ambassadors of Encouragement</strong>
-        <span>International Ministries — A.E.M.I</span>
-      </div>
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li>
-        <a href="#">About ▾</a>
-        <div class="nav-dropdown">
-          <a href="pages/about.html">Who We Are</a>
-          <a href="pages/about.html#history">Our History</a>
-          <a href="pages/about.html#mission">Mission &amp; Vision</a>
-          <a href="pages/about.html#leadership">Leadership</a>
-        </div>
-      </li>
-      <li>
-        <a href="#">Connect ▾</a>
-        <div class="nav-dropdown">
-          <a href="pages/events.html">Events</a>
-          <a href="pages/contact.html">Cell Groups</a>
-          <a href="pages/contact.html">Membership</a>
-          <a href="pages/contact.html">Volunteer</a>
-        </div>
-      </li>
-      <li>
-        <a href="#">Resources ▾</a>
-        <div class="nav-dropdown">
-          <a href="pages/sermons.html">Sermons</a>
-          <a href="pages/sermons.html">Devotionals</a>
-        </div>
-      </li>
-      <li><a href="pages/contact.html">Contact</a></li>
-      <li><a href="pages/give.html" class="nav-give">Give</a></li>
-    </ul>
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-</nav>
-
-<!-- MOBILE NAV OVERLAY (dark backdrop) -->
-<div class="nav-overlay" id="navOverlay"></div>
-
-<!-- MOBILE SIDEBAR -->
-<div class="mobile-sidebar" id="mobileSidebar">
-  <div class="mobile-sidebar-header">
-    <div class="brand">
-      <div>
-        <strong>Ambassadors of Encouragement</strong>
-        <span>International Ministries — A.E.M.I</span>
-      </div>
-    </div>
-    <button class="mobile-sidebar-close" id="sidebarClose">✕</button>
-  </div>
-  <ul class="mobile-nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="pages/about.html">Who We Are</a></li>
-    <li><a href="pages/about.html#mission">Mission &amp; Vision</a></li>
-    <li><a href="pages/about.html#leadership">Leadership</a></li>
-    <li><a href="pages/events.html">Events</a></li>
-    <li><a href="pages/contact.html">Cell Groups</a></li>
-    <li><a href="pages/contact.html">Membership</a></li>
-    <li><a href="pages/contact.html">Volunteer</a></li>
-    <li><a href="pages/sermons.html">Sermons</a></li>
-    <li><a href="pages/contact.html">Contact</a></li>
-    <li><a href="pages/give.html" class="mobile-give">Give</a></li>
-  </ul>
-</div>
-
-<!-- HERO SECTION -->
-<section class="hero" id="heroSection">
-
-  <div class="hero-slideshow">
-    <div class="slide active" data-caption="Worship Together">
-      <img class="slide-img" src="images/live.jpeg" alt="Live worship">
-      <div class="slide-overlay"></div>
-    </div>
-    <div class="slide" data-caption="Proclaiming the Gospel">
-      <img class="slide-img" src="images/Pastor.jpeg" alt="Senior Pastor">
-      <div class="slide-overlay"></div>
-    </div>
-    <div class="slide" data-caption="Raising the Next Generation">
-      <img class="slide-img" src="images/joshua.jpeg" alt="Youth Minister">
-      <div class="slide-overlay"></div>
-    </div>
-    <div class="slide" data-caption="Building Godly Community">
-      <img class="slide-img" src="images/mens-academy.jpg" alt="Men's Academy">
-      <div class="slide-overlay"></div>
-    </div>
-    <div class="slide" data-caption="Families Transformed by Faith">
-      <img class="slide-img" src="images/womens-breakfast.jpg" alt="Women's Breakfast">
-      <div class="slide-overlay"></div>
-    </div>
+  <!-- Loading Screen -->
+  <div id="loading-screen" aria-hidden="true">
+    <div class="loader-logo">Golden Hills</div>
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
   </div>
 
-  <div class="hero-light-streaks">
-    <div class="streak streak-1"></div>
-    <div class="streak streak-2"></div>
-    <div class="streak streak-3"></div>
-  </div>
-
-  <div class="container hero-container">
-    <div class="hero-content">
-      <div class="hero-eyebrow">
-      </div>
-      <h1 class="hero-title">Encouraged by God,<br><em>Sent to Encourage</em><br>the World</h1>
-      <p class="hero-desc">We are a family of believers commissioned to share the love of Jesus Christ — proclaiming the Gospel, building up communities, and raising ambassadors for the Kingdom.</p>
-      <div class="hero-buttons">
-        <a href="pages/about.html" class="btn btn-primary">I'm New Here</a>
-        <a href="pages/sermons.html" class="btn btn-outline">Watch Sermons</a>
-      </div>
-    </div>
-  </div>
-
-  <!--div class="hero-caption-bar">
-    <span class="hero-caption-label">NOW SHOWING</span>
-    <span class="hero-caption-text" id="heroCaptionText">Worship Together</span>
-  </div-->
-
-  
-
-  <div class="hero-progress">
-    <div class="hero-progress-bar" id="heroProgressBar"></div>
-  </div>
-
-  <div class="hero-stats">
-    <div class="hero-stat"><strong>1000+</strong><span>Members</span></div>
-    <div class="hero-stat"><strong>20+</strong><span>Cell Groups</span></div>
-    <div class="hero-stat"><strong>3</strong><span>Services</span></div>
-  </div>
-
-  <div class="hero-scroll">
-    <span>Scroll Down</span>
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-  </div>
-</section>
-
-<!-- SERVICE TIMES -->
-<section class="service-times">
-  <div class="container">
-    <div class="service-title">
-      <span class="section-tag" style="color:var(--light-gold)">Join Us</span>
-      <h2>Sunday Services</h2>
-      <p>All are welcome — come as you are</p>
-    </div>
-    <div class="service-times-list">
-      <div class="service-time-card"><span class="time">7:00</span><span class="day">AM • Sunday</span></div>
-      <div class="service-time-card"><span class="time">11:00</span><span class="day">AM • Sunday</span></div>
-      <div class="service-time-card"><span class="time">5:00</span><span class="day">PM • Wednesday</span></div>
-      <div class="service-time-card"><span class="time">6:00</span><span class="day">PM • Friday</span></div>
-    </div>
-    <div><a href="pages/contact.html" class="btn btn-outline">Get Directions</a></div>
-  </div>
-</section>
-
-<!-- WELCOME SECTION -->
-<section class="welcome section-pad">
-  <div class="container">
-    <div class="welcome-image fade-left">
-      <div style="border-radius:8px;overflow:hidden;position:relative;">
-        <img src="images/prayerw.jpg" alt="AEMI Worship" style="width:100%;height:clamp(260px,50vw,420px);object-fit:cover;object-position:center top;display:block;">
-        <div style="position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--accent-red);"></div>
-      </div>
-      <div class="welcome-image-badge">
-        <strong>A.E.M.I</strong>
-        <span>Since 1990</span>
-      </div>
-    </div>
-    <div class="fade-right">
-      <h2>Welcome to Ambassadors of Encouragement International Ministries</h2>
-      <div class="divider divider-left"></div>
-      <p>It is an honour that you choose to visit us. Our purpose is to holistically touch the city of Kampala — Uganda and beyond — with the love of Jesus Christ demonstrated in proclamation, in our homes, and our personal lives.</p>
-      <p style="margin-top:16px;">We believe every person is created by God for a purpose, and we are here to help you discover and fulfill that calling. Whether you are exploring faith for the first time or are a long-time believer, there is a place for you here.</p>
-      <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;">
-        <a href="pages/about.html" class="btn btn-primary">More About Us</a>
-        <a href="pages/contact.html" class="btn" style="border:2px solid var(--deep-blue);color:var(--deep-blue);">Get Involved</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHAT WE DO SECTION -->
-<section class="what-we-do section-pad">
-  <div class="container">
-    <div class="text-center fade-in" style="margin-bottom:56px;">
-      <span class="section-tag">Our Ministries</span>
-      <h2>What We Do</h2>
-      <div class="divider"></div>
-      <p style="max-width:620px;margin:0 auto;">At A.E.M.I, we are committed to serving every stage of life — celebrating milestones, empowering communities, and proclaiming the love of Jesus Christ in tangible ways.</p>
-    </div>
-    <div class="wwd-grid">
-      <div class="wwd-card fade-in">
-        <div class="wwd-image"><img src="images/live.jpeg" alt="Baptism"><div class="wwd-image-overlay"></div></div>
-        <div class="wwd-body">
-          <h3>Baptism</h3>
-          <p>We celebrate water baptism as a public declaration of faith and surrender to Jesus Christ. Whether for adults or infants, our baptism services are deeply sacred moments of covenant and community.</p>
-          <a href="pages/contact.html" class="wwd-link">Enquire About Baptism →</a>
-        </div>
-      </div>
-      <div class="wwd-card fade-in">
-        <div class="wwd-image"><img src="images/womens-breakfast.jpg" alt="Women Empowerment"><div class="wwd-image-overlay"></div></div>
-        <div class="wwd-body">
-          <h3>Women Empowerment</h3>
-          <p>Our Women's Ministry is a vibrant community that equips, encourages and uplifts women in every area of life — spiritual, emotional, and practical. Through prayer breakfasts, workshops, and fellowship.</p>
-          <a href="pages/contact.html" class="wwd-link">Join Women's Ministry →</a>
-        </div>
-      </div>
-      <div class="wwd-card fade-in">
-        <div class="wwd-image"><img src="images/joshua.jpeg" alt="Youth Empowerment"><div class="wwd-image-overlay"></div></div>
-        <div class="wwd-body">
-          <h3>Youth Empowerment</h3>
-          <p>We are passionate about raising a generation of young people who are grounded in the Word, empowered by the Spirit, and bold in their mission. Discipleship, leadership training, and mentorship.</p>
-          <a href="pages/contact.html" class="wwd-link">Connect with Youth →</a>
-        </div>
-      </div>
-      <div class="wwd-card fade-in">
-        <div class="wwd-image"><img src="images/wed1.jpeg" alt="Wedding Functions"><div class="wwd-image-overlay"></div></div>
-        <div class="wwd-body">
-          <h3>Wedding Functions</h3>
-          <p>We joyfully host and officiate Christian wedding ceremonies, helping couples begin their journey together in God's presence. From intimate gatherings to grand celebrations.</p>
-          <a href="pages/contact.html" class="wwd-link">Plan Your Wedding →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WEEKLY PROGRAMS SECTION -->
-<section class="weekly-programs section-pad">
-  <div class="weekly-programs-bg"></div>
-  <div class="container" style="position:relative;z-index:2;">
-    <div class="text-center fade-in" style="margin-bottom:56px;">
-      <span class="section-tag" style="color:var(--light-gold)">Never Miss a Meeting</span>
-      <h2 style="color:var(--white);">Our Weekly Programs</h2>
-      <div class="divider"></div>
-      <p style="max-width:600px;margin:0 auto;color:rgba(255,255,255,0.75);">Every week is an opportunity to grow deeper in faith and community. Here is what we have lined up for you — all are welcome.</p>
-    </div>
-    <div class="wp-grid">
-      <div class="wp-card fade-in">
-        <div class="wp-day">Sunday</div>
-        <h3>Sunday Worship Services</h3>
-        <div class="wp-times"><span>7:00 AM</span><span>9:00 AM</span><span>11:30 AM</span></div>
-        <p>Three powerful services every Sunday filled with praise, the Word of God, and fellowship. Come as you are.</p>
-        <div class="wp-location">Church Auditorium</div>
-      </div>
-      <div class="wp-card fade-in">
-        <div class="wp-day">Wednesday</div>
-        <h3>Midweek Bible Study</h3>
-        <div class="wp-times"><span>6:00 PM</span></div>
-        <p>An in-depth look at the Scriptures every Wednesday evening. Grow in understanding and be equipped for daily Christian living.</p>
-        <div class="wp-location">Church Hall</div>
-      </div>
-      <div class="wp-card fade-in">
-        <div class="wp-day">Friday</div>
-        <h3>Prayer &amp; Intercession Night</h3>
-        <div class="wp-times"><span>6:00 PM</span></div>
-        <p>Join us every Friday for a powerful prayer gathering as we intercede for our families, city, nation and the world.</p>
-        <div class="wp-location">Prayer Chapel</div>
-      </div>
-      <div class="wp-card fade-in">
-        <div class="wp-day">Saturday</div>
-        <h3>Cell Group Meetings</h3>
-        <div class="wp-times"><span>Various Times</span></div>
-        <p>Our cell groups meet across different neighbourhoods in Kampala every Saturday. Connect, share life, and grow in faith together.</p>
-        <div class="wp-location">Various Locations</div>
-      </div>
-      <div class="wp-card fade-in">
-        <div class="wp-day">Saturday</div>
-        <h3>Women's Fellowship</h3>
-        <div class="wp-times"><span>8:00 AM</span></div>
-        <p>A monthly gathering of ladies for prayer, worship, devotion, and sisterhood. Every woman is welcome to come and be refreshed.</p>
-        <div class="wp-location">Church Hall</div>
-      </div>
-      <div class="wp-card fade-in">
-        <div class="wp-day">Saturday</div>
-        <h3>Youth Programme</h3>
-        <div class="wp-times"><span>2:00 PM</span></div>
-        <p>An exciting programme for young people every Saturday afternoon featuring worship, teaching, games, and mentorship activities.</p>
-        <div class="wp-location">Youth Centre</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONNECT GRID -->
-<section class="connect-grid-section">
-  <div class="connect-grid">
-    <a href="pages/about.html" class="connect-tile fade-in" style="background-image:url('images/live.jpeg')">
-      <div class="connect-tile-overlay"></div>
-      <div class="connect-tile-text"><h3>New Here?</h3><p>Learn who we are and what we believe</p></div>
-    </a>
-    <a href="pages/contact.html" class="connect-tile fade-in" style="background-image:url('images/magret.jpeg')">
-      <div class="connect-tile-overlay"></div>
-      <div class="connect-tile-text"><h3>Membership</h3><p>Register and become part of our growing family</p></div>
-    </a>
-    <a href="pages/contact.html" class="connect-tile fade-in" style="background-image:url('images/cell.jpeg')">
-      <div class="connect-tile-overlay"></div>
-      <div class="connect-tile-text"><h3>Connect to a Cell Group</h3><p>Join a community of like-minded believers in your area</p></div>
-    </a>
-    <a href="pages/contact.html" class="connect-tile fade-in" style="background-image:url('images/pordiam.jpg')">
-      <div class="connect-tile-overlay"></div>
-      <div class="connect-tile-text"><h3>Serve With Us</h3><p>Participate in the work of the Lord with your gifts</p></div>
-    </a>
-  </div>
-</section>
-
-<!-- LATEST SERMON SECTION -->
-<section class="latest-sermon section-pad">
-  <div class="container">
-    <div class="sermon-feature">
-      <div class="fade-in">
-        <span class="section-tag">Featured Message</span>
-        <h2>Latest Sermon</h2>
-        <div class="divider divider-left"></div>
-        <p>Every Sunday our pastors deliver powerful, life-transforming messages rooted in the Word of God. You can watch, listen, or download any sermon from our growing archive.</p>
-        <div class="sermon-meta">
-          <span>📅 This Sunday</span>
-          <span>🎙️ Ps. Overseer</span>
-          <span>📖 Ephesians 6:10-18</span>
-        </div>
-        <h3 style="margin-bottom:12px;">"Standing Firm in the Full Armour of God"</h3>
-        <p style="font-size:0.92rem;">In times of uncertainty, God equips us with everything we need to stand firm. This message explores the spiritual armour available to every believer.</p>
-        <div style="margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;">
-          <a href="pages/sermons.html" class="btn btn-primary">Explore All Sermons</a>
-          <a href="https://youtube.com/@aeck25" target="_blank" class="btn" style="border:2px solid var(--deep-blue);color:var(--deep-blue);">Watch on YouTube</a>
-        </div>
-        <div class="sermon-list">
-          <h4>Recent Sermons</h4>
-          <div class="sermon-item" data-video-id="_sehCnWAeQ4">
-            <div class="sermon-item-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            <div class="sermon-item-info"><strong>Walking in Divine Purpose</strong><span>Jeremiah 29:11 • Ps. Overseer</span></div>
-            <div class="sermon-item-date">Mar 23</div>
-          </div>
-          <div class="sermon-item" data-video-id="_sehCnWAeQ4">
-            <div class="sermon-item-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            <div class="sermon-item-info"><strong>The Power of Encouragement</strong><span>Hebrews 10:24-25 • Minister</span></div>
-            <div class="sermon-item-date">Mar 16</div>
-          </div>
-          <div class="sermon-item" data-video-id="_sehCnWAeQ4">
-            <div class="sermon-item-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-            <div class="sermon-item-info"><strong>Ambassadors for Christ</strong><span>2 Corinthians 5:20 • Ps. Overseer</span></div>
-            <div class="sermon-item-date">Mar 9</div>
-          </div>
-        </div>
-      </div>
-      <div class="sermon-thumb" id="sermonThumbnail" data-video-id="_sehCnWAeQ4">
-        <div class="sermon-thumb-bg" style="background-image:url('https://img.youtube.com/vi/_sehCnWAeQ4/maxresdefault.jpg');background-size:cover;background-position:center;">
-          <div class="sermon-thumb-overlay"></div>
-        </div>
-        <div class="sermon-play-btn" id="playButton">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-        <div class="sermon-thumb-caption">
-          <p class="sermon-thumb-label">Latest Message</p>
-          <h3 class="sermon-thumb-title">"Standing Firm in the Full Armour of God"</h3>
-          <p class="sermon-thumb-channel">youtube.com/@aeck25</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VIDEO MODAL -->
-<div id="videoModal" class="video-modal">
-  <div class="modal-content">
-    <span class="close-modal">&times;</span>
-    <div class="video-wrapper">
-      <iframe id="youtubePlayer" width="100%" height="100%" src="https://www.youtube.com/embed/_sehCnWAeQ4?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-  </div>
-</div>
-
-<!-- LEADERSHIP SECTION -->
-<section class="leadership section-pad">
-  <div class="container">
-    <div class="text-center leader-fly-in" data-delay="0">
-      <span class="section-tag">Our Shepherds</span>
-      <h2>Meet Our Leadership</h2>
-      <div class="divider"></div>
-      <p style="max-width:560px;margin:0 auto;">Our leaders are passionate servants of God, dedicated to guiding this congregation with wisdom, love, and the truth of Scripture.</p>
-    </div>
-    <div class="leader-grid">
-      <div class="leader-card leader-fly-in" data-delay="100">
-        <div class="leader-image"><img src="images/Pastor.jpeg" alt="Senior Pastor"></div>
-        <div class="leader-card-body">
-          <h3>Bishop</h3>
-          <span class="role">Senior Pastor</span>
-          <p>Leading the congregation with humility and vision, our Senior Pastor has shepherded A.E.M.I for many years, equipping believers for the work of ministry.</p>
-        </div>
-      </div>
-      <div class="leader-card leader-fly-in" data-delay="240">
-        <div class="leader-image"><img src="images/magret.jpeg" alt="Associate Pastor"></div>
-        <div class="leader-card-body">
-          <h3>Associate Pastor</h3>
-          <span class="role">Associate Pastor</span>
-          <p>Our Associate Pastor oversees discipleship and cell group ministries, helping believers grow in their faith and community connections.</p>
-        </div>
-      </div>
-      <div class="leader-card leader-fly-in" data-delay="380">
-        <div class="leader-image"><img src="images/joshua.jpeg" alt="Youth Minister"></div>
-        <div class="leader-card-body">
-          <h3>Youth &amp; Outreach Minister</h3>
-          <span class="role">Youth Ministry</span>
-          <p>Passionately leading the next generation of believers, our Youth Minister creates vibrant programmes for young people to encounter God.</p>
-        </div>
-      </div>
-    </div>
-    <div class="text-center leader-fly-in" data-delay="520" style="margin-top:40px;">
-      <a href="pages/about.html#leadership" class="btn btn-primary">Full Leadership Team</a>
-    </div>
-  </div>
-</section>
-
-<!-- EVENTS SECTION -->
-<section class="events-section section-pad">
-  <div class="container">
-    <div class="text-center fade-in" style="margin-bottom:48px;">
-      <span class="section-tag">What's Happening</span>
-      <h2>Upcoming Events</h2>
-      <div class="divider"></div>
-      <p style="max-width:600px;margin:0 auto;">Join us for these upcoming events and be part of our growing community</p>
-    </div>
-    <div class="events-grid">
-      <div class="event-card event-card-featured fade-in">
-        <div class="event-image">
-          <img src="images/wed1.jpeg" alt="Wedding Ceremony" style="width:100%;height:100%;object-fit:cover;">
-          <div class="event-image-overlay"></div>
-        </div>
-        <div class="event-date-badge">
-          <span class="event-date-day">06</span>
-          <span class="event-date-month">APR</span>
-        </div>
-        <div class="event-content">
-          <h3>Wedding Ceremony</h3>
-          <div class="event-meta">
-            <span>Sunday, 9:00 AM</span>
-            <span>Church Auditorium</span>
-          </div>
-          <p>A special gathering for all men of the church — fellowship, Bible study, and building godly brotherhood. Join us for a powerful time of worship, teaching, and connection.</p>
-          <a href="pages/events.html" class="event-link">Learn More →</a>
-        </div>
-      </div>
-      <div class="events-grid-right">
-        <div class="event-card event-card-regular fade-in">
-          <div class="event-image-small"><img src="images/women.jpeg" alt="Women's Prayer Breakfast"></div>
-          <div class="event-content-small">
-            <div class="event-date-small">
-              <span class="event-date-num">13</span>
-              <span class="event-date-info"><strong>April 2025</strong><span>Saturday, 8:00 AM</span></span>
-            </div>
-            <h3>Women's Prayer Breakfast</h3>
-            <p>Ladies gather for a morning of prayer, worship, and encouragement over breakfast.</p>
-            <a href="pages/events.html" class="event-link-small">Learn More →</a>
-          </div>
-        </div>
-        <div class="event-card event-card-regular fade-in">
-          <div class="event-image-small"><img src="images/children.jpeg" alt="Family Sunday Celebration"></div>
-          <div class="event-content-small">
-            <div class="event-date-small">
-              <span class="event-date-num">20</span>
-              <span class="event-date-info"><strong>April 2025</strong><span>Sunday, 11:30 AM</span></span>
-            </div>
-            <h3>Family Sunday Celebration</h3>
-            <p>A special family-focused service celebrating the gift of family with worship and activities for all ages.</p>
-            <a href="pages/events.html" class="event-link-small">Learn More →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="text-center" style="margin-top:50px;">
-      <a href="pages/events.html" class="btn btn-primary">See All Events</a>
-    </div>
-  </div>
-</section>
-
-<!-- PRAYER SECTION -->
-<section class="prayer-section">
-  <div class="container">
-    <span class="section-tag" style="color:var(--light-gold);text-align:center;display:block;">We Are Here For You</span>
-    <h2>How Can We Pray For You?</h2>
-    <p>With everything happening in the world right now, we know you have a lot on your mind. Remember, God is always here for you — and whatever you are concerned about, we are here to pray with you!</p>
-    <a href="pages/contact.html#prayer" class="btn btn-gold">Send Your Prayer Request</a>
-  </div>
-</section>
-
-<!-- JOIN US EVERY SUNDAY -->
-<section class="join-sunday-section">
-  <div class="join-sunday-overlay"></div>
-  <div class="join-sunday-content fade-in">
-    <span class="join-sunday-tag">BE PART OF OUR COMMUNITY</span>
-    <h2>Join us every Sunday</h2>
-    <div class="join-sunday-times">7 AM &nbsp;•&nbsp; 9 AM &nbsp;•&nbsp; 11:30 AM</div>
-    <p class="join-sunday-sub">Watch us live</p>
-    <div class="join-sunday-links">
-      <a href="https://youtube.com/@aeck25" target="_blank" class="join-link">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6a3 3 0 0 0-2.1 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
-        YouTube
+  <!-- Navigation -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Golden Hills Restaurant home">
+        Golden Hills <span>Restaurant</span>
       </a>
-      <a href="pages/sermons.html" class="join-link join-link-outline">Watch Sermons →</a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="specials.html">Specials</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="reservation.html">Reservation</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="nav-order"><a href="reservation.html" class="btn btn-gold">Order Now</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </div>
-</section>
+  </nav>
 
-<!-- GIVE BANNER -->
-<div class="give-banner">
-  <div class="container">
-    <div>
-      <h2>Support the Ministry</h2>
-      <p>Your generous giving enables us to spread the Gospel and bless more lives.</p>
+  <!-- Hero -->
+  <section id="hero" aria-label="Hero banner">
+    <div class="hero-slider" aria-hidden="true">
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
     </div>
-    <a href="pages/give.html" class="btn btn-gold" style="font-size:1rem;padding:16px 48px;">Give Today</a>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="images/logo.png" alt="AEMI Logo">
-        <strong>Ambassadors of Encouragement International Ministries</strong>
-        <p>Touching lives with the love of Jesus Christ through proclamation, discipleship, and compassionate service in Uganda and beyond.</p>
-        <div class="footer-social">
-          <a href="https://facebook.com" class="social-btn" target="_blank">f</a>
-          <a href="https://youtube.com" class="social-btn" target="_blank">▶</a>
-          <a href="https://instagram.com" class="social-btn" target="_blank">📷</a>
-          <a href="https://twitter.com" class="social-btn" target="_blank">𝕏</a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Ministry</h4>
-        <ul>
-          <li><a href="pages/about.html">Who We Are</a></li>
-          <li><a href="pages/about.html#history">Our History</a></li>
-          <li><a href="pages/about.html#mission">Mission &amp; Vision</a></li>
-          <li><a href="pages/about.html#leadership">Leadership</a></li>
-          <li><a href="pages/contact.html">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Get Connected</h4>
-        <ul>
-          <li><a href="pages/events.html">Events</a></li>
-          <li><a href="pages/sermons.html">Sermons</a></li>
-          <li><a href="pages/give.html">Give</a></li>
-          <li><a href="pages/contact.html">Prayer Requests</a></li>
-          <li><a href="pages/contact.html">Volunteer</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Service Times</h4>
-        <ul>
-          <li><a href="#">Sunday: 7 AM</a></li>
-          <li><a href="#">Sunday: 9 AM</a></li>
-          <li><a href="#">Sunday: 11:30 AM</a></li>
-          <li><a href="#">Wednesday: 6 PM</a></li>
-          <li><a href="#">Prayer: Fri 6 PM</a></li>
-        </ul>
-        <div style="margin-top:20px;font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:1.8;">
-          Kampala, Uganda<br>
-          +256 772421468 +256782326379<br>
-          ambassadorsofencouragement@gmail.com
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Welcome to Golden Hills</p>
+        <h1 class="hero-title">
+          Delicious Food<br>
+          <em id="typing-text">Made With Love</em>
+        </h1>
+        <p class="hero-desc">
+          Experience the finest flavours of Uganda and the world. Fresh ingredients,
+          expert chefs, and a warm atmosphere crafted just for you.
+        </p>
+        <div class="hero-actions">
+          <a href="reservation.html" class="btn btn-gold">Order Now</a>
+          <a href="menu.html" class="btn btn-outline">View Menu</a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Ambassadors of Encouragement International Ministries. All rights reserved.</p>
+    <div class="hero-dots" role="tablist" aria-label="Hero slide controls">
+      <button class="hero-dot active" role="tab" aria-label="Slide 1"></button>
+      <button class="hero-dot" role="tab" aria-label="Slide 2"></button>
+      <button class="hero-dot" role="tab" aria-label="Slide 3"></button>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="section-pad" aria-labelledby="features-heading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Why Choose Us</span>
+        <h2 id="features-heading">The Golden Hills Difference</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="features-grid stagger-children">
+        <div class="feature-card glow-hover">
+          <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=120&q=80" alt="Fresh vegetables and ingredients" class="feature-icon-img">
+          <h3>Fresh Ingredients</h3>
+          <p>We source only the finest locally-grown produce and premium cuts, delivered fresh every single day.</p>
+        </div>
+        <div class="feature-card glow-hover">
+          <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=120&q=80" alt="Expert chef in kitchen" class="feature-icon-img">
+          <h3>Expert Chefs</h3>
+          <p>Our award-winning culinary team brings decades of experience and passion to every dish they create.</p>
+        </div>
+        <div class="feature-card glow-hover">
+          <img src="https://images.unsplash.com/photo-1526367790999-0150786686a2?w=120&q=80" alt="Fast food delivery" class="feature-icon-img">
+          <h3>Fast Delivery</h3>
+          <p>Hot meals delivered to your door within 30 minutes. Quality and speed — never a compromise.</p>
+        </div>
+        <div class="feature-card glow-hover">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=120&q=80" alt="Beautiful restaurant dining" class="feature-icon-img">
+          <h3>Made With Love</h3>
+          <p>Every recipe is crafted with care, heritage, and a commitment to making every bite unforgettable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section id="about" class="section-pad" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-images reveal reveal-left">
+          <img
+            src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=900&q=80"
+            alt="Inside Golden Hills Restaurant dining room"
+            class="about-img-main"
+          >
+          <img
+            src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&q=80"
+            alt="Chef preparing a dish"
+            class="about-img-accent"
+          >
+          <div class="about-badge" aria-label="15 years of excellence">
+            <strong>15</strong>
+            <span>Years of<br>Excellence</span>
+          </div>
+        </div>
+        <div class="about-text reveal reveal-right">
+          <span class="eyebrow">Our Story</span>
+          <h2 id="about-heading">A Legacy of Flavour,<br>Born in Kampala</h2>
+          <p>
+            Golden Hills Restaurant opened its doors in 2009 with a simple promise:
+            to serve food that reminds you of home while surprising you with every bite.
+            What began as a small dining room in the heart of Kampala has grown into
+            one of Uganda's most celebrated culinary destinations.
+          </p>
+          <p>
+            Our head chef, Chef Emmanuel Okello, trained in Nairobi and Paris before
+            returning to Uganda to champion local ingredients with global technique.
+          </p>
+          <div class="about-stats">
+            <div class="stat"><strong>15+</strong><span>Years Open</span></div>
+            <div class="stat"><strong>50+</strong><span>Menu Items</span></div>
+            <div class="stat"><strong>12K+</strong><span>Happy Guests</span></div>
+          </div>
+          <a href="about.html" class="btn btn-gold">Our Full Story</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Menu -->
+  <section id="menu" class="section-pad" aria-labelledby="menu-heading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Taste the Best</span>
+        <h2 id="menu-heading">Our Popular Dishes</h2>
+        <div class="divider"></div>
+        <p>From hearty breakfasts to indulgent desserts, every plate tells a story.</p>
+      </div>
+      <div class="menu-filters" role="tablist" aria-label="Menu categories">
+        <button class="filter-btn active" data-filter="all" role="tab">All</button>
+        <button class="filter-btn" data-filter="breakfast" role="tab">Breakfast</button>
+        <button class="filter-btn" data-filter="lunch" role="tab">Lunch</button>
+        <button class="filter-btn" data-filter="dinner" role="tab">Dinner</button>
+        <button class="filter-btn" data-filter="pizza" role="tab">Pizza</button>
+        <button class="filter-btn" data-filter="chicken" role="tab">Chicken</button>
+        <button class="filter-btn" data-filter="burgers" role="tab">Burgers</button>
+        <button class="filter-btn" data-filter="drinks" role="tab">Drinks</button>
+        <button class="filter-btn" data-filter="desserts" role="tab">Desserts</button>
+      </div>
+      <div class="menu-grid stagger-children" id="menu-grid">
+
+        <article class="menu-card" data-category="breakfast">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=600&q=80" alt="Golden Sunrise Breakfast plate with eggs and sausages" class="menu-card-img">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Breakfast</p>
+            <h3>Golden Sunrise Plate</h3>
+            <p>Two farm eggs, crispy beef sausages, toasted bread, grilled tomatoes &amp; fresh juice.</p>
+            <div class="menu-card-footer"><span class="price">UGX 18,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="lunch">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1574484284002-952d92a03a05?w=600&q=80" alt="Matoke and groundnut stew traditional Ugandan dish" class="menu-card-img">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Lunch</p>
+            <h3>Matoke &amp; Groundnut Stew</h3>
+            <p>Tender steamed matoke served with a rich, aromatic groundnut stew and steamed greens.</p>
+            <div class="menu-card-footer"><span class="price">UGX 22,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="dinner">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?w=600&q=80" alt="Grilled Nile tilapia with ugali and kachumbari" class="menu-card-img">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Dinner</p>
+            <h3>Grilled Nile Tilapia</h3>
+            <p>Whole tilapia marinated in herbs and lemon, char-grilled and served with ugali and kachumbari.</p>
+            <div class="menu-card-footer"><span class="price">UGX 35,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="pizza">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80" alt="Golden Hills Supreme pizza with pepperoni and vegetables" class="menu-card-img">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Pizza</p>
+            <h3>Golden Hills Supreme</h3>
+            <p>Hand-stretched dough topped with premium mozzarella, pepperoni, bell peppers &amp; mushrooms.</p>
+            <div class="menu-card-footer"><span class="price">UGX 45,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="chicken">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c7?w=600&q=80" alt="Heritage roast chicken with honey glaze and potatoes" class="menu-card-img">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Chicken</p>
+            <h3>Heritage Roast Chicken</h3>
+            <p>Slow-roasted half chicken basted in gold honey glaze, served with roasted potatoes &amp; coleslaw.</p>
+            <div class="menu-card-footer"><span class="price">UGX 38,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="burgers">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="The Golden Burger with beef patty and fries" class="menu-card-img">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Burgers</p>
+            <h3>The Golden Burger</h3>
+            <p>Juicy beef patty, aged cheddar, caramelised onions, house sauce &amp; a brioche bun. Served with fries.</p>
+            <div class="menu-card-footer"><span class="price">UGX 28,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="drinks">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80" alt="Fresh mango and passion fruit smoothie" class="menu-card-img">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Drinks</p>
+            <h3>Mango &amp; Passion Smoothie</h3>
+            <p>Blended fresh Ugandan mangoes and passionfruit with a hint of ginger. Served chilled.</p>
+            <div class="menu-card-footer"><span class="price">UGX 8,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="desserts">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&q=80" alt="Chocolate lava cake with vanilla ice cream" class="menu-card-img">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Desserts</p>
+            <h3>Chocolate Lava Cake</h3>
+            <p>Warm Belgian chocolate fondant with a molten centre, served with vanilla cream ice cream.</p>
+            <div class="menu-card-footer"><span class="price">UGX 15,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="lunch">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80" alt="Rolex wrap deluxe with vegetables and egg" class="menu-card-img">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Lunch</p>
+            <h3>Rolex Wrap Deluxe</h3>
+            <p>Uganda's iconic rolled chapati stuffed with seasoned egg, cabbage, tomatoes &amp; avocado.</p>
+            <div class="menu-card-footer"><span class="price">UGX 12,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+      </div>
+      <div class="text-center" style="margin-top:48px;">
+        <a href="menu.html" class="btn btn-outline-gold">View Full Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Today's Special -->
+  <section id="specials-preview" class="section-pad" aria-labelledby="special-heading">
+    <div class="container">
+      <div class="special-inner">
+        <div class="special-img-wrap reveal reveal-left">
+          <img
+            src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800&q=80"
+            alt="Today's special: Slow-Braised Lamb Shank on mashed potatoes"
+            class="special-dish-img"
+          >
+          <div class="badge-off" aria-label="20 percent off">20%<br>OFF</div>
+        </div>
+        <div class="special-text reveal reveal-right">
+          <span class="eyebrow">Today's Special</span>
+          <h2 id="special-heading">Don't Miss Out<br>On Today's Deal</h2>
+          <p class="dish-name">Slow-Braised Lamb Shank</p>
+          <p>
+            Tender Ugandan lamb braised for six hours in a rich tomato and herb sauce,
+            rested on creamy mashed potatoes. Available today only — limited portions.
+          </p>
+          <div class="price-row">
+            <span class="price-now">UGX 40,000</span>
+            <span class="price-was">UGX 50,000</span>
+          </div>
+          <a href="specials.html" class="btn btn-gold">Order This Deal</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Counters -->
+  <section id="counters" aria-label="Restaurant statistics">
+    <div class="container">
+      <div class="counters-grid stagger-children">
+        <div class="counter-item">
+          <strong data-count="12000" data-suffix="">0</strong>
+          <span>Happy Customers</span>
+        </div>
+        <div class="counter-item">
+          <strong data-count="50" data-suffix="+">0</strong>
+          <span>Menu Dishes</span>
+        </div>
+        <div class="counter-item">
+          <strong data-count="15" data-suffix="">0</strong>
+          <span>Years of Excellence</span>
+        </div>
+        <div class="counter-item">
+          <strong data-count="8" data-suffix="">0</strong>
+          <span>Expert Chefs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Preview -->
+  <section id="gallery" class="section-pad" aria-labelledby="gallery-heading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Our Moments</span>
+        <h2 id="gallery-heading">A Feast for the Eyes</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item" data-cat="food" data-index="0">
+          <img src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?w=700&q=80" alt="Grilled fish platter" loading="lazy">
+          <div class="gallery-overlay"><div class="gallery-zoom-icon">+</div></div>
+        </div>
+        <div class="gallery-item" data-cat="ambience" data-index="1">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="Restaurant dining room ambience" loading="lazy">
+          <div class="gallery-overlay"><div class="gallery-zoom-icon">+</div></div>
+        </div>
+        <div class="gallery-item" data-cat="food" data-index="2">
+          <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=700&q=80" alt="Chocolate dessert platter" loading="lazy">
+          <div class="gallery-overlay"><div class="gallery-zoom-icon">+</div></div>
+        </div>
+        <div class="gallery-item" data-cat="chefs" data-index="3">
+          <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=700&q=80" alt="Chef preparing a dish in the kitchen" loading="lazy">
+          <div class="gallery-overlay"><div class="gallery-zoom-icon">+</div></div>
+        </div>
+        <div class="gallery-item" data-cat="food" data-index="4">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=700&q=80" alt="Gourmet burger with fries" loading="lazy">
+          <div class="gallery-overlay"><div class="gallery-zoom-icon">+</div></div>
+        </div>
+        <div class="gallery-item" data-cat="ambience" data-index="5">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&q=80" alt="Restaurant interior warm lighting" loading="lazy">
+          <div class="gallery-overlay"><div class="gallery-zoom-icon">+</div></div>
+        </div>
+        <div class="gallery-item" data-cat="food" data-index="6">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=700&q=80" alt="Fresh pizza from the oven" loading="lazy">
+          <div class="gallery-overlay"><div class="gallery-zoom-icon">+</div></div>
+        </div>
+        <div class="gallery-item" data-cat="chefs" data-index="7">
+          <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=700&q=80" alt="Colourful cocktail and drinks" loading="lazy">
+          <div class="gallery-overlay"><div class="gallery-zoom-icon">+</div></div>
+        </div>
+        <div class="gallery-item" data-cat="food" data-index="8">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=700&q=80" alt="Roast chicken carved at table" loading="lazy">
+          <div class="gallery-overlay"><div class="gallery-zoom-icon">+</div></div>
+        </div>
+      </div>
+      <div class="text-center" style="margin-top:40px;">
+        <a href="gallery.html" class="btn btn-outline-gold">View Full Gallery</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
+    <div class="lightbox-content">
+      <button id="lightbox-close" aria-label="Close lightbox">&times;</button>
+      <img src="" alt="" id="lightbox-img">
+      <button class="lightbox-nav" id="lightbox-prev" aria-label="Previous image">&#8592;</button>
+      <button class="lightbox-nav" id="lightbox-next" aria-label="Next image">&#8594;</button>
     </div>
   </div>
-</footer>
 
-<script src="js/main.js"></script>
+  <!-- Testimonials -->
+  <section id="testimonials" class="section-pad" aria-labelledby="testi-heading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">What They Say</span>
+        <h2 id="testi-heading">Loved by Our Guests</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="testi-slider-wrap">
+        <div class="testi-track" id="testi-track">
+
+          <div class="testi-card">
+            <div class="testi-inner">
+              <div class="testi-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <blockquote>"The best food I have ever tasted. Excellent service and a wonderful atmosphere — Golden Hills is truly in a class of its own."</blockquote>
+              <div class="testi-author">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Nicola, restaurant guest" class="testi-avatar">
+                <div class="testi-author-info"><strong>Nicola</strong><span>Regular Guest</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-inner">
+              <div class="testi-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <blockquote>"Amazing customer care and absolutely delicious meals every time. I recommend Golden Hills to everyone I know. Highly rated!"</blockquote>
+              <div class="testi-author">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Enoch, food critic" class="testi-avatar">
+                <div class="testi-author-info"><strong>Enoch</strong><span>Food Critic</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-inner">
+              <div class="testi-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <blockquote>"A beautiful restaurant with incredibly fresh food and the most friendly, attentive staff in Kampala. My go-to for every occasion."</blockquote>
+              <div class="testi-author">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Grace, loyal customer" class="testi-avatar">
+                <div class="testi-author-info"><strong>Grace</strong><span>Loyal Customer</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-inner">
+              <div class="testi-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <blockquote>"The grilled tilapia is out of this world. The ambiance, the service, the food — everything is just perfect at Golden Hills."</blockquote>
+              <div class="testi-author">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="David, business traveller" class="testi-avatar">
+                <div class="testi-author-info"><strong>David</strong><span>Business Traveller</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testi-card">
+            <div class="testi-inner">
+              <div class="testi-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <blockquote>"We celebrated our anniversary here and it was magical. The private dining experience was beyond anything we expected. Truly 5-star."</blockquote>
+              <div class="testi-author">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80" alt="Amara, anniversary guest" class="testi-avatar">
+                <div class="testi-author-info"><strong>Amara</strong><span>Anniversary Guest</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="testi-controls" role="group" aria-label="Testimonial navigation">
+        <button class="testi-btn" id="testi-prev" aria-label="Previous testimonial">&#8592;</button>
+        <button class="testi-btn" id="testi-next" aria-label="Next testimonial">&#8594;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section id="newsletter" aria-labelledby="newsletter-heading">
+    <div class="container">
+      <span class="eyebrow" style="display:block;margin-bottom:10px;">Stay in the Know</span>
+      <h2 id="newsletter-heading">Get Exclusive Offers &amp; Updates</h2>
+      <p>Subscribe to our newsletter and be the first to hear about new dishes, events, and special deals.</p>
+      <form class="newsletter-form" id="newsletter-form" novalidate aria-label="Newsletter subscription">
+        <input type="email" placeholder="Enter your email address" aria-label="Email address" required>
+        <button type="submit" class="btn btn-gold">Subscribe</button>
+      </form>
+      <p id="newsletter-success" role="status">Thank you for subscribing! Welcome to the Golden Hills family.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">Golden Hills <span>Restaurant</span></div>
+          <p>Fine dining in the heart of Kampala. Fresh ingredients, expert chefs, and an atmosphere designed to delight.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" aria-label="Facebook">Facebook</a>
+            <a href="#" class="social-link" aria-label="Instagram">Instagram</a>
+            <a href="https://wa.me/256747995116" class="social-link" aria-label="WhatsApp">WhatsApp</a>
+          </div>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="menu.html">Our Menu</a></li>
+            <li><a href="specials.html">Specials</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="reservation.html">Reservation</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Opening Hours</h4>
+          <ul class="footer-hours">
+            <li><span>Mon &ndash; Fri:</span> 10:00 AM &ndash; 10:00 PM</li>
+            <li><span>Sat &ndash; Sun:</span> 9:00 AM &ndash; 11:00 PM</li>
+            <li style="margin-top:12px;color:var(--gold);">Open on public holidays</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact Us</h4>
+          <div class="footer-contact-item"><strong>Phone</strong><a href="tel:+256747995116" style="color:var(--gray-mid)">+256 747 995 116</a></div>
+          <div class="footer-contact-item"><strong>Email</strong><a href="mailto:info@goldenhillsrestaurant.com" style="color:var(--gray-mid)">info@goldenhillsrestaurant.com</a></div>
+          <div class="footer-contact-item"><strong>Address</strong><p>Plot 14, Kampala Road, Kampala, Uganda</p></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Golden Hills Restaurant. All rights reserved.</p>
+        <p>Designed with care in Kampala, Uganda</p>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-top" aria-label="Back to top">&#8679;</button>
+
+  <script src="js/slider.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>

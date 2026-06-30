@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse the full menu at Golden Hills Restaurant, Kampala.">
+  <title>Our Menu | Golden Hills Restaurant</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="page-fade-in">
+  <div id="scroll-progress"></div>
+  <div id="loading-screen" aria-hidden="true">
+    <div class="loader-logo">Golden Hills</div>
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  </div>
+
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">Golden Hills <span>Restaurant</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html" class="active">Menu</a></li>
+        <li><a href="specials.html">Specials</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="reservation.html">Reservation</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="nav-order"><a href="reservation.html" class="btn btn-gold">Order Now</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="container">
+      <h1>Our Menu</h1>
+      <p class="breadcrumb"><a href="index.html">Home</a> &rsaquo; Menu</p>
+    </div>
+  </header>
+
+  <section class="section-pad menu-page" aria-labelledby="menu-full-heading">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Eat Well, Live Well</span>
+        <h2 id="menu-full-heading">Every Dish, Every Craving</h2>
+        <div class="divider"></div>
+        <p>Browse our full selection and order your favourites. All dishes made fresh to order.</p>
+      </div>
+
+      <div class="menu-filters" role="tablist">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="breakfast">Breakfast</button>
+        <button class="filter-btn" data-filter="lunch">Lunch</button>
+        <button class="filter-btn" data-filter="dinner">Dinner</button>
+        <button class="filter-btn" data-filter="pizza">Pizza</button>
+        <button class="filter-btn" data-filter="chicken">Chicken</button>
+        <button class="filter-btn" data-filter="burgers">Burgers</button>
+        <button class="filter-btn" data-filter="drinks">Drinks</button>
+        <button class="filter-btn" data-filter="desserts">Desserts</button>
+      </div>
+
+      <div class="menu-grid stagger-children" id="menu-grid">
+
+        <!-- BREAKFAST -->
+        <article class="menu-card" data-category="breakfast">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=600&q=80" alt="Golden Sunrise Plate with eggs, sausages and toast" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Breakfast</p>
+            <h3>Golden Sunrise Plate</h3>
+            <p>Two farm eggs, crispy beef sausages, toasted bread, grilled tomatoes &amp; fresh juice.</p>
+            <div class="menu-card-footer"><span class="price">UGX 18,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="breakfast">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=600&q=80" alt="Fluffy golden pancake stack with maple syrup and banana" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Breakfast</p>
+            <h3>Fluffy Pancake Stack</h3>
+            <p>Three golden pancakes with maple syrup, fresh banana slices and whipped cream.</p>
+            <div class="menu-card-footer"><span class="price">UGX 14,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="breakfast">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Ugandan porridge and rolex breakfast combo" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Breakfast</p>
+            <h3>Porridge &amp; Rolex Combo</h3>
+            <p>Warm millet porridge paired with a classic Ugandan rolex — eggs &amp; veggies in chapati.</p>
+            <div class="menu-card-footer"><span class="price">UGX 10,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <!-- LUNCH -->
+        <article class="menu-card" data-category="lunch">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1574484284002-952d92a03a05?w=600&q=80" alt="Matoke and groundnut stew Ugandan dish" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Lunch</p>
+            <h3>Matoke &amp; Groundnut Stew</h3>
+            <p>Steamed matoke with rich groundnut stew and seasonal greens.</p>
+            <div class="menu-card-footer"><span class="price">UGX 22,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="lunch">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80" alt="Rolex wrap deluxe with fresh vegetables" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Lunch</p>
+            <h3>Rolex Wrap Deluxe</h3>
+            <p>Rolled chapati with seasoned egg, cabbage, tomatoes &amp; avocado.</p>
+            <div class="menu-card-footer"><span class="price">UGX 12,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="lunch">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=600&q=80" alt="Beef stew with posho and vegetables" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Lunch</p>
+            <h3>Beef &amp; Posho Plate</h3>
+            <p>Slow-cooked beef stew served with soft posho, steamed cabbage and beans.</p>
+            <div class="menu-card-footer"><span class="price">UGX 20,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <!-- DINNER -->
+        <article class="menu-card" data-category="dinner">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?w=600&q=80" alt="Grilled Nile tilapia with herbs and lemon" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Dinner</p>
+            <h3>Grilled Nile Tilapia</h3>
+            <p>Whole tilapia in herbs and lemon, char-grilled with ugali and kachumbari.</p>
+            <div class="menu-card-footer"><span class="price">UGX 35,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="dinner">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Slow-braised lamb shank on mashed potatoes" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Dinner</p>
+            <h3>Slow-Braised Lamb Shank</h3>
+            <p>Lamb braised six hours in rich tomato-herb sauce on creamy mashed potatoes.</p>
+            <div class="menu-card-footer"><span class="price">UGX 50,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="dinner">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&q=80" alt="Garlic butter prawns with crusty bread" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Dinner</p>
+            <h3>Garlic Butter Prawns</h3>
+            <p>Jumbo prawns sautéed in garlic butter and white wine, served with crusty bread.</p>
+            <div class="menu-card-footer"><span class="price">UGX 55,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <!-- PIZZA -->
+        <article class="menu-card" data-category="pizza">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80" alt="Golden Hills Supreme pizza with pepperoni and vegetables" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Pizza</p>
+            <h3>Golden Hills Supreme</h3>
+            <p>Mozzarella, pepperoni, bell peppers, mushrooms &amp; olives on hand-stretched dough.</p>
+            <div class="menu-card-footer"><span class="price">UGX 45,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="pizza">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="Margherita Classica pizza with fresh basil" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Pizza</p>
+            <h3>Margherita Classica</h3>
+            <p>San Marzano tomatoes, fresh mozzarella, extra-virgin olive oil, torn basil.</p>
+            <div class="menu-card-footer"><span class="price">UGX 35,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="pizza">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80" alt="Spicy beef and jalapeno pizza with BBQ sauce" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Pizza</p>
+            <h3>Spicy Beef &amp; Jalape&ntilde;o</h3>
+            <p>Spiced minced beef, jalapeños, caramelised onion and smoky BBQ sauce.</p>
+            <div class="menu-card-footer"><span class="price">UGX 42,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <!-- CHICKEN -->
+        <article class="menu-card" data-category="chicken">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c7?w=600&q=80" alt="Heritage roast chicken with honey glaze and roasted potatoes" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Chicken</p>
+            <h3>Heritage Roast Chicken</h3>
+            <p>Slow-roasted half chicken in honey glaze with roasted potatoes &amp; coleslaw.</p>
+            <div class="menu-card-footer"><span class="price">UGX 38,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="chicken">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1562967914-608f82629710?w=600&q=80" alt="Southern crispy fried chicken with chips and hot sauce" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Chicken</p>
+            <h3>Crispy Fried Chicken</h3>
+            <p>Southern-spiced crispy fried chicken pieces served with chips and hot sauce.</p>
+            <div class="menu-card-footer"><span class="price">UGX 28,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="chicken">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=600&q=80" alt="Lemon herb grilled chicken breast with salad and rice" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Chicken</p>
+            <h3>Lemon Herb Grilled Chicken</h3>
+            <p>Marinated breast grilled and served with garden salad and herbed rice.</p>
+            <div class="menu-card-footer"><span class="price">UGX 32,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <!-- BURGERS -->
+        <article class="menu-card" data-category="burgers">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80" alt="The Golden Burger with beef patty and aged cheddar" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Burgers</p>
+            <h3>The Golden Burger</h3>
+            <p>Beef patty, aged cheddar, caramelised onions, house sauce &amp; brioche bun. With fries.</p>
+            <div class="menu-card-footer"><span class="price">UGX 28,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="burgers">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=600&q=80" alt="Chicken avocado burger with lettuce and lemon aioli" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Burgers</p>
+            <h3>Chicken Avocado Burger</h3>
+            <p>Crispy chicken fillet, ripe avocado, lettuce, tomato and lemon aioli.</p>
+            <div class="menu-card-footer"><span class="price">UGX 26,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <!-- DRINKS -->
+        <article class="menu-card" data-category="drinks">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=80" alt="Fresh mango and passionfruit smoothie served chilled" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Drinks</p>
+            <h3>Mango &amp; Passion Smoothie</h3>
+            <p>Blended fresh Ugandan mangoes and passionfruit with ginger. Served chilled.</p>
+            <div class="menu-card-footer"><span class="price">UGX 8,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="drinks">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80" alt="Ugandan Arabica espresso coffee" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Drinks</p>
+            <h3>Ugandan Arabica Espresso</h3>
+            <p>Single-origin Mt. Elgon Arabica beans, pulled as a double espresso or Americano.</p>
+            <div class="menu-card-footer"><span class="price">UGX 6,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="drinks">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?w=600&q=80" alt="Hibiscus iced tea with honey" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Drinks</p>
+            <h3>Hibiscus Iced Tea</h3>
+            <p>Brewed dried hibiscus, chilled and sweetened with honey. Refreshing and bright.</p>
+            <div class="menu-card-footer"><span class="price">UGX 7,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <!-- DESSERTS -->
+        <article class="menu-card" data-category="desserts">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&q=80" alt="Warm chocolate lava cake with vanilla ice cream" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Desserts</p>
+            <h3>Chocolate Lava Cake</h3>
+            <p>Warm Belgian chocolate fondant with a molten centre &amp; vanilla ice cream.</p>
+            <div class="menu-card-footer"><span class="price">UGX 15,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-category="desserts">
+          <div class="menu-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80" alt="Passion fruit cheesecake with biscuit base and coulis" class="menu-card-img" loading="lazy">
+          </div>
+          <div class="menu-card-body">
+            <p class="menu-tag">Desserts</p>
+            <h3>Passion Fruit Cheesecake</h3>
+            <p>Creamy cheesecake on a biscuit base, topped with fresh passion fruit coulis.</p>
+            <div class="menu-card-footer"><span class="price">UGX 14,000</span><a href="reservation.html" class="btn btn-gold">Order</a></div>
+          </div>
+        </article>
+
+      </div><!-- /menu-grid -->
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section id="newsletter">
+    <div class="container">
+      <span class="eyebrow" style="display:block;margin-bottom:10px;">Stay Connected</span>
+      <h2>Get Exclusive Offers &amp; Updates</h2>
+      <p>Be the first to hear about new dishes and special deals.</p>
+      <form class="newsletter-form" id="newsletter-form" novalidate>
+        <input type="email" placeholder="Your email address" required aria-label="Email address">
+        <button type="submit" class="btn btn-gold">Subscribe</button>
+      </form>
+      <p id="newsletter-success" role="status">Thank you! Welcome to the Golden Hills family.</p>
+    </div>
+  </section>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><div class="nav-logo">Golden Hills <span>Restaurant</span></div><p>Fine dining in the heart of Kampala.</p><div class="footer-socials"><a href="#" class="social-link">Facebook</a><a href="#" class="social-link">Instagram</a><a href="https://wa.me/256747995116" class="social-link">WhatsApp</a></div></div>
+        <div><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="menu.html">Our Menu</a></li><li><a href="specials.html">Specials</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="reservation.html">Reservation</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div><h4>Opening Hours</h4><ul class="footer-hours"><li><span>Mon &ndash; Fri:</span> 10:00 AM &ndash; 10:00 PM</li><li><span>Sat &ndash; Sun:</span> 9:00 AM &ndash; 11:00 PM</li></ul></div>
+        <div><h4>Contact Us</h4><div class="footer-contact-item"><strong>Phone</strong><a href="tel:+256747995116" style="color:var(--gray-mid)">+256 747 995 116</a></div><div class="footer-contact-item"><strong>Email</strong><a href="mailto:info@goldenhillsrestaurant.com" style="color:var(--gray-mid)">info@goldenhillsrestaurant.com</a></div><div class="footer-contact-item"><strong>Address</strong><p>Plot 14, Kampala Road, Kampala, Uganda</p></div></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2024 Golden Hills Restaurant. All rights reserved.</p><p>Designed with care in Kampala, Uganda</p></div>
+    </div>
+  </footer>
+  <button id="back-top" aria-label="Back to top">&#8679;</button>
+  <script src="js/script.js"></script>
+</body>
+</html>
